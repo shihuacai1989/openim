@@ -34,13 +34,14 @@ public class ChatChannel implements InitializingBean {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup);
-            b.channel(NioServerSocketChannel.class);
-            b.childHandler(new HelloServerInitializer());
-
+            ServerBootstrap bootstrap = new ServerBootstrap();
+            bootstrap.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new HelloServerInitializer())
+                    .option(ChannelOption.SO_BACKLOG, 128)          // (5)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
             // 服务器绑定端口监听
-            ChannelFuture f = b.bind(port).sync();
+            ChannelFuture f = bootstrap.bind(port).sync();
             // 监听服务器关闭监听
             f.channel().closeFuture().sync();
 
