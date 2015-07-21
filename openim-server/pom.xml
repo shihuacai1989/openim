@@ -27,5 +27,13 @@
             <artifactId>netty-all</artifactId>
             <version>${netty.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.shihc</groupId>
+            <artifactId>openim-common-bean</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.shihc</groupId>
+            <artifactId>openim-common-zk</artifactId>
+        </dependency>
     </dependencies>
 </project>

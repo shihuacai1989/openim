@@ -48,6 +48,11 @@
             </dependency>
             <dependency>
                 <groupId>com.shihc</groupId>
+                <artifactId>openim-common-bean</artifactId>
+                <version>${openim.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shihc</groupId>
                 <artifactId>openim-common-util</artifactId>
                 <version>${openim.version}</version>
             </dependency>

@@ -11,6 +11,7 @@
 
     <artifactId>openim-esb</artifactId>
     <version>0.1</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
