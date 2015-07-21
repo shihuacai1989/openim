@@ -1,4 +1,4 @@
-package com.shihc.openim.manager.bean;
+package com.openim.manager.bean;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

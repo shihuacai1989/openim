@@ -1,6 +1,6 @@
-package com.shihc.openim.manager.controller;
+package com.openim.manager.controller;
 
-import com.shihc.openim.common.bean.CommonResult;
+import com.openim.common.bean.CommonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;

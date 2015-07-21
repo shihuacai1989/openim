@@ -1,4 +1,4 @@
-package com.shihc.openim.common.bean;
+package com.openim.common.bean;
 
 /**
  * Created by shihuacai on 2015/7/21.

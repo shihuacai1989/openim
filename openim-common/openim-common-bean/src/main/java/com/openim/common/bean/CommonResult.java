@@ -1,4 +1,4 @@
-package com.shihc.openim.common.bean;
+package com.openim.common.bean;
 
 /**
  * Created by shihuacai on 2015/7/20.
@@ -7,6 +7,12 @@ public class CommonResult {
     private int code;
     private String error;
     private Object data;
+
+    public CommonResult(int code, String error, Object data) {
+        this.code = code;
+        this.error = error;
+        this.data = data;
+    }
 
     public int getCode() {
         return code;

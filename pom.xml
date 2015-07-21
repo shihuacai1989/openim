@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.shihc</groupId>
+    <groupId>com.openim</groupId>
     <artifactId>openim</artifactId>
     <packaging>pom</packaging>
     <version>0.1</version>
@@ -13,6 +13,7 @@
         <module>openim-server</module>
         <module>openim-manager</module>
         <module>openim-common</module>
+        <module>openim-emulator</module>
     </modules>
 
     <properties>
@@ -37,6 +38,11 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.1.45</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${spring.boot.version}</version>
@@ -47,73 +53,44 @@
                 <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.shihc</groupId>
+                <groupId>com.openim</groupId>
                 <artifactId>openim-common-bean</artifactId>
                 <version>${openim.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.shihc</groupId>
+                <groupId>com.openim</groupId>
                 <artifactId>openim-common-util</artifactId>
                 <version>${openim.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.shihc</groupId>
+                <groupId>com.openim</groupId>
                 <artifactId>openim-common-zk</artifactId>
                 <version>${openim.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.shihc</groupId>
+                <groupId>com.openim</groupId>
                 <artifactId>openim-common-mq</artifactId>
                 <version>${openim.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <!--<pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <inherited>true</inherited>
-                <configuration>
-                    <fork>true</fork>
-                    <meminitial>128m</meminitial>
-                    <maxmem>768m</maxmem>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.1</version>
-            </plugin>
-        </plugins>
-    </pluginManagement>-->
-    <!--<plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <configuration>
-                <encoding>UTF-8</encoding>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>2.3.2</version>
-            <configuration>
-                <compilerArguments>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF-8</encoding>
-                </compilerArguments>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>2.1</version>
-        </plugin>
-    </plugins>-->
+    <!--<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>-->
 
 
 </project>

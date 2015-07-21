@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>openim</artifactId>
-        <groupId>com.shihc</groupId>
+        <groupId>com.openim</groupId>
         <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -28,12 +28,35 @@
             <version>${netty.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.shihc</groupId>
+            <groupId>com.openim</groupId>
             <artifactId>openim-common-bean</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.shihc</groupId>
+            <groupId>com.openim</groupId>
             <artifactId>openim-common-zk</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-mq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <!-- 生成的jar或war包的名称 -->
+        <finalName>openim-server</finalName>
+        <!--<plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.2.0.RELEASE</version>
+            </plugin>
+
+        </plugins>-->
+
+    </build>
 </project>

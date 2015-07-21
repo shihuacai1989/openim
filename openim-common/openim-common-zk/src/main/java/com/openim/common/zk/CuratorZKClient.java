@@ -1,4 +1,4 @@
-package com.shihc.openim.common.zk;
+package com.openim.common.zk;
 
 import org.apache.zookeeper.Watcher;
 

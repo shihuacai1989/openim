@@ -1,12 +1,6 @@
-package com.shihc.openim.common.zk;
+package com.openim.common.zk;
 
-import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Created by shihuacai on 2015/7/20.

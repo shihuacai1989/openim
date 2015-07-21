@@ -11,17 +11,26 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.InitBinder;
 
 import java.net.InetAddress;
 
 /**
  * Created by shihuacai on 2015/7/20.
+ * 终端设备聊天信息通道
  */
-public class ServerChannel {
+@Component
+public class ChatChannel implements InitializingBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ServerChannel.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ChatChannel.class);
 
-    public void startServer(int port){
+    @Value("${chat.port}")
+    private int port;
+
+    private void startServer(){
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -37,12 +46,18 @@ public class ServerChannel {
 
             // 可以简写为
             /* b.bind(portNumber).sync().channel().closeFuture().sync(); */
+
         } catch (InterruptedException e) {
             LOG.error(e.toString());
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        startServer();
     }
 
     private class HelloServerInitializer extends ChannelInitializer<SocketChannel> {
@@ -59,35 +74,8 @@ public class ServerChannel {
             pipeline.addLast("encoder", new StringEncoder());
 
             // 自己的逻辑Handler
-            pipeline.addLast("handler", new HelloServerHandler());
+            pipeline.addLast("handler", new ChatHandler());
         }
     }
 
-    private class HelloServerHandler extends SimpleChannelInboundHandler<String> {
-
-        @Override
-        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-            // 收到消息直接打印输出
-            System.out.println(ctx.channel().remoteAddress() + " Say : " + msg);
-
-            // 返回客户端消息 - 我已经接收到了你的消息
-            ctx.writeAndFlush("Received your message !\n");
-        }
-
-        /**
-         *
-         * 覆盖 channelActive 方法 在channel被启用的时候触发 (在建立连接的时候)
-         *
-         * channelActive 和 channelInActive 在后面的内容中讲述，这里先不做详细的描述
-         * */
-        @Override
-        public void channelActive(ChannelHandlerContext ctx) throws Exception {
-
-            System.out.println("RamoteAddress : " + ctx.channel().remoteAddress() + " active !");
-
-            ctx.writeAndFlush("Welcome to " + InetAddress.getLocalHost().getHostName() + " service!\n");
-
-            super.channelActive(ctx);
-        }
-    }
 }
