@@ -34,5 +34,5 @@ public class DeviceMsgType {
     /**
      * 终端位置信息
      */
-    public static final int LOCATION = 6;
+    //public static final int LOCATION = 6;
 }

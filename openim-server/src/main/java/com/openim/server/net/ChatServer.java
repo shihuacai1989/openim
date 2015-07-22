@@ -12,20 +12,21 @@ import io.netty.handler.codec.string.StringEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.InitBinder;
-
-import java.net.InetAddress;
 
 /**
  * Created by shihuacai on 2015/7/20.
  * 终端设备聊天信息通道
  */
 @Component
-public class ChatChannel implements InitializingBean {
+public class ChatServer implements InitializingBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ChatChannel.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ChatServer.class);
+
+    @Autowired
+    private ChatHandler chatHandler;
 
     @Value("${chat.port}")
     private int port;
@@ -75,7 +76,7 @@ public class ChatChannel implements InitializingBean {
             pipeline.addLast("encoder", new StringEncoder());
 
             // 自己的逻辑Handler
-            pipeline.addLast("handler", new ChatHandler());
+            pipeline.addLast("handler", chatHandler);
         }
     }
 
