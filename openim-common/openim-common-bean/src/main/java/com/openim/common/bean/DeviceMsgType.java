@@ -6,20 +6,26 @@ package com.openim.common.bean;
  */
 public class DeviceMsgType {
 
-    /**
-     * 应用上线
-     */
-    public static final int ONLINE = 1;
 
-    /**
-     * 应用下线
-     */
-    public static final int OFFLINE = 2;
+    public static final int LOGIN = 1;
+
+    public static final int SEND = 2;
+
+
+    public static final int LOGOUT = 3;
 
     /**
      * 消息接收回执
      */
-    public static final int RECEIVE = 3;
+    public static final int RECEIVE = 4;
+
+    /**
+     * 终端心跳
+     */
+    public static final int HEART_BEAT = 5;
+
+
+
 
     /**
      * 消息打开回执

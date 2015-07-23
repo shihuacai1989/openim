@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>openim-server</artifactId>
+    <artifactId>openim-chatserver</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
 

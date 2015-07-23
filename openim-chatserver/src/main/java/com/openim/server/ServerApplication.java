@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-public class Application {
+public class ServerApplication {
     public static void main(String[] args){
-        SpringApplication springApplication = new SpringApplication(Application.class);
+        SpringApplication springApplication = new SpringApplication(ServerApplication.class);
         springApplication.addListeners(new ApplicationStartUp());
         springApplication.run(args);
 

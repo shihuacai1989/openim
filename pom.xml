@@ -10,10 +10,11 @@
     <version>0.1</version>
     <modules>
         <module>openim-esb</module>
-        <module>openim-server</module>
+        <module>openim-chatserver</module>
         <module>openim-manager</module>
         <module>openim-common</module>
         <module>openim-emulator</module>
+        <module>openim-fileserver</module>
     </modules>
 
     <properties>
@@ -76,7 +77,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <!--<build>
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -91,7 +92,7 @@
 
             </plugins>
         </pluginManagement>
-    </build>-->
+    </build>
 
 
 </project>

@@ -1,5 +1,10 @@
 package com.openim.server.net;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.openim.common.bean.DeviceMsgType;
+import com.openim.server.Constants;
+import com.openim.server.handler.impl.HandlerChain;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -9,8 +14,11 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by shihuacai on 2015/7/21.
@@ -20,6 +28,11 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+
+    private static Map<String, Channel> map = new HashMap<String, Channel>();
+
+    private static HandlerChain handlerChain = new HandlerChain();
+
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {  // (2)
@@ -43,12 +56,19 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         LOG.debug(msg);
+        try {
+            if(!StringUtils.isEmpty(msg)){
+                JSONObject msgJson = JSON.parseObject(msg);
+                handlerChain.handle(msgJson, handlerChain, ctx.channel());
+            }
+        }catch (Exception e){
+            LOG.error(e.toString());
+        }
 
-
-        System.out.println(ctx.channel().remoteAddress() + " Say : " + msg);
+        //System.out.println(ctx.channel().remoteAddress() + " Say : " + msg);
 
         // 返回客户端消息 - 我已经接收到了你的消息
-        ctx.writeAndFlush("Received your message !\n");
+        //ctx.writeAndFlush("Received your message !\n");
     }
 
     /**
