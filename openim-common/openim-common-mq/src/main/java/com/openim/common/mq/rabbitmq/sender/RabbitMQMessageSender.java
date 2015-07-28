@@ -1,4 +1,4 @@
-package com.openim.common.mq.rabbitmq;
+package com.openim.common.mq.rabbitmq.sender;
 
 import com.openim.common.mq.IMessageSender;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
