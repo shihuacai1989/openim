@@ -5,5 +5,4 @@ package com.openim.server;
  */
 public class Constants {
     public static final String deviceMsgField_Type = "type";
-
 }

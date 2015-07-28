@@ -5,7 +5,6 @@ import com.openim.server.handler.IMessageHandler;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.plugin2.message.HeartbeatMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +15,20 @@ import java.util.List;
 public class HandlerChain implements IMessageHandler {
     private static final Logger LOG = LoggerFactory.getLogger(HandlerChain.class);
 
-    private List<IMessageHandler> handlerList;
+    private static List<IMessageHandler> handlerList;
 
     private int index;
     private int max;
 
-    public HandlerChain(){
+    static{
         handlerList = new ArrayList<IMessageHandler>();
         handlerList.add(new LoginHandler());
         handlerList.add(new SendHandler());
         handlerList.add(new HeartBeatHandler());
         handlerList.add(new LogoutHandler());
+    }
 
+    public HandlerChain(){
         index = -1;
         max = handlerList.size() - 1;
     }

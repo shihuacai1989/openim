@@ -2,9 +2,9 @@ package com.openim.server.net;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.openim.common.bean.DeviceMsgType;
-import com.openim.server.Constants;
+import com.openim.common.mq.IMessageDispatch;
 import com.openim.server.handler.impl.HandlerChain;
+import com.openim.server.listener.ApplicationStartUp;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/7/21.
  */
-@Component
+//@Component
 public class ChatHandler extends SimpleChannelInboundHandler<String> {
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
 
@@ -31,8 +31,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
 
     private static Map<String, Channel> map = new HashMap<String, Channel>();
 
-    private static HandlerChain handlerChain = new HandlerChain();
-
+    private String loginName;
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {  // (2)
@@ -58,6 +57,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
         LOG.debug(msg);
         try {
             if(!StringUtils.isEmpty(msg)){
+                HandlerChain handlerChain = new HandlerChain();
                 JSONObject msgJson = JSON.parseObject(msg);
                 handlerChain.handle(msgJson, handlerChain, ctx.channel());
             }

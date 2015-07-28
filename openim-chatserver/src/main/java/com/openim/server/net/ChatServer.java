@@ -25,8 +25,8 @@ public class ChatServer implements InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServer.class);
 
-    @Autowired
-    private ChatHandler chatHandler;
+    /*@Autowired
+    private ChatHandler chatHandler;*/
 
     @Value("${chat.port}")
     private int port;
@@ -76,7 +76,7 @@ public class ChatServer implements InitializingBean {
             pipeline.addLast("encoder", new StringEncoder());
 
             // 自己的逻辑Handler
-            pipeline.addLast("handler", chatHandler);
+            pipeline.addLast("handler", new ChatHandler());
         }
     }
 

@@ -1,0 +1,35 @@
+package com.openim.common.mq.rabbitmq.sender;
+
+import com.openim.common.mq.IMessageDispatch;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageListener;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.UnsupportedEncodingException;
+
+/**
+ * Created by shihuacai on 2015/7/28.
+ */
+public class RabbitMQMessageListener implements MessageListener {
+
+    @Autowired
+    IMessageDispatch messageDispatch;
+
+    @Override
+    public void onMessage(Message amqpMessage) {
+        try {
+            byte[] bytes = (byte[])amqpMessage.getBody();
+            String message = new String(bytes, "UTF-8");
+
+            //也是返回byte[]
+            //messageConverter.fromMessage(amqpMessage);
+
+            String exchange = amqpMessage.getMessageProperties().getReceivedExchange();
+            String routeKey = amqpMessage.getMessageProperties().getReceivedRoutingKey();
+
+            //messageDispatch.dispatchMessage(message, exchange, routeKey);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+}
