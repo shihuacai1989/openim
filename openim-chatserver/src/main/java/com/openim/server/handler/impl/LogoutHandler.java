@@ -6,7 +6,7 @@ import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.server.Constants;
 import com.openim.server.handler.IMessageHandler;
-import com.openim.server.listener.ApplicationStartUp;
+import com.openim.server.listener.ApplicationContextAware;
 import io.netty.channel.Channel;
 
 /**
@@ -17,13 +17,13 @@ public class LogoutHandler implements IMessageHandler {
     private IMessageSender messageSender;
     public LogoutHandler(){
         //messageDispatch = ApplicationStartUp.applicationContext.getBean(IMessageDispatch.class);
-        messageSender = ApplicationStartUp.applicationContext.getBean(IMessageSender.class);
+        messageSender = ApplicationContextAware.getBean(IMessageSender.class);
     }
     @Override
     public void handle(JSONObject jsonObject, HandlerChain handlerChain, Channel channel) {
         int type = jsonObject.getIntValue(Constants.deviceMsgField_Type);
         if (type == DeviceMsgType.LOGOUT) {
-            messageSender.sendMessage(MQConstants.chatExchange, MQConstants.logoutRouteKey, jsonObject);
+            messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, jsonObject);
         } else {
             handlerChain.handle(jsonObject, handlerChain, channel);
         }

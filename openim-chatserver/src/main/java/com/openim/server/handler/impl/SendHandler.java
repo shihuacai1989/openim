@@ -2,12 +2,11 @@ package com.openim.server.handler.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.openim.common.bean.DeviceMsgType;
-import com.openim.common.mq.IMessageDispatch;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.server.Constants;
 import com.openim.server.handler.IMessageHandler;
-import com.openim.server.listener.ApplicationStartUp;
+import com.openim.server.listener.ApplicationContextAware;
 import io.netty.channel.Channel;
 
 /**
@@ -19,7 +18,7 @@ public class SendHandler implements IMessageHandler {
     private IMessageSender messageSender;
     public SendHandler(){
         //messageDispatch = ApplicationStartUp.applicationContext.getBean(IMessageDispatch.class);
-        messageSender = ApplicationStartUp.applicationContext.getBean(IMessageSender.class);
+        messageSender = ApplicationContextAware.getBean(IMessageSender.class);
     }
 
     @Override
@@ -27,7 +26,7 @@ public class SendHandler implements IMessageHandler {
         int type = jsonObject.getIntValue(Constants.deviceMsgField_Type);
         if (type == DeviceMsgType.SEND) {
             //messageDispatch.dispatchMessage(null, null, jsonObject);
-            messageSender.sendMessage(MQConstants.chatExchange, MQConstants.routeKey, jsonObject.toJSONString());
+            messageSender.sendMessage(MQConstants.openimExchange, MQConstants.chatRouteKey, jsonObject.toJSONString());
         } else {
             handlerChain.handle(jsonObject, handlerChain, channel);
         }

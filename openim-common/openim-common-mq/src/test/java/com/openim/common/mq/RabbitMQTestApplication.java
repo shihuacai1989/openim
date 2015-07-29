@@ -7,8 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by shihuacai on 2015/7/28.
  */
@@ -27,8 +25,8 @@ public class RabbitMQTestApplication implements CommandLineRunner {
         System.out.println("Waiting five seconds...");
         Thread.sleep(5000);
         System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(MQConstants.chatExchange, MQConstants.chatRouteKey, "Hello from RabbitMQ!");
-        rabbitTemplate.convertAndSend(MQConstants.chatExchange, MQConstants.logoutRouteKey, "Hello from RabbitMQ2!");
+        rabbitTemplate.convertAndSend(MQConstants.openimExchange, MQConstants.chatRouteKey, "Hello from RabbitMQ!");
+        rabbitTemplate.convertAndSend(MQConstants.openimExchange, MQConstants.logoutRouteKey, "Hello from RabbitMQ2!");
 
         //receiver().getLatch().await(10000, TimeUnit.MILLISECONDS);
         //context.close();

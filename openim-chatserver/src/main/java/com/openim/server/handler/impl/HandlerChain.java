@@ -15,20 +15,26 @@ import java.util.List;
 public class HandlerChain implements IMessageHandler {
     private static final Logger LOG = LoggerFactory.getLogger(HandlerChain.class);
 
-    private static List<IMessageHandler> handlerList;
+    private List<IMessageHandler> handlerList;
 
     private int index;
     private int max;
 
-    static{
+    /*static{
         handlerList = new ArrayList<IMessageHandler>();
         handlerList.add(new LoginHandler());
         handlerList.add(new SendHandler());
         handlerList.add(new HeartBeatHandler());
         handlerList.add(new LogoutHandler());
-    }
+    }*/
 
     public HandlerChain(){
+        handlerList = new ArrayList<IMessageHandler>();
+        handlerList.add(new LoginHandler());
+        handlerList.add(new SendHandler());
+        handlerList.add(new HeartBeatHandler());
+        handlerList.add(new LogoutHandler());
+
         index = -1;
         max = handlerList.size() - 1;
     }

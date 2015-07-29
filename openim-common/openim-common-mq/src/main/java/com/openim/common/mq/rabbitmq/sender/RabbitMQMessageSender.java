@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by shihuacai on 2015/7/28.
  */
+//@Component
 public class RabbitMQMessageSender implements IMessageSender {
 
     @Autowired

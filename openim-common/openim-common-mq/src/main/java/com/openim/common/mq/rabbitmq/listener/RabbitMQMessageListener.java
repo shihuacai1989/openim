@@ -4,7 +4,6 @@ import com.openim.common.mq.IMessageDispatch;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 
@@ -21,7 +20,7 @@ public class RabbitMQMessageListener implements MessageListener {
     public void onMessage(Message amqpMessage) {
         try {
             byte[] bytes = (byte[])amqpMessage.getBody();
-            String message = new String(bytes, "UTF-8");
+            //String message = new String(bytes, "UTF-8");
 
             //也是返回byte[]
             //messageConverter.fromMessage(amqpMessage);
@@ -29,8 +28,8 @@ public class RabbitMQMessageListener implements MessageListener {
             String exchange = amqpMessage.getMessageProperties().getReceivedExchange();
             String routeKey = amqpMessage.getMessageProperties().getReceivedRoutingKey();
 
-            messageDispatch.dispatchMessage(exchange, routeKey, message);
-        } catch (UnsupportedEncodingException e) {
+            messageDispatch.dispatchMessage(exchange, routeKey, bytes);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

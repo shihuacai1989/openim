@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class TestMessageDispatch implements IMessageDispatch {
     Logger LOG = LoggerFactory.getLogger(TestMessageDispatch.class);
     @Override
-    public void dispatchMessage(String exchange, String routeKey, Object message) {
+    public void dispatchMessage(String exchange, String routeKey, byte[] message) {
         LOG.info("exchange:{}, routeKey:{}, message:{}", exchange, routeKey, message);
         //System.out.println(message);
     }
