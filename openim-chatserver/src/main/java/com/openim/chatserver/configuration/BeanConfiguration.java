@@ -1,7 +1,10 @@
 package com.openim.chatserver.configuration;
 
 import com.openim.common.util.IPUtil;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -25,6 +28,11 @@ public class BeanConfiguration {
         String queueName = chatServerListenerQueue();
         //String queueName = String.format(queue, IPUtil.getLocalIP(), port);
         return new Queue(queueName, true);
+    }
+
+    @Bean
+    Binding bindingChatQueue(Queue queue, TopicExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(chatServerListenerQueue());
     }
 
     @Bean

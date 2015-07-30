@@ -1,6 +1,7 @@
 package com.openim.manager.cache.login;
 
 import com.google.common.collect.Maps;
+import com.openim.manager.bean.User;
 
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
@@ -8,7 +9,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * 存储所用用户连接的服务器信息，实际为队列名称
+ * 内存存储所用用户实时状态信息
  * Created by shihc on 2015/7/30.
  */
 public class LoginMemoryCache implements ILoginCache {
@@ -16,23 +17,23 @@ public class LoginMemoryCache implements ILoginCache {
     private Lock writeLock = lock.writeLock();
     private Lock readLock = lock.readLock();
 
-    private Map<String, String> loginMap = Maps.newHashMap();
+    private Map<String, User> loginMap = Maps.newHashMap();
 
     /**
      * @param key loginId
      * @param value chatServer 推送服务器对应的队列名称
      */
     @Override
-    public void add(String key, String value) {
+    public void add(String key, User value) {
         writeLock.lock();
         loginMap.put(key, value);
         writeLock.unlock();
     }
 
     @Override
-    public String get(String key) {
+    public User get(String key) {
         readLock.lock();
-        String value = loginMap.get(key);
+        User value = loginMap.get(key);
         readLock.unlock();
         return value;
     }

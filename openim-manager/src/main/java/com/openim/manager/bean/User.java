@@ -1,5 +1,6 @@
 package com.openim.manager.bean;
 
+import com.openim.common.im.LoginStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -44,6 +45,12 @@ public class User {
      */
     @Field
     private Date lastLoginTime;
+
+    @Field
+    private int loginStatus = LoginStatus.online;
+
+    @Field
+    private String connectServer;
 
     public String getId() {
         return id;
@@ -91,5 +98,21 @@ public class User {
 
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
+    }
+
+    public int getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(int loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    public String getConnectServer() {
+        return connectServer;
+    }
+
+    public void setConnectServer(String connectServer) {
+        this.connectServer = connectServer;
     }
 }

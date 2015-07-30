@@ -17,8 +17,8 @@ import io.netty.util.Attribute;
 public class SendHandler implements IMessageHandler {
     //private IMessageDispatch messageDispatch;
     private IMessageSender messageSender;
+
     public SendHandler(){
-        //messageDispatch = ApplicationStartUp.applicationContext.getBean(IMessageDispatch.class);
         messageSender = ApplicationContextAware.getBean(IMessageSender.class);
     }
 

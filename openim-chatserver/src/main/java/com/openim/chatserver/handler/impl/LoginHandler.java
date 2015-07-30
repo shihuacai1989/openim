@@ -3,8 +3,11 @@ package com.openim.chatserver.handler.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.handler.IMessageHandler;
+import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.common.im.DeviceMsgField;
 import com.openim.common.im.DeviceMsgType;
+import com.openim.common.mq.IMessageSender;
+import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 import org.slf4j.Logger;
@@ -17,6 +20,12 @@ public class LoginHandler implements IMessageHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandler.class);
 
+    private IMessageSender messageSender;
+
+    public LoginHandler(){
+        messageSender = ApplicationContextAware.getBean(IMessageSender.class);
+    }
+
     @Override
     public void handle(JSONObject jsonObject, HandlerChain handlerChain, Channel channel) {
         if (jsonObject != null) {
@@ -28,6 +37,8 @@ public class LoginHandler implements IMessageHandler {
                 Attribute<String> attribute = channel.attr(key);
                 attribute.set(loginId);
                 ChannelUtil.add(loginId, channel);
+                messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, jsonObject);
+
             } else {
                 handlerChain.handle(jsonObject, handlerChain, channel);
             }

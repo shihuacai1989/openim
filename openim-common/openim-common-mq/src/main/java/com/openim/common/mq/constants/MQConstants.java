@@ -14,4 +14,7 @@ public class MQConstants {
 
     public final static String logoutQueue = "openim-logout-queue";
     public final static String logoutRouteKey = "openim-logout-routeKey";
+
+    //public final static String serverQueue = "openim-server-queue";
+    //public final static String serverRouteKey = "openim-server-routeKey";
 }

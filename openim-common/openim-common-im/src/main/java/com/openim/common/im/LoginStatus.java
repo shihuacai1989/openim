@@ -7,4 +7,6 @@ package com.openim.common.im;
 public class LoginStatus {
     public static final int online = 1;
     public static final int offline = 2;
+    public static final int leave = 3;
+    public static final int working = 4;
 }
