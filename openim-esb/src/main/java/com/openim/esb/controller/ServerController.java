@@ -1,4 +1,4 @@
-package com.openim.chatserver.controller;
+package com.openim.esb.controller;
 
 import com.openim.common.bean.CommonResult;
 import org.springframework.stereotype.Controller;

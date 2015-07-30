@@ -22,5 +22,9 @@
             <groupId>com.openim</groupId>
             <artifactId>openim-common-zk</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-bean</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -5,12 +5,9 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Created by shihuacai on 2015/7/28.
  */
-//@Component
 public class RabbitMQMessageListener implements MessageListener {
 
     @Autowired

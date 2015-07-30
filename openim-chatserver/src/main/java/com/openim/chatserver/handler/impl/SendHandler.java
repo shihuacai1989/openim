@@ -1,14 +1,13 @@
 package com.openim.chatserver.handler.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.openim.chatserver.Constants;
+import com.openim.chatserver.handler.IMessageHandler;
+import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.common.bean.DeviceMsgField;
 import com.openim.common.bean.DeviceMsgType;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
-import com.openim.chatserver.Constants;
-import com.openim.chatserver.handler.IMessageHandler;
-import com.openim.chatserver.listener.ApplicationContextAware;
-import com.openim.common.mq.rabbitmq.sender.RabbitMQMessageSender;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 

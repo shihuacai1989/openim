@@ -1,11 +1,11 @@
 package com.openim.chatserver.handler.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.openim.common.bean.DeviceMsgField;
-import com.openim.common.bean.DeviceMsgType;
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.Constants;
 import com.openim.chatserver.handler.IMessageHandler;
+import com.openim.common.bean.DeviceMsgField;
+import com.openim.common.bean.DeviceMsgType;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 import org.slf4j.Logger;

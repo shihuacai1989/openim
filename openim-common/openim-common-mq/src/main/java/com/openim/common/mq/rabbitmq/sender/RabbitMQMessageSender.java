@@ -3,7 +3,6 @@ package com.openim.common.mq.rabbitmq.sender;
 import com.openim.common.mq.IMessageSender;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by shihuacai on 2015/7/28.

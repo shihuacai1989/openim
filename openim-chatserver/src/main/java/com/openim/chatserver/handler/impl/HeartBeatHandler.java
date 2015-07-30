@@ -1,9 +1,9 @@
 package com.openim.chatserver.handler.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.openim.common.bean.DeviceMsgType;
 import com.openim.chatserver.Constants;
 import com.openim.chatserver.handler.IMessageHandler;
+import com.openim.common.bean.DeviceMsgType;
 import io.netty.channel.Channel;
 
 /**
