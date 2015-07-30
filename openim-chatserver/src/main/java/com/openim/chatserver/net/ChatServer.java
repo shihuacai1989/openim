@@ -43,10 +43,8 @@ public class ChatServer implements InitializingBean {
             // 服务器绑定端口监听
             ChannelFuture f = bootstrap.bind(port).sync();
             // 监听服务器关闭监听
+            //程序阻塞在此处，ApplicationListener不再调用
             f.channel().closeFuture().sync();
-
-            // 可以简写为
-            /* b.bind(portNumber).sync().channel().closeFuture().sync(); */
 
         } catch (InterruptedException e) {
             LOG.error(e.toString());
@@ -58,7 +56,14 @@ public class ChatServer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        startServer();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                startServer();
+            }
+        }).start();
+
+        LOG.info("推送服务启动完毕");
     }
 
     private class HelloServerInitializer extends ChannelInitializer<SocketChannel> {

@@ -39,6 +39,10 @@
             <artifactId>openim-common-mq</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-util</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>

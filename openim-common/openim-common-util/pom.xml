@@ -13,4 +13,11 @@
     <version>0.1</version>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+    </dependencies>
 </project>

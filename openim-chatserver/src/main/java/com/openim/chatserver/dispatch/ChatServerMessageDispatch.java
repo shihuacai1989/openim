@@ -19,6 +19,6 @@ public class ChatServerMessageDispatch implements IMessageDispatch {
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
         String message = new String(bytes, charset);
         ChatMessage chatMessage = JSON.parseObject(message, ChatMessage.class);
-        ChannelUtil.sendMessage(chatMessage.getTo(), bytes);
+        ChannelUtil.sendMessage(chatMessage.getTo(), message);
     }
 }

@@ -43,6 +43,7 @@ public class HandlerChain implements IMessageHandler {
         index ++;
         if(index <= max){
             handlerList.get(index).handle(jsonObject, handlerChain, channel);
+            index = -1;
         }else{
             LOG.error("无法处理的客户端消息: {}", jsonObject.toString());
         }

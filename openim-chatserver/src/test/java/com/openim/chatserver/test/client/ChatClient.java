@@ -14,7 +14,10 @@ import java.io.InputStreamReader;
  */
 public class ChatClient {
     public static void main(String[] args) throws Exception {
-        new ChatClient("localhost", 8080).run();
+        //测试服务
+        //new ChatClient("localhost", 8080).run();
+        //正式服务
+        new ChatClient("localhost", 9000).run();
     }
 
     private final String host;

@@ -8,6 +8,7 @@ import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.Constants;
 import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.chatserver.listener.ApplicationContextAware;
+import com.openim.common.mq.rabbitmq.sender.RabbitMQMessageSender;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;

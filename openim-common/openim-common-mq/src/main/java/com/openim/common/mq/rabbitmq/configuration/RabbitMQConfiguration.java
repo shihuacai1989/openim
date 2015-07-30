@@ -1,7 +1,9 @@
 package com.openim.common.mq.rabbitmq.configuration;
 
+import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.common.mq.rabbitmq.listener.RabbitMQMessageListener;
+import com.openim.common.mq.rabbitmq.sender.RabbitMQMessageSender;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -54,12 +56,8 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(MQConstants.chatQueue, MQConstants.logoutQueue);
-        container.setMessageListener(listenerAdapter);
-        return container;
+    IMessageSender rabbitMQMessageSender(){
+        return new RabbitMQMessageSender();
     }
 
     @Bean

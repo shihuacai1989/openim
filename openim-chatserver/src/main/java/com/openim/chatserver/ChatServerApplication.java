@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan("com.openim")
 public class ChatServerApplication {
     public static void main(String[] args){
         SpringApplication springApplication = new SpringApplication(ChatServerApplication.class);
