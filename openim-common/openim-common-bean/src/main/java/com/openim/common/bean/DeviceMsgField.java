@@ -12,6 +12,8 @@ public class DeviceMsgField {
 
     public static final String from = "from";
 
+    public static final String loginId = "loginId";
+
     public static final String pwd = "pwd";
 
 }

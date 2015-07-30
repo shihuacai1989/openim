@@ -8,6 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +27,11 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
-    private static Map<String, Channel> map = new HashMap<String, Channel>();
+    //private static Map<String, Channel> map = new HashMap<String, Channel>();
 
-    private String loginName;
+    //private String loginName;
 
-    HandlerChain handlerChain;
+    private HandlerChain handlerChain;
 
     public ChatHandler(){
         handlerChain = new HandlerChain();
@@ -60,6 +61,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
         LOG.debug(msg);
         try {
             if(!StringUtils.isEmpty(msg)){
+                //((SocketChannel)ctx.channel()).
                 //HandlerChain handlerChain = new HandlerChain();
                 JSONObject msgJson = JSON.parseObject(msg);
                 handlerChain.handle(msgJson, handlerChain, ctx.channel());

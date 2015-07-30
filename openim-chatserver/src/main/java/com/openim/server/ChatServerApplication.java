@@ -1,6 +1,6 @@
 package com.openim.server;
 
-import com.openim.server.listener.ApplicationStartUp;
+import com.openim.server.listener.ApplicationContextAware;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-public class ServerApplication {
+public class ChatServerApplication {
     public static void main(String[] args){
-        SpringApplication springApplication = new SpringApplication(ServerApplication.class);
-        springApplication.addListeners(new ApplicationStartUp());
+        SpringApplication springApplication = new SpringApplication(ChatServerApplication.class);
+        springApplication.addListeners(new ApplicationContextAware());
         springApplication.run(args);
 
     }
