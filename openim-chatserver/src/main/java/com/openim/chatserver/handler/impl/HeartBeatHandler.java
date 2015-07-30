@@ -1,9 +1,9 @@
 package com.openim.chatserver.handler.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.openim.chatserver.Constants;
 import com.openim.chatserver.handler.IMessageHandler;
-import com.openim.common.bean.DeviceMsgType;
+import com.openim.common.im.DeviceMsgField;
+import com.openim.common.im.DeviceMsgType;
 import io.netty.channel.Channel;
 
 /**
@@ -14,7 +14,7 @@ public class HeartBeatHandler implements IMessageHandler {
     @Override
     public void handle(JSONObject jsonObject, HandlerChain handlerChain, Channel channel) {
         if(jsonObject != null){
-            int type = jsonObject.getIntValue(Constants.deviceMsgField_Type);
+            int type = jsonObject.getIntValue(DeviceMsgField.type);
             if(type == DeviceMsgType.HEART_BEAT){
 
             }else{

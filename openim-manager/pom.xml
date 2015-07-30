@@ -33,6 +33,10 @@
         </dependency>
         <dependency>
             <groupId>com.openim</groupId>
+            <artifactId>openim-common-im</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.openim</groupId>
             <artifactId>openim-common-mq</artifactId>
         </dependency>
         <dependency>
@@ -42,6 +46,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
         </dependency>
     </dependencies>
 </project>

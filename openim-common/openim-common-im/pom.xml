@@ -3,22 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>openim</artifactId>
+        <artifactId>openim-common</artifactId>
         <groupId>com.openim</groupId>
         <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>openim-common</artifactId>
-    <packaging>pom</packaging>
-    <version>0.1</version>
-    <modules>
-        <module>openim-common-util</module>
-        <module>openim-common-mq</module>
-        <module>openim-common-zk</module>
-        <module>openim-common-bean</module>
-        <module>openim-common-im</module>
-    </modules>
+    <groupId>com.openim</groupId>
+    <artifactId>openim-common-im</artifactId>
 
 
 </project>

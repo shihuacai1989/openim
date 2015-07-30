@@ -1,6 +1,8 @@
 package com.openim.manager.configuration;
 
 import com.openim.common.mq.constants.MQConstants;
+import com.openim.manager.cache.login.ILoginCache;
+import com.openim.manager.cache.login.LoginMemoryCache;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -12,6 +14,12 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ManagerConfiguration {
+
+    @Bean
+    ILoginCache loginMemoryCache(){
+        return new LoginMemoryCache();
+    }
+
     @Bean
     SimpleMessageListenerContainer rabbitMQListenerContainer(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();

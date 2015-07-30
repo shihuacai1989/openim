@@ -1,4 +1,4 @@
-package com.openim.common.bean;
+package com.openim.common.im;
 
 /**
  * Created by shihuacai on 2015/7/21.
@@ -24,8 +24,9 @@ public class DeviceMsgType {
      */
     public static final int HEART_BEAT = 5;
 
+    public static final int LEAVE = 6;
 
-
+    public static final int Working = 7;
 
     /**
      * 消息打开回执
