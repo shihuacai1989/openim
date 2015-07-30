@@ -26,7 +26,7 @@ public class User {
      * 登录名
      */
     @Field
-    private String loginName;
+    private String loginId;
 
     /**
      * 登录密码
@@ -68,12 +68,12 @@ public class User {
         this.nickName = nickName;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public String getPassword() {
