@@ -6,9 +6,6 @@ import com.openim.chatserver.handler.impl.HandlerChain;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
-import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -22,7 +19,7 @@ import java.net.InetAddress;
 public class ChatHandler extends SimpleChannelInboundHandler<String> {
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
 
-    public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    //public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     //private static Map<String, Channel> map = new HashMap<String, Channel>();
 
@@ -36,20 +33,20 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {  // (2)
-        Channel incoming = ctx.channel();
+        /*Channel incoming = ctx.channel();
         for (Channel channel : channels) {
             channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " 加入\n");
         }
-        channels.add(ctx.channel());
+        channels.add(ctx.channel());*/
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {  // (3)
-        Channel incoming = ctx.channel();
+        /*Channel incoming = ctx.channel();
         for (Channel channel : channels) {
             channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " 离开\n");
         }
-        channels.remove(ctx.channel());
+        channels.remove(ctx.channel());*/
     }
 
 

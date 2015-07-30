@@ -1,12 +1,16 @@
 package com.openim.manager;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by shihc on 2015/7/30.
  */
-@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan("com.openim")
 public class ManagerApplication {
     public static void main(String[] args){
         SpringApplication springApplication = new SpringApplication(ManagerApplication.class);

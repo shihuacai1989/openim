@@ -2,6 +2,7 @@ package com.openim.chatserver.handler.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.openim.chatserver.ChannelUtil;
+import com.openim.chatserver.configuration.BeanConfiguration;
 import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.common.im.DeviceMsgField;
@@ -37,7 +38,8 @@ public class LoginHandler implements IMessageHandler {
                 Attribute<String> attribute = channel.attr(key);
                 attribute.set(loginId);
                 ChannelUtil.add(loginId, channel);
-                messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, jsonObject);
+                jsonObject.put(DeviceMsgField.serverQueue, BeanConfiguration.chatQueueName);
+                messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, jsonObject.toJSONString());
 
             } else {
                 handlerChain.handle(jsonObject, handlerChain, channel);

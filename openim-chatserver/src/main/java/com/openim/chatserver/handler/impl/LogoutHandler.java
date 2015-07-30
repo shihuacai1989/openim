@@ -26,7 +26,7 @@ public class LogoutHandler implements IMessageHandler {
     public void handle(JSONObject jsonObject, HandlerChain handlerChain, Channel channel) {
         int type = jsonObject.getIntValue(DeviceMsgField.type);
         if (type == DeviceMsgType.LOGOUT) {
-            messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, jsonObject);
+            messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, jsonObject.toJSONString());
             Attribute<String> attribute = channel.attr(key);
             String loginId = attribute.get();
             ChannelUtil.remove(loginId);

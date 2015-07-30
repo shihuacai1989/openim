@@ -35,7 +35,7 @@ public class ManagerConfiguration {
             e.printStackTrace();
         }*/
 
-        container.setQueueNames(MQConstants.chatQueue);
+        container.setQueueNames(MQConstants.chatQueue, MQConstants.loginQueue, MQConstants.logoutQueue);
         container.setMessageListener(listenerAdapter);
         return container;
     }

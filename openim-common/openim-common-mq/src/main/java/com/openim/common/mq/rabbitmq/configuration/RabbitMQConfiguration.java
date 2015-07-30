@@ -55,6 +55,13 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
+    Binding bindingLoginQueue(TopicExchange exchange) {
+        Queue queue = loginQueue();
+        return BindingBuilder.bind(queue).to(exchange).with(MQConstants.loginRouteKey);
+    }
+
+
+    @Bean
     IMessageSender rabbitMQMessageSender(){
         return new RabbitMQMessageSender();
     }

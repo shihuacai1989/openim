@@ -38,7 +38,7 @@ public class SendHandler implements IMessageHandler<JSONObject> {
                     if(loginStatus != LoginStatus.offline){
                         String connectServer = user.getConnectServer();
 
-                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject);
+                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject.toJSONString());
                     }
                 }
             }catch (Exception e){

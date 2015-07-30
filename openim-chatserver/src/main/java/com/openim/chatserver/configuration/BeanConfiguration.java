@@ -8,19 +8,20 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by shihuacai on 2015/7/29.
  */
-@Configurable
+@Configuration
 public class BeanConfiguration {
 
-    private static final String queue = "chatSever-{server}:{port}";
+    private static final String queueTemplate = "chatSever-{server}:{port}";
+    public static String chatQueueName;
 
-    @Value("chat.port")
+    @Value("${chat.port}")
     private String port;
 
     @Bean
@@ -30,8 +31,14 @@ public class BeanConfiguration {
         return new Queue(queueName, true);
     }
 
+    /**
+     * 采用该注解注入对象，方法名不能重名，否则存在一个不执行的情况
+     * @param exchange
+     * @return
+     */
     @Bean
-    Binding bindingChatQueue(Queue queue, TopicExchange exchange) {
+    Binding bindingChatServerQueue(TopicExchange exchange) {
+        Queue queue = serverQueue();
         return BindingBuilder.bind(queue).to(exchange).with(chatServerListenerQueue());
     }
 
@@ -46,6 +53,7 @@ public class BeanConfiguration {
     }
 
     private String chatServerListenerQueue(){
-        return queue.replace("{server}", IPUtil.getLocalIP()).replace("{port}", port);
+        chatQueueName =  queueTemplate.replace("{server}", IPUtil.getLocalIP()).replace("{port}", port);
+        return chatQueueName;
     }
 }
