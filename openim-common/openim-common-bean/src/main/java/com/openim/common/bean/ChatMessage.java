@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by shihuacai on 2015/7/29.
  */
+@Deprecated
 public class ChatMessage implements Serializable {
     private String body;
     private String from;

@@ -15,4 +15,19 @@
 
     <description>移动客户端模拟程序</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-im</artifactId>
+        </dependency>
+    </dependencies>
 </project>

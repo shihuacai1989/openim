@@ -1,22 +1,18 @@
 package com.openim.chatserver.net;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.openim.chatserver.handler.impl.HandlerChain;
+import com.openim.common.im.DeviceMsg;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
-
-import java.net.InetAddress;
 
 /**
  * Created by shihuacai on 2015/7/21.
  */
 //@Component
-public class ChatHandler extends SimpleChannelInboundHandler<String> {
+public class ChatHandler extends SimpleChannelInboundHandler<DeviceMsg> {
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
 
     //public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -51,15 +47,21 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        LOG.debug(msg);
+    protected void channelRead0(ChannelHandlerContext ctx, DeviceMsg msg) throws Exception {
+        //LOG.debug(msg);
+
+        /*Channel incoming = ctx.channel();
+        msg.setMsg("server msg");
+        incoming.writeAndFlush(msg);*/
+
+
         try {
-            if(!StringUtils.isEmpty(msg)){
+            //if(!StringUtils.isEmpty(msg)){
                 //((SocketChannel)ctx.channel()).
                 //HandlerChain handlerChain = new HandlerChain();
-                JSONObject msgJson = JSON.parseObject(msg);
-                handlerChain.handle(msgJson, handlerChain, ctx.channel());
-            }
+                //JSONObject msgJson = JSON.parseObject(msg);
+                handlerChain.handle(msg, handlerChain, ctx.channel());
+            //}
         }catch (Exception e){
             LOG.error(e.toString());
         }
@@ -79,9 +81,9 @@ public class ChatHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 
-        System.out.println("RamoteAddress : " + ctx.channel().remoteAddress() + " active !");
+        //System.out.println("RamoteAddress : " + ctx.channel().remoteAddress() + " active !");
 
-        ctx.writeAndFlush("Welcome to " + InetAddress.getLocalHost().getHostName() + " service!\n");
+        //ctx.writeAndFlush("Welcome to " + InetAddress.getLocalHost().getHostName() + " service!\n");
 
         super.channelActive(ctx);
     }

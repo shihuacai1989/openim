@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by shihuacai on 2015/7/29.
  */
 public class ChannelUtil {
-    public static Map<String, Channel> channelMap = Maps.newConcurrentMap();
+    public static Map<String, Channel> channelMap = Maps.newHashMap();
     public static void add(String loginId, Channel channel){
         channelMap.put(loginId, channel);
     }

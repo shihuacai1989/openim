@@ -6,5 +6,5 @@
 {"type":1,"loginId":"user3"}
 
 #user1发送消息
-{"type":2,"to":"user2","body":"user1Touser2Msg"}
+{"type":2,"to":"user2","msg":"user1Touser2Msg"}
 

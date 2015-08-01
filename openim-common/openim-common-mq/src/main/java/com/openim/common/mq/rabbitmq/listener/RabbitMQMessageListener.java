@@ -16,6 +16,7 @@ public class RabbitMQMessageListener implements MessageListener {
     @Override
     public void onMessage(Message amqpMessage) {
         try {
+            //amqpMessage.
             byte[] bytes = (byte[])amqpMessage.getBody();
             //String message = new String(bytes, "UTF-8");
 

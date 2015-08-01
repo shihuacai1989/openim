@@ -1,7 +1,6 @@
 package com.openim.manager.handler;
 
-import com.alibaba.fastjson.JSONObject;
-import com.openim.common.im.DeviceMsgField;
+import com.openim.common.im.DeviceMsg;
 import com.openim.common.im.LoginStatus;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
@@ -17,7 +16,7 @@ import org.springframework.util.StringUtils;
  * Created by shihc on 2015/7/30.
  */
 @Component
-public class SendHandler implements IMessageHandler<JSONObject> {
+public class SendHandler implements IMessageHandler<DeviceMsg> {
 
     private static final Logger LOG = LoggerFactory.getLogger(SendHandler.class);
 
@@ -28,8 +27,8 @@ public class SendHandler implements IMessageHandler<JSONObject> {
     private ILoginCache loginCache;
 
     @Override
-    public void handle(JSONObject jsonObject, HandlerChain handlerChain) {
-        String to = jsonObject.getString(DeviceMsgField.to);
+    public void handle(DeviceMsg jsonObject, HandlerChain handlerChain) {
+        String to = jsonObject.getTo();
         if(!StringUtils.isEmpty(to)){
             try{
                 User user = loginCache.get(to);
@@ -38,7 +37,7 @@ public class SendHandler implements IMessageHandler<JSONObject> {
                     if(loginStatus != LoginStatus.offline){
                         String connectServer = user.getConnectServer();
 
-                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject.toJSONString());
+                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject);
                     }
                 }
             }catch (Exception e){

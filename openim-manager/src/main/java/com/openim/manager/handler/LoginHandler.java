@@ -1,7 +1,6 @@
 package com.openim.manager.handler;
 
-import com.alibaba.fastjson.JSONObject;
-import com.openim.common.im.DeviceMsgField;
+import com.openim.common.im.DeviceMsg;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
 import org.slf4j.Logger;
@@ -14,7 +13,7 @@ import org.springframework.util.StringUtils;
  * Created by shihc on 2015/7/30.
  */
 @Component
-public class LoginHandler implements IMessageHandler<JSONObject> {
+public class LoginHandler implements IMessageHandler<DeviceMsg> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandler.class);
 
@@ -22,10 +21,10 @@ public class LoginHandler implements IMessageHandler<JSONObject> {
     private ILoginCache loginCache;
 
     @Override
-    public void handle(JSONObject jsonObject, HandlerChain handlerChain) {
+    public void handle(DeviceMsg jsonObject, HandlerChain handlerChain) {
         try{
-            String loginId = jsonObject.getString(DeviceMsgField.loginId);
-            String serverQueue = jsonObject.getString(DeviceMsgField.serverQueue);
+            String loginId = jsonObject.getLoginId();
+            String serverQueue = jsonObject.getServerQueue();
             if(!StringUtils.isEmpty(loginId) && !StringUtils.isEmpty(serverQueue)){
                 User user = new User();
                 user.setConnectServer(serverQueue);

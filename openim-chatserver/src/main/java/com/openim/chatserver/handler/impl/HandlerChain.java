@@ -1,7 +1,7 @@
 package com.openim.chatserver.handler.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.openim.chatserver.handler.IMessageHandler;
+import com.openim.common.im.DeviceMsg;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ public class HandlerChain implements IMessageHandler {
         max = handlerList.size() - 1;
     }
     @Override
-    public void handle(JSONObject jsonObject, HandlerChain handlerChain, Channel channel) {
+    public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
         index ++;
         if(index <= max){
             handlerList.get(index).handle(jsonObject, handlerChain, channel);

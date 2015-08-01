@@ -9,6 +9,8 @@ import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.amqp.support.converter.SerializerMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -74,5 +76,10 @@ public class RabbitMQConfiguration {
     @Bean
     MessageListenerAdapter listenerAdapter(RabbitMQMessageListener messageListener) {
         return new MessageListenerAdapter(messageListener);
+    }
+
+    @Bean
+    MessageConverter messageConverter(RabbitMQMessageListener messageListener) {
+        return new SerializerMessageConverter();
     }
 }

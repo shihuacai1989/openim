@@ -1,6 +1,6 @@
 package com.openim.manager.handler;
 
-import com.alibaba.fastjson.JSONObject;
+import com.openim.common.im.DeviceMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by shihuacai on 2015/7/23.
  */
-public class HandlerChain implements IMessageHandler<JSONObject> {
+public class HandlerChain implements IMessageHandler<DeviceMsg> {
     private static final Logger LOG = LoggerFactory.getLogger(HandlerChain.class);
 
     private List<IMessageHandler> handlerList;
@@ -29,7 +29,7 @@ public class HandlerChain implements IMessageHandler<JSONObject> {
     }
 
     @Override
-    public void handle(JSONObject jsonObject, HandlerChain handlerChain) {
+    public void handle(DeviceMsg jsonObject, HandlerChain handlerChain) {
         index ++;
         if(index <= max){
             handlerList.get(index).handle(jsonObject, handlerChain);
