@@ -19,3 +19,6 @@ cd C:\Users\shihuacai\AppData\Roaming\npm\node_modules\mongo-express
 在配置文件中填写MongoDB的连接等你想更改的信息。
 
 node app
+
+http://localhost:8081/
+登录：admin/pass
