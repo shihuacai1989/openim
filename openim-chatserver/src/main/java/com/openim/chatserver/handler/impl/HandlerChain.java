@@ -1,7 +1,7 @@
 package com.openim.chatserver.handler.impl;
 
 import com.openim.chatserver.handler.IMessageHandler;
-import com.openim.common.im.DeviceMsg;
+import com.openim.common.im.bean.DeviceMsg;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

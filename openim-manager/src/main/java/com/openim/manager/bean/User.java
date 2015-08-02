@@ -1,6 +1,6 @@
 package com.openim.manager.bean;
 
-import com.openim.common.im.LoginStatus;
+import com.openim.common.im.bean.LoginStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;

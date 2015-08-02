@@ -1,11 +1,10 @@
 package com.openim.chatserver.dispatch;
 
 import com.openim.chatserver.ChannelUtil;
-import com.openim.common.im.DeviceMsg;
+import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.mq.IMessageDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
@@ -13,10 +12,9 @@ import java.io.ObjectInputStream;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-@Component
-public class ChatServerMessageDispatch implements IMessageDispatch {
+public class JDKChatServerMessageDispatch implements IMessageDispatch {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatch.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JDKChatServerMessageDispatch.class);
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
@@ -29,12 +27,5 @@ public class ChatServerMessageDispatch implements IMessageDispatch {
         }catch (Exception e){
             LOG.error(e.toString());
         }
-
-
-
-
-        /*String message = new String(bytes, CharsetUtil.utf8);
-        //ChatMessage chatMessage = JSON.parseObject(message, ChatMessage.class);
-        ChannelUtil.sendMessage(chatMessage.getTo(), message);*/
     }
 }

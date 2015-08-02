@@ -110,6 +110,7 @@
                         <!-- 指定编码格式，否则在DOS下运行mvn命令时当发生文件资源copy时将使用系统默认使用GBK编码 -->
                     </configuration>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

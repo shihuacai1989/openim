@@ -1,7 +1,7 @@
 package com.openim.manager.dispatch;
 
-import com.openim.common.im.DeviceMsg;
-import com.openim.common.im.DeviceMsgType;
+import com.openim.common.im.bean.DeviceMsg;
+import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.mq.IMessageDispatch;
 import com.openim.manager.handler.LoginHandler;
 import com.openim.manager.handler.LogoutHandler;

@@ -1,0 +1,14 @@
+package openim;
+
+option java_package = "com.openim.common.im.bean";
+option java_outer_classname = "ProtobufDeviceMsg";
+
+message DeviceMsg {
+  required int32 type = 1;
+  optional string to = 2;
+  optional string msg = 3;
+  optional string from = 4;
+  optional string loginId = 5;
+  optional string pwd = 6;
+  optional string serverQueue = 7;
+}

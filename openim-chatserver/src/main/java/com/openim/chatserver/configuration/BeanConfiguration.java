@@ -1,5 +1,7 @@
 package com.openim.chatserver.configuration;
 
+import com.openim.chatserver.dispatch.JDKChatServerMessageDispatch;
+import com.openim.common.mq.IMessageDispatch;
 import com.openim.common.util.IPUtil;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -23,6 +25,11 @@ public class BeanConfiguration {
 
     @Value("${chat.port}")
     private String port;
+
+    @Bean
+    IMessageDispatch messageDispatch(){
+        return new JDKChatServerMessageDispatch();
+    }
 
     @Bean
     Queue serverQueue() {

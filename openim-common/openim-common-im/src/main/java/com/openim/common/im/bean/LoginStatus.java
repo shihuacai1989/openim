@@ -1,4 +1,4 @@
-package com.openim.common.im;
+package com.openim.common.im.bean;
 
 /**
  * Created by shihc on 2015/7/30.

@@ -1,7 +1,7 @@
 package com.openim.chatserver.net;
 
 import com.openim.chatserver.handler.impl.HandlerChain;
-import com.openim.common.im.DeviceMsg;
+import com.openim.common.im.bean.DeviceMsg;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

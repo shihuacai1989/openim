@@ -1,7 +1,7 @@
 package com.openim.manager.handler;
 
-import com.openim.common.im.DeviceMsg;
-import com.openim.common.im.LoginStatus;
+import com.openim.common.im.bean.DeviceMsg;
+import com.openim.common.im.bean.LoginStatus;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.bean.User;

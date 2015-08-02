@@ -1,4 +1,4 @@
-package com.openim.common.im;
+package com.openim.common.im.bean;
 
 import java.io.Serializable;
 

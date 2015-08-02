@@ -1,4 +1,4 @@
-package com.openim.manager.exception;
+package com.openim.common.im.exception;
 
 /**
  * 功能未完成异常

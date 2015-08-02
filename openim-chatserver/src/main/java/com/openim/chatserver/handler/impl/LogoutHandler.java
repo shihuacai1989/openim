@@ -2,8 +2,8 @@ package com.openim.chatserver.handler.impl;
 
 import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.chatserver.listener.ApplicationContextAware;
-import com.openim.common.im.DeviceMsg;
-import com.openim.common.im.DeviceMsgType;
+import com.openim.common.im.bean.DeviceMsg;
+import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
