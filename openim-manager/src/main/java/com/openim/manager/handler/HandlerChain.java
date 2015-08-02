@@ -1,6 +1,9 @@
 package com.openim.manager.handler;
 
 import com.openim.common.im.bean.DeviceMsg;
+import com.openim.manager.handler.jdk.LoginHandler;
+import com.openim.manager.handler.jdk.LogoutHandler;
+import com.openim.manager.handler.jdk.SendHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

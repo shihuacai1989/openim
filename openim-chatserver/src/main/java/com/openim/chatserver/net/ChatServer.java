@@ -1,13 +1,11 @@
 package com.openim.chatserver.net;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.serialization.ClassResolvers;
-import io.netty.handler.codec.serialization.ObjectDecoder;
-import io.netty.handler.codec.serialization.ObjectEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -23,9 +21,6 @@ public class ChatServer implements InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServer.class);
 
-    /*@Autowired
-    private ChatHandler chatHandler;*/
-
     @Value("${chat.port}")
     private int port;
 
@@ -36,7 +31,7 @@ public class ChatServer implements InitializingBean {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new HelloServerInitializer())
+                    .childHandler(new JDKChatServerInitializer())
                     .option(ChannelOption.SO_BACKLOG, 128)          // (5)
                     .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
             // 服务器绑定端口监听
@@ -64,24 +59,4 @@ public class ChatServer implements InitializingBean {
 
         LOG.info("推送服务启动完毕");
     }
-
-    private class HelloServerInitializer extends ChannelInitializer<SocketChannel> {
-
-        @Override
-        protected void initChannel(SocketChannel ch) throws Exception {
-            ChannelPipeline pipeline = ch.pipeline();
-
-
-            // 以("\n")为结尾分割的 解码器
-            //pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
-
-            // 字符串解码 和 编码
-            pipeline.addLast("decoder", new ObjectDecoder(ClassResolvers.cacheDisabled(this.getClass().getClassLoader())));
-            pipeline.addLast("encoder", new ObjectEncoder());
-
-            // 自己的逻辑Handler
-            pipeline.addLast("handler", new ChatHandler());
-        }
-    }
-
 }

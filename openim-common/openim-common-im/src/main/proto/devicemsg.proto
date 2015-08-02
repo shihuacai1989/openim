@@ -1,4 +1,4 @@
-package openim;
+package com.openim.common.im.bean;
 
 option java_package = "com.openim.common.im.bean";
 option java_outer_classname = "ProtobufDeviceMsg";

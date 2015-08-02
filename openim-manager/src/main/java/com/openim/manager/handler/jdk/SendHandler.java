@@ -1,4 +1,4 @@
-package com.openim.manager.handler;
+package com.openim.manager.handler.jdk;
 
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.LoginStatus;
@@ -6,6 +6,8 @@ import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
+import com.openim.manager.handler.HandlerChain;
+import com.openim.manager.handler.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -33,8 +33,7 @@ public class LoginHandler implements IMessageHandler {
                 String loginId = jsonObject.getLoginId();
                 String pwd = jsonObject.getPwd();
                 //后期完成登录验证
-                /*Attribute<String> attribute = channel.attr(key);
-                attribute.set(loginId);*/
+
                 ChannelUtil.add(loginId, channel);
                 jsonObject.setServerQueue(BeanConfiguration.chatQueueName);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, jsonObject);

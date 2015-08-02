@@ -24,6 +24,7 @@
 
         <plugins>
             <plugin>
+                <!--https://github.com/igor-petruk/protobuf-maven-plugin.git-->
                 <groupId>com.github.igor-petruk.protobuf</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.5</version>

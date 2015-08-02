@@ -1,8 +1,10 @@
 package com.openim.manager.configuration;
 
+import com.openim.common.mq.IMessageDispatch;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.cache.login.ILoginCache;
 import com.openim.manager.cache.login.LoginMemoryCache;
+import com.openim.manager.dispatch.JDKMessageDispatch;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -18,6 +20,11 @@ public class ManagerConfiguration {
     @Bean
     ILoginCache loginMemoryCache(){
         return new LoginMemoryCache();
+    }
+
+    @Bean
+    IMessageDispatch messageDispatch(){
+        return new JDKMessageDispatch();
     }
 
     @Bean
@@ -39,4 +46,22 @@ public class ManagerConfiguration {
         container.setMessageListener(listenerAdapter);
         return container;
     }
+
+    /*public @Bean
+    MongoTemplate mongoTemplate(Mongo mongo) {
+        MongoTemplate mongoTemplate = new MongoTemplate(mongo, "test");
+        return mongoTemplate;
+    }
+
+    public @Bean
+    MongoClientFactoryBean mongo() {
+        MongoClientFactoryBean mongo = new MongoClientFactoryBean();
+        mongo.setHost("localhost");
+        return mongo;
+    }
+
+    public @Bean
+    PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }*/
 }

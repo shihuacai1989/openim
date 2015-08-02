@@ -1,5 +1,6 @@
 package com.openim.chatserver.handler.impl;
 
+import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.common.im.bean.DeviceMsg;
@@ -24,9 +25,7 @@ public class LogoutHandler implements IMessageHandler {
         int type = jsonObject.getType();
         if (type == DeviceMsgType.LOGOUT) {
             messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, jsonObject);
-            /*Attribute<String> attribute = channel.attr(key);
-            String loginId = attribute.get();
-            ChannelUtil.remove(loginId);*/
+            ChannelUtil.remove(channel);
         } else {
             handlerChain.handle(jsonObject, handlerChain, channel);
         }

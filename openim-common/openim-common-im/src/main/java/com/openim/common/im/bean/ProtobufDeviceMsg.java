@@ -59,12 +59,12 @@ public final class ProtobufDeviceMsg {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_openim_DeviceMsg_descriptor;
+      return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_com_openim_common_im_bean_DeviceMsg_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_openim_DeviceMsg_fieldAccessorTable;
+      return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_com_openim_common_im_bean_DeviceMsg_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -450,12 +450,12 @@ public final class ProtobufDeviceMsg {
        implements com.openim.common.im.bean.ProtobufDeviceMsg.DeviceMsgOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_openim_DeviceMsg_descriptor;
+        return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_com_openim_common_im_bean_DeviceMsg_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_openim_DeviceMsg_fieldAccessorTable;
+        return com.openim.common.im.bean.ProtobufDeviceMsg.internal_static_com_openim_common_im_bean_DeviceMsg_fieldAccessorTable;
       }
       
       // Construct using com.openim.common.im.bean.ProtobufDeviceMsg.DeviceMsg.newBuilder()
@@ -907,7 +907,7 @@ public final class ProtobufDeviceMsg {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:openim.DeviceMsg)
+      // @@protoc_insertion_point(builder_scope:com.openim.common.im.bean.DeviceMsg)
     }
     
     static {
@@ -915,14 +915,14 @@ public final class ProtobufDeviceMsg {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:openim.DeviceMsg)
+    // @@protoc_insertion_point(class_scope:com.openim.common.im.bean.DeviceMsg)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_openim_DeviceMsg_descriptor;
+    internal_static_com_openim_common_im_bean_DeviceMsg_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_openim_DeviceMsg_fieldAccessorTable;
+      internal_static_com_openim_common_im_bean_DeviceMsg_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -932,22 +932,23 @@ public final class ProtobufDeviceMsg {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017devicemsg.proto\022\006openim\"s\n\tDeviceMsg\022\014" +
-      "\n\004type\030\001 \002(\005\022\n\n\002to\030\002 \001(\t\022\013\n\003msg\030\003 \001(\t\022\014\n" +
-      "\004from\030\004 \001(\t\022\017\n\007loginId\030\005 \001(\t\022\013\n\003pwd\030\006 \001(" +
-      "\t\022\023\n\013serverQueue\030\007 \001(\tB.\n\031com.openim.com" +
-      "mon.im.beanB\021ProtobufDeviceMsg"
+      "\n\017devicemsg.proto\022\031com.openim.common.im." +
+      "bean\"s\n\tDeviceMsg\022\014\n\004type\030\001 \002(\005\022\n\n\002to\030\002 " +
+      "\001(\t\022\013\n\003msg\030\003 \001(\t\022\014\n\004from\030\004 \001(\t\022\017\n\007loginI" +
+      "d\030\005 \001(\t\022\013\n\003pwd\030\006 \001(\t\022\023\n\013serverQueue\030\007 \001(" +
+      "\tB.\n\031com.openim.common.im.beanB\021Protobuf" +
+      "DeviceMsg"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_openim_DeviceMsg_descriptor =
+          internal_static_com_openim_common_im_bean_DeviceMsg_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_openim_DeviceMsg_fieldAccessorTable = new
+          internal_static_com_openim_common_im_bean_DeviceMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_openim_DeviceMsg_descriptor,
+              internal_static_com_openim_common_im_bean_DeviceMsg_descriptor,
               new java.lang.String[] { "Type", "To", "Msg", "From", "LoginId", "Pwd", "ServerQueue", },
               com.openim.common.im.bean.ProtobufDeviceMsg.DeviceMsg.class,
               com.openim.common.im.bean.ProtobufDeviceMsg.DeviceMsg.Builder.class);

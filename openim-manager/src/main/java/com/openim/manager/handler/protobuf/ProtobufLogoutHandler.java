@@ -1,9 +1,11 @@
-package com.openim.manager.handler;
+package com.openim.manager.handler.protobuf;
 
-import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.LoginStatus;
+import com.openim.common.im.bean.ProtobufDeviceMsg.DeviceMsg;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
+import com.openim.manager.handler.HandlerChain;
+import com.openim.manager.handler.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,9 @@ import org.springframework.util.StringUtils;
  * Created by shihc on 2015/7/30.
  */
 @Component
-public class LogoutHandler implements IMessageHandler<DeviceMsg> {
+public class ProtobufLogoutHandler implements IMessageHandler<DeviceMsg> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LogoutHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProtobufLogoutHandler.class);
 
     @Autowired
     private ILoginCache loginCache;

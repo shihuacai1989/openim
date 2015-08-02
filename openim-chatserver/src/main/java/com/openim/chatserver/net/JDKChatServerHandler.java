@@ -1,8 +1,8 @@
 package com.openim.chatserver.net;
 
+import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.handler.impl.HandlerChain;
 import com.openim.common.im.bean.DeviceMsg;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
  * Created by shihuacai on 2015/7/21.
  */
 //@Component
-public class ChatHandler extends SimpleChannelInboundHandler<DeviceMsg> {
-    private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
+public class JDKChatServerHandler extends SimpleChannelInboundHandler<DeviceMsg> {
+    private static final Logger LOG = LoggerFactory.getLogger(JDKChatServerHandler.class);
 
     //public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
@@ -23,7 +23,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<DeviceMsg> {
 
     private HandlerChain handlerChain;
 
-    public ChatHandler(){
+    public JDKChatServerHandler(){
         handlerChain = new HandlerChain();
     }
 
@@ -38,38 +38,17 @@ public class ChatHandler extends SimpleChannelInboundHandler<DeviceMsg> {
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {  // (3)
-        /*Channel incoming = ctx.channel();
-        for (Channel channel : channels) {
-            channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " 离开\n");
-        }
-        channels.remove(ctx.channel());*/
+        ChannelUtil.remove(ctx.channel());
     }
 
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, DeviceMsg msg) throws Exception {
-        //LOG.debug(msg);
-
-        /*Channel incoming = ctx.channel();
-        msg.setMsg("server msg");
-        incoming.writeAndFlush(msg);*/
-
-
         try {
-            //if(!StringUtils.isEmpty(msg)){
-                //((SocketChannel)ctx.channel()).
-                //HandlerChain handlerChain = new HandlerChain();
-                //JSONObject msgJson = JSON.parseObject(msg);
-                handlerChain.handle(msg, handlerChain, ctx.channel());
-            //}
+            handlerChain.handle(msg, handlerChain, ctx.channel());
         }catch (Exception e){
             LOG.error(e.toString());
         }
-
-        //System.out.println(ctx.channel().remoteAddress() + " Say : " + msg);
-
-        // 返回客户端消息 - 我已经接收到了你的消息
-        //ctx.writeAndFlush("Received your message !\n");
     }
 
     /**
@@ -80,26 +59,22 @@ public class ChatHandler extends SimpleChannelInboundHandler<DeviceMsg> {
      * */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-
-        //System.out.println("RamoteAddress : " + ctx.channel().remoteAddress() + " active !");
-
-        //ctx.writeAndFlush("Welcome to " + InetAddress.getLocalHost().getHostName() + " service!\n");
-
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception { // (6)
-        Channel incoming = ctx.channel();
-        System.out.println("SimpleChatClient:" + incoming.remoteAddress() + "掉线");
+        /*Channel incoming = ctx.channel();
+        System.out.println("SimpleChatClient:" + incoming.remoteAddress() + "掉线");*/
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) { // (7)
-        Channel incoming = ctx.channel();
+        LOG.error(cause.toString());
+        /*Channel incoming = ctx.channel();
         System.out.println("SimpleChatClient:"+incoming.remoteAddress()+"异常");
         // 当出现异常就关闭连接
-        cause.printStackTrace();
+        cause.printStackTrace();*/
         ctx.close();
     }
 }
