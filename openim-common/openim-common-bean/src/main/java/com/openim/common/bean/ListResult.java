@@ -5,12 +5,12 @@ import java.util.List;
 /**
  * Created by shihuacai on 2015/7/20.
  */
-public class ListResult {
+public class ListResult<T> {
     private int code;
     private String error;
-    private List<Object> data;
+    private List<T> data;
 
-    public ListResult(int code, String error, List<Object> data) {
+    public ListResult(int code, List<T> data, String error) {
         this.code = code;
         this.error = error;
         this.data = data;
@@ -32,11 +32,11 @@ public class ListResult {
         this.error = error;
     }
 
-    public List<Object> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 }

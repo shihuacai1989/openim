@@ -62,4 +62,19 @@ public class UserServiceTest {
     public void addGroup(){
         userService.addGroup("shihc", "新分组");
     }
+
+    @Test
+    public void listGroups(){
+        userService.listGroups("shihc");
+    }
+
+    @Test
+    public void addFriend(){
+        userService.addFriend("shihc", "wll", "group1");
+    }
+
+    @Test
+    public void listFriends(){
+        userService.listFriends("shihc");
+    }
 }

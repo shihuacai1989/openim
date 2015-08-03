@@ -51,6 +51,9 @@ public class User {
     private List<Group> groups;
 
     @Field
+    private List<Friend> friends;
+
+    @Field
     private int loginStatus = LoginStatus.online;
 
     @Field
@@ -127,5 +130,13 @@ public class User {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    public List<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Friend> friends) {
+        this.friends = friends;
     }
 }

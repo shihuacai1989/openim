@@ -59,7 +59,15 @@ public class UserController {
         return userService.userExist(loginId, password);
     }
 
+    @RequestMapping(value = "/getUser", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @ResponseBody
     public CommonResult getUser(String loginId){
         return userService.getUser(loginId);
+    }
+
+    @RequestMapping(value = "/addGroup", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @ResponseBody
+    public CommonResult addGroup(String loginId, String groupName){
+        return userService.addGroup(loginId, groupName);
     }
 }

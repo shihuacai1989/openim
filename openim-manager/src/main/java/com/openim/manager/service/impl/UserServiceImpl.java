@@ -2,8 +2,10 @@ package com.openim.manager.service.impl;
 
 import com.mongodb.WriteResult;
 import com.openim.common.bean.CommonResult;
+import com.openim.common.bean.ListResult;
 import com.openim.common.bean.ResultCode;
 import com.openim.common.util.UUIDUtil;
+import com.openim.manager.bean.Friend;
 import com.openim.manager.bean.Group;
 import com.openim.manager.bean.User;
 import com.openim.manager.service.IUserService;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by shihc on 2015/8/3.
@@ -129,10 +132,86 @@ public class UserServiceImpl implements IUserService {
                 code = ResultCode.error;
                 LOG.error(e.toString());
             }
-
-
         }
 
         return new CommonResult<Integer>(code, data, error);
+    }
+
+    @Override
+    public ListResult<Group> listGroups(String loginId) {
+        int code = ResultCode.success;
+        List<Group> data = null;
+        String error = null;
+        try {
+            if (StringUtils.isEmpty(loginId)) {
+                code = ResultCode.parameter_null;
+            }else{
+                Criteria criteria = new Criteria("loginId").is(loginId);
+                Query query = new Query(criteria);
+                query.fields().include("groups");
+                User user = mongoTemplate.findOne(query, User.class);
+                if(user != null){
+                    data = user.getGroups();
+                }
+            }
+        }catch (Exception e){
+            code = ResultCode.error;
+            LOG.error(e.toString());
+        }
+        return new ListResult<Group>(code, data, error);
+    }
+
+    @Override
+    public CommonResult<Integer> addFriend(String loginId, String friendLoginId, String groupId) {
+        int code = ResultCode.success;
+        int data = 0;
+        String error = null;
+        if(StringUtils.isEmpty(friendLoginId) || StringUtils.isEmpty(groupId)){
+            code = ResultCode.parameter_null;
+        }else{
+            try {
+                Friend friend = new Friend();
+                friend.setFriendLoginId(friendLoginId);
+                friend.setGroupId(groupId);
+
+                Criteria criteria = new Criteria("loginId").is(loginId);
+                Query query = new Query(criteria);
+                Update update = new Update();
+                update.addToSet("friends", friend);
+
+                WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
+                data = writeResult.getN();
+            }catch (Exception e){
+                error = e.toString();
+                code = ResultCode.error;
+                LOG.error(e.toString());
+            }
+        }
+
+        return new CommonResult<Integer>(code, data, error);
+    }
+
+    @Override
+    public ListResult<Friend> listFriends(String loginId) {
+        int code = ResultCode.success;
+        List<Friend> data = null;
+        String error = null;
+        try {
+            if (StringUtils.isEmpty(loginId)) {
+                code = ResultCode.parameter_null;
+            }else{
+                Criteria criteria = new Criteria("loginId").is(loginId);
+                Query query = new Query(criteria);
+                query.fields().include("friends");
+                User user = mongoTemplate.findOne(query, User.class);
+                if(user != null){
+                    data = user.getFriends();
+                }
+            }
+        }catch (Exception e){
+            code = ResultCode.error;
+            LOG.error(e.toString());
+        }
+        return new ListResult<Friend>(code, data, error);
     }
 }
