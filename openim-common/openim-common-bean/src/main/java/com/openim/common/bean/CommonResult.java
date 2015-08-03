@@ -8,10 +8,20 @@ public class CommonResult<T> {
     private String error;
     private T data;
 
-    public CommonResult(int code, String error, T data) {
+    public CommonResult(int code, T data, String error) {
         this.code = code;
         this.error = error;
         this.data = data;
+    }
+
+    public CommonResult(int code, T data) {
+        this.code = code;
+        this.data = data;
+    }
+
+    public CommonResult(int code) {
+        this.code = code;
+        this.data = null;
     }
 
     public int getCode() {
@@ -36,5 +46,11 @@ public class CommonResult<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        String data = String.format("code:%s, error:%s", code, error);
+        return data;
     }
 }

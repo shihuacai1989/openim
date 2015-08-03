@@ -1,8 +1,6 @@
 package com.openim.manager;
 
-import com.openim.manager.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +13,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.openim")
-public class ManagerApplication implements CommandLineRunner {
+public class ManagerApplication{
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -25,13 +23,4 @@ public class ManagerApplication implements CommandLineRunner {
         //springApplication.addListeners(new ApplicationContextAware());
         springApplication.run(args);
     }
-
-    @Override
-    public void run(String... args) throws Exception {
-        User user = new User();
-        user.setLoginId("user1");
-        user.setPassword("user1");
-        mongoTemplate.insert(user);
-    }
-
 }
