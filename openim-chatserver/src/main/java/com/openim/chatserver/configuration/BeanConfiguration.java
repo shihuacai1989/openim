@@ -1,6 +1,6 @@
 package com.openim.chatserver.configuration;
 
-import com.openim.chatserver.dispatch.JDKChatServerMessageDispatch;
+import com.openim.chatserver.dispatch.ProtobufChatServerMessageDispatch;
 import com.openim.common.mq.IMessageDispatch;
 import com.openim.common.util.IPUtil;
 import org.springframework.amqp.core.Binding;
@@ -28,7 +28,7 @@ public class BeanConfiguration {
 
     @Bean
     IMessageDispatch messageDispatch(){
-        return new JDKChatServerMessageDispatch();
+        return new ProtobufChatServerMessageDispatch();
     }
 
     @Bean

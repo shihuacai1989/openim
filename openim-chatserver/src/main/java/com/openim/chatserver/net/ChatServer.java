@@ -31,7 +31,7 @@ public class ChatServer implements InitializingBean {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new JDKChatServerInitializer())
+                    .childHandler(new ProtobufChatServerInitializer())
                     .option(ChannelOption.SO_BACKLOG, 128)          // (5)
                     .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
             // 服务器绑定端口监听

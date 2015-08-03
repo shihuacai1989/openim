@@ -38,7 +38,6 @@ public class SendHandler implements IMessageHandler<DeviceMsg> {
                     int loginStatus = user.getLoginStatus();
                     if(loginStatus != LoginStatus.offline){
                         String connectServer = user.getConnectServer();
-
                         messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject);
                     }
                 }

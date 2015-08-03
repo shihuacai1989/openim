@@ -1,8 +1,11 @@
 package com.openim.chatserver.net;
 
 import com.openim.chatserver.ChannelUtil;
-import com.openim.chatserver.handler.impl.HandlerChain;
-import com.openim.common.im.bean.DeviceMsg;
+import com.openim.chatserver.handler.protobuf.LoginHandler;
+import com.openim.chatserver.handler.protobuf.LogoutHandler;
+import com.openim.chatserver.handler.protobuf.SendHandler;
+import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
@@ -12,14 +15,13 @@ import org.slf4j.LoggerFactory;
  * Created by shihuacai on 2015/7/21.
  */
 //@Component
-public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<DeviceMsg> {
+public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<ProtobufDeviceMsg.DeviceMsg> {
     private static final Logger LOG = LoggerFactory.getLogger(ProtobufChatServerHandler.class);
 
-    private HandlerChain handlerChain;
-
-    public ProtobufChatServerHandler(){
-        handlerChain = new HandlerChain();
-    }
+    //private HandlerChain handlerChain;
+    private static LoginHandler loginHandler = new LoginHandler();
+    private static LogoutHandler logoutHandler = new LogoutHandler();
+    private static SendHandler sendHandler = new SendHandler();
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {  // (2)
@@ -37,9 +39,18 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Devic
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, DeviceMsg msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, ProtobufDeviceMsg.DeviceMsg msg) throws Exception {
         try {
-            handlerChain.handle(msg, handlerChain, ctx.channel());
+            System.out.print(msg);
+            int type = msg.getType();
+            if(type == DeviceMsgType.LOGIN){
+                loginHandler.handle(msg, ctx.channel());
+            }else if (type == DeviceMsgType.LOGOUT) {
+                logoutHandler.handle(msg, ctx.channel());
+            }else if (type == DeviceMsgType.SEND) {
+                sendHandler.handle(msg, ctx.channel());
+            }
+            //handlerChain.handle(msg, handlerChain, ctx.channel());
         }catch (Exception e){
             LOG.error(e.toString());
         }
