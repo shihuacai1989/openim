@@ -11,13 +11,11 @@ import com.openim.manager.handler.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
  * Created by shihc on 2015/7/30.
  */
-@Component
 public class ProtobufSendHandler implements IMessageHandler<DeviceMsg> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProtobufSendHandler.class);
@@ -33,11 +31,11 @@ public class ProtobufSendHandler implements IMessageHandler<DeviceMsg> {
         String to = jsonObject.getTo();
         if(!StringUtils.isEmpty(to)){
             try{
-                User user = loginCache.get(to);
-                if(user != null){
-                    int loginStatus = user.getLoginStatus();
+                User toUser = loginCache.get(to);
+                if(toUser != null){
+                    int loginStatus = toUser.getLoginStatus();
                     if(loginStatus != LoginStatus.offline){
-                        String connectServer = user.getConnectServer();
+                        String connectServer = toUser.getConnectServer();
 
                         messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject);
                     }

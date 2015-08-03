@@ -3,12 +3,12 @@ package com.openim.common.bean;
 /**
  * Created by shihuacai on 2015/7/20.
  */
-public class CommonResult {
+public class CommonResult<T> {
     private int code;
     private String error;
-    private Object data;
+    private T data;
 
-    public CommonResult(int code, String error, Object data) {
+    public CommonResult(int code, String error, T data) {
         this.code = code;
         this.error = error;
         this.data = data;
@@ -30,11 +30,11 @@ public class CommonResult {
         this.error = error;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
