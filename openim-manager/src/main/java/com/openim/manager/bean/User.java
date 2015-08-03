@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by shihuacai on 2015/7/20.
@@ -45,6 +46,9 @@ public class User {
      */
     @Field
     private Date lastLoginTime;
+
+    @Field
+    private List<Group> groups;
 
     @Field
     private int loginStatus = LoginStatus.online;
@@ -113,6 +117,15 @@ public class User {
     }
 
     public void setConnectServer(String connectServer) {
+
         this.connectServer = connectServer;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 }

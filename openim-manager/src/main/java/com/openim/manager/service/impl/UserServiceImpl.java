@@ -3,6 +3,8 @@ package com.openim.manager.service.impl;
 import com.mongodb.WriteResult;
 import com.openim.common.bean.CommonResult;
 import com.openim.common.bean.ResultCode;
+import com.openim.common.util.UUIDUtil;
+import com.openim.manager.bean.Group;
 import com.openim.manager.bean.User;
 import com.openim.manager.service.IUserService;
 import org.slf4j.Logger;
@@ -11,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.Date;
 
 /**
  * Created by shihc on 2015/8/3.
@@ -39,6 +44,7 @@ public class UserServiceImpl implements IUserService {
         }catch (Exception e){
             LOG.error(e.toString());
             code = ResultCode.error;
+            error = e.toString();
         }
         return new CommonResult(code, null, error);
     }
@@ -52,8 +58,6 @@ public class UserServiceImpl implements IUserService {
             Criteria criteria = new Criteria("loginId").is(loginId);
             WriteResult writeResult = mongoTemplate.remove(new Query(criteria), User.class);
             deleteCount = writeResult.getN();
-
-            //return true;
         }catch(Exception e){
             code = ResultCode.error;
             error = e.toString();
@@ -72,6 +76,7 @@ public class UserServiceImpl implements IUserService {
             Query query = new Query();
             query.addCriteria(Criteria.where("loginId").is(loginId));
             query.addCriteria(Criteria.where("password").is(pwd));
+            query.fields().include("_id");
             User user = mongoTemplate.findOne(query, User.class);
             if(user != null){
                 data = true;
@@ -88,7 +93,6 @@ public class UserServiceImpl implements IUserService {
         int code = ResultCode.success;
         User data = null;
         String error = null;
-
         try {
             Criteria criteria = new Criteria("loginId").is(loginId);
             data = mongoTemplate.findOne(new Query(criteria), User.class);
@@ -97,5 +101,38 @@ public class UserServiceImpl implements IUserService {
             LOG.error(e.toString());
         }
         return new CommonResult<User>(code, data, error);
+    }
+
+    @Override
+    public CommonResult<Integer> addGroup(String loginId, String groupName) {
+        int code = ResultCode.success;
+        int data = 0;
+        String error = null;
+        if(StringUtils.isEmpty(groupName) || StringUtils.isEmpty(loginId)){
+            code = ResultCode.parameter_null;
+        }else{
+            try {
+                Group group = new Group();
+                group.setName(groupName);
+                group.setId(UUIDUtil.genericUUID());
+                group.setCreateTime(new Date());
+
+                Criteria criteria = new Criteria("loginId").is(loginId);
+                Query query = new Query(criteria);
+                Update update = new Update();
+                update.addToSet("groups", group);
+
+                WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
+                data = writeResult.getN();
+            }catch (Exception e){
+                error = e.toString();
+                code = ResultCode.error;
+                LOG.error(e.toString());
+            }
+
+
+        }
+
+        return new CommonResult<Integer>(code, data, error);
     }
 }

@@ -13,13 +13,25 @@ public class IPUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(IPUtil.class);
 
-    public static String getLocalIP(){
+    private static String ip;
+
+    static{
         try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            LOG.error(e.toString());
+            ip = null;
+        }
+
+
+    }
+    public static String getLocalIP(){
+        /*try {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             LOG.error(e.toString());
             System.exit(-1);
-        }
-        return null;
+        }*/
+        return ip;
     }
 }

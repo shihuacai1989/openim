@@ -41,13 +41,5 @@ public class LogoutHandler implements IMessageHandler<DeviceMsg> {
         }catch (Exception e){
             LOG.error(e.toString());
         }
-
-        /*int type = jsonObject.getIntValue(DeviceMsgField.type);
-        if (type == DeviceMsgType.LOGOUT) {
-
-        } else {
-            handlerChain.handle(jsonObject, handlerChain);
-        }*/
-
     }
 }
