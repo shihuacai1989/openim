@@ -26,5 +26,9 @@
             <groupId>com.openim</groupId>
             <artifactId>openim-common-bean</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 </project>

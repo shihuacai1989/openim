@@ -1,6 +1,8 @@
 package com.openim.esb.controller;
 
 import com.openim.common.bean.CommonResult;
+import com.openim.esb.service.IChatServerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/server")
 public class ServerController {
 
-    //private static final Logger LOG = LoggerFactory.getLogger(ServerController.class);
-
+    @Autowired
+    private IChatServerService chatServerService;
     /**
      * 随机获取局域网的ip地址
      * @return
@@ -23,7 +25,7 @@ public class ServerController {
     @RequestMapping(value = "/localNet", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
     @ResponseBody
     public CommonResult localNet() {
-        return null;
+        return chatServerService.randomInnerServer();
     }
 
     /**
@@ -33,6 +35,6 @@ public class ServerController {
     @RequestMapping(value = "/outerNet", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
     @ResponseBody
     public CommonResult outerNet() {
-        return null;
+        return chatServerService.randomOuterServer();
     }
 }

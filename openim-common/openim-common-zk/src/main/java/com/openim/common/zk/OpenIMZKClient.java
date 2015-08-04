@@ -38,33 +38,8 @@ public class OpenIMZKClient {
     }
 
     public void connectZKServer(ChatServerNodeChangedListener chatServerNodeChangedListener){
-        //this.chatServerNodeChangedListener = chatServerNodeChangedListener;
-        /*if(zkClient instanceof GenericZKClient){
-            zkClient.connectZK(zkServers, rootNodePath, chatServerNodeChangedListener);
-            boolean connected = ((GenericZKClient) zkClient).getConnected().get();
-            *//*if(connected){
-                updateServerList();
-            }*//*
-        }else if(zkClient instanceof CuratorZKClient){
-            ((CuratorZKClient)zkClient).addNodeChangedListener(rootNodePath);
-        }*/
-
         zkClient.connectZK(zkServers, rootNodePath, chatServerNodeChangedListener);
-        //boolean connected = ((GenericZKClient) zkClient).getConnected().get();
     }
-
-    /*private void updateServerList(){
-        boolean success = false;
-        List<Node> nodeList = null;
-        try{
-            nodeList = zkClient.getChildren(rootNodePath, true);
-            success = true;
-        }catch (Exception e){
-            LOG.error(e.toString());
-        }
-
-        this.chatServerNodeChangedListener.onChanged(nodeList, success);
-    }*/
 
     public void addRootNode(){
         zkClient.addPersistNode(rootNodePath, rootNodeDesc.getBytes(CharsetUtil.utf8));

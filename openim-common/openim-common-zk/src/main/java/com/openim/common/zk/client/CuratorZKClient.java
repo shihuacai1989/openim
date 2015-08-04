@@ -114,7 +114,7 @@ public class CuratorZKClient implements IZKClient {
         try {
             //该方式会在生成的节点名称上添加前缀
             //client.create().withProtection().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(path);
-            client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(path);
+            client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(path, data);
             LOG.info("节点{}创建成功", path);
         } catch (Exception e) {
             LOG.error(e.toString());
