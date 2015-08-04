@@ -1,5 +1,7 @@
 package com.openim.chatserver.dispatch;
 
+import com.openim.chatserver.ChannelUtil;
+import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.mq.IMessageDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,5 +17,11 @@ public class ProtobufChatServerMessageDispatch implements IMessageDispatch {
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
         LOG.error("待完成");
+        try {
+            ProtobufDeviceMsg.DeviceMsg msg = ProtobufDeviceMsg.DeviceMsg.parseFrom(bytes);
+            ChannelUtil.sendMessage(msg.getTo(), msg);
+        }catch (Exception e){
+            LOG.error(e.toString());
+        }
     }
 }

@@ -1,0 +1,1 @@
+D:\mongodb\bin\mongod.exe --logpath=D:\mongodb\log\log.txt --dbpath=D:\mongodb\data\db
