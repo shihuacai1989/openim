@@ -6,13 +6,12 @@ import com.openim.common.util.CharsetUtil;
  * Created by shihc on 2015/8/4.
  */
 public class Node {
+    private String path;
+    private byte[] data;
     public Node(String path, byte[] data) {
         this.path = path;
         this.data = data;
     }
-
-    private String path;
-    private byte[] data;
 
     public String getPath() {
         return path;

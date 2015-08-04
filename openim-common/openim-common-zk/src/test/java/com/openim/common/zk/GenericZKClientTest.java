@@ -13,14 +13,14 @@ public class GenericZKClientTest {
     private GenericZKClient genericZKClient;
 
     @Before
-    public void connectZK(){
+    public void connectZK() {
         String zkServers = "192.168.85.64:2181,192.168.85.65:2181,192.168.85.66:2181";
         genericZKClient = new GenericZKClient();
         genericZKClient.connectZK(zkServers);
     }
 
     @Test
-    public void testPersistNode(){
+    public void testPersistNode() {
         genericZKClient.addPersistNode("/openIM", "testOpenIm".getBytes(CharsetUtil.utf8));
         try {
             Thread.sleep(2000);
@@ -30,7 +30,7 @@ public class GenericZKClientTest {
     }
 
     @Test
-    public void testEphemeralSequentialNode(){
+    public void testEphemeralSequentialNode() {
         genericZKClient.addEphemeralSequentialNode("/openIM/chatServer", "testOpenIm".getBytes(CharsetUtil.utf8));
         try {
             Thread.sleep(Integer.MAX_VALUE);

@@ -19,18 +19,13 @@ import java.nio.charset.Charset;
 public class ProtobufMessageDispatch implements IMessageDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProtobufMessageDispatch.class);
-
+    private static final Charset charset = Charset.forName("UTF-8");
     @Autowired
     private ProtobufLoginHandler loginHandler;
-
     @Autowired
     private ProtobufLogoutHandler logoutHandler;
-
     @Autowired
     private ProtobufSendHandler sendHandler;
-
-    private static final Charset charset = Charset.forName("UTF-8");
-
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
@@ -40,11 +35,11 @@ public class ProtobufMessageDispatch implements IMessageDispatch {
             int type = msg.getType();
             if (type == DeviceMsgType.SEND) {
                 sendHandler.handle(msg, null);
-            }else if(type == DeviceMsgType.LOGIN){
+            } else if (type == DeviceMsgType.LOGIN) {
                 loginHandler.handle(msg, null);
-            }else if(type == DeviceMsgType.LOGOUT){
+            } else if (type == DeviceMsgType.LOGOUT) {
                 logoutHandler.handle(msg, null);
-            }else{
+            } else {
                 LOG.error("无法处理收到的消息：{}", msg);
             }
         } catch (InvalidProtocolBufferException e) {

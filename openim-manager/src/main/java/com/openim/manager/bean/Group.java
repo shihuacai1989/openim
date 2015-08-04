@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Created by shihc on 2015/8/3.
+ * 用户分组
  */
 public class Group {
     private String name;

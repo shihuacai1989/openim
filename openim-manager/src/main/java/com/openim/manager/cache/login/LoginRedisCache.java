@@ -11,13 +11,14 @@ import org.slf4j.LoggerFactory;
 public class LoginRedisCache implements ILoginCache {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginRedisCache.class);
+
     /**
-     * @param key loginId
+     * @param key   loginId
      * @param value chatServer 推送服务器对应的队列名称
      */
     @Override
     public void add(String key, User value) {
-         LOG.error("LoginRedisCache not Completion");
+        LOG.error("LoginRedisCache not Completion");
     }
 
     @Override

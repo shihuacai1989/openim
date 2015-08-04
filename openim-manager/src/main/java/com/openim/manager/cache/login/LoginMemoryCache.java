@@ -20,7 +20,7 @@ public class LoginMemoryCache implements ILoginCache {
     private Map<String, User> loginMap = Maps.newHashMap();
 
     /**
-     * @param key loginId
+     * @param key   loginId
      * @param value chatServer 推送服务器对应的队列名称
      */
     @Override

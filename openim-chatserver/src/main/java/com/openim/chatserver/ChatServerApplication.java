@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @ComponentScan("com.openim")
 public class ChatServerApplication {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(ChatServerApplication.class);
         springApplication.addListeners(new ApplicationContextAware());
         springApplication.run(args);

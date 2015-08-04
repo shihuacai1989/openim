@@ -15,16 +15,15 @@ import java.io.InputStreamReader;
  * Created by shihuacai on 2015/7/22.
  */
 public class ChatClient {
-    public static void main(String[] args) throws Exception {
-        new ChatClient("localhost", 9000).run();
-    }
-
     private final String host;
     private final int port;
-
     public ChatClient(String host, int port) {
         this.host = host;
         this.port = port;
+    }
+
+    public static void main(String[] args) throws Exception {
+        new ChatClient("localhost", 9000).run();
     }
 
     public void run() throws Exception {

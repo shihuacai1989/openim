@@ -24,19 +24,19 @@ public class LoginHandler implements IMessageHandler<DeviceMsg> {
 
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain) {
-        try{
+        try {
             String loginId = jsonObject.getLoginId();
             String serverQueue = jsonObject.getServerQueue();
-            if(!StringUtils.isEmpty(loginId) && !StringUtils.isEmpty(serverQueue)){
+            if (!StringUtils.isEmpty(loginId) && !StringUtils.isEmpty(serverQueue)) {
                 User user = new User();
                 user.setConnectServer(serverQueue);
                 user.setLoginId(loginId);
                 loginCache.add(loginId, user);
                 //通知其好友上线了，待完成
-            }else{
+            } else {
                 LOG.error("登录信息不全：loginId:{}, serverQueue:{}", loginId, serverQueue);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
     }

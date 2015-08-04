@@ -18,12 +18,12 @@ import org.springframework.context.annotation.Configuration;
 public class ManagerConfiguration {
 
     @Bean
-    ILoginCache loginMemoryCache(){
+    ILoginCache loginMemoryCache() {
         return new LoginMemoryCache();
     }
 
     @Bean
-    IMessageDispatch messageDispatch(){
+    IMessageDispatch messageDispatch() {
         return new ProtobufMessageDispatch();
     }
 

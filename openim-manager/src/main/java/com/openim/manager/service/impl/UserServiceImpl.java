@@ -37,14 +37,14 @@ public class UserServiceImpl implements IUserService {
     public CommonResult addUser(User user) {
         int code = ResultCode.success;
         String error = null;
-        try{
-            if(!StringUtils.isEmpty(user.getLoginId()) && !StringUtils.isEmpty(user.getPassword())){
+        try {
+            if (!StringUtils.isEmpty(user.getLoginId()) && !StringUtils.isEmpty(user.getPassword())) {
                 mongoTemplate.save(user);
-            }else{
+            } else {
                 code = ResultCode.parameter_null;
                 error = "用户名和密码不能为空";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
             code = ResultCode.error;
             error = e.toString();
@@ -57,11 +57,11 @@ public class UserServiceImpl implements IUserService {
         int code = ResultCode.success;
         int deleteCount = 0;
         String error = null;
-        try{
+        try {
             Criteria criteria = new Criteria("loginId").is(loginId);
             WriteResult writeResult = mongoTemplate.remove(new Query(criteria), User.class);
             deleteCount = writeResult.getN();
-        }catch(Exception e){
+        } catch (Exception e) {
             code = ResultCode.error;
             error = e.toString();
             LOG.error(e.toString());
@@ -81,10 +81,10 @@ public class UserServiceImpl implements IUserService {
             query.addCriteria(Criteria.where("password").is(pwd));
             query.fields().include("_id");
             User user = mongoTemplate.findOne(query, User.class);
-            if(user != null){
+            if (user != null) {
                 data = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             code = ResultCode.error;
             LOG.error(e.toString());
         }
@@ -99,7 +99,7 @@ public class UserServiceImpl implements IUserService {
         try {
             Criteria criteria = new Criteria("loginId").is(loginId);
             data = mongoTemplate.findOne(new Query(criteria), User.class);
-        }catch (Exception e){
+        } catch (Exception e) {
             code = ResultCode.error;
             LOG.error(e.toString());
         }
@@ -111,9 +111,9 @@ public class UserServiceImpl implements IUserService {
         int code = ResultCode.success;
         int data = 0;
         String error = null;
-        if(StringUtils.isEmpty(groupName) || StringUtils.isEmpty(loginId)){
+        if (StringUtils.isEmpty(groupName) || StringUtils.isEmpty(loginId)) {
             code = ResultCode.parameter_null;
-        }else{
+        } else {
             try {
                 Group group = new Group();
                 group.setName(groupName);
@@ -127,7 +127,7 @@ public class UserServiceImpl implements IUserService {
 
                 WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
                 data = writeResult.getN();
-            }catch (Exception e){
+            } catch (Exception e) {
                 error = e.toString();
                 code = ResultCode.error;
                 LOG.error(e.toString());
@@ -145,16 +145,16 @@ public class UserServiceImpl implements IUserService {
         try {
             if (StringUtils.isEmpty(loginId)) {
                 code = ResultCode.parameter_null;
-            }else{
+            } else {
                 Criteria criteria = new Criteria("loginId").is(loginId);
                 Query query = new Query(criteria);
                 query.fields().include("groups");
                 User user = mongoTemplate.findOne(query, User.class);
-                if(user != null){
+                if (user != null) {
                     data = user.getGroups();
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             code = ResultCode.error;
             LOG.error(e.toString());
         }
@@ -166,9 +166,9 @@ public class UserServiceImpl implements IUserService {
         int code = ResultCode.success;
         int data = 0;
         String error = null;
-        if(StringUtils.isEmpty(friendLoginId) || StringUtils.isEmpty(groupId)){
+        if (StringUtils.isEmpty(friendLoginId) || StringUtils.isEmpty(groupId)) {
             code = ResultCode.parameter_null;
-        }else{
+        } else {
             try {
                 Friend friend = new Friend();
                 friend.setFriendLoginId(friendLoginId);
@@ -181,7 +181,7 @@ public class UserServiceImpl implements IUserService {
 
                 WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
                 data = writeResult.getN();
-            }catch (Exception e){
+            } catch (Exception e) {
                 error = e.toString();
                 code = ResultCode.error;
                 LOG.error(e.toString());
@@ -199,16 +199,16 @@ public class UserServiceImpl implements IUserService {
         try {
             if (StringUtils.isEmpty(loginId)) {
                 code = ResultCode.parameter_null;
-            }else{
+            } else {
                 Criteria criteria = new Criteria("loginId").is(loginId);
                 Query query = new Query(criteria);
                 query.fields().include("friends");
                 User user = mongoTemplate.findOne(query, User.class);
-                if(user != null){
+                if (user != null) {
                     data = user.getFriends();
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             code = ResultCode.error;
             LOG.error(e.toString());
         }

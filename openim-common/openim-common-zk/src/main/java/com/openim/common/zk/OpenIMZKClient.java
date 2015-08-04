@@ -25,27 +25,27 @@ public class OpenIMZKClient {
     private IZKClient zkClient;
     //private ChatServerNodeChangedListener chatServerNodeChangedListener;
 
-    public OpenIMZKClient(String zkServers){
-        if(StringUtils.isBlank(zkServers)){
+    public OpenIMZKClient(String zkServers) {
+        if (StringUtils.isBlank(zkServers)) {
             throw new NullArgumentException("zkServers不可为空");
         }
         this.zkServers = zkServers;
         zkClient = new CuratorZKClient();
     }
 
-    public void connectZKServer(){
+    public void connectZKServer() {
         zkClient.connectZK(zkServers);
     }
 
-    public void connectZKServer(ChatServerNodeChangedListener chatServerNodeChangedListener){
+    public void connectZKServer(ChatServerNodeChangedListener chatServerNodeChangedListener) {
         zkClient.connectZK(zkServers, rootNodePath, chatServerNodeChangedListener);
     }
 
-    public void addRootNode(){
+    public void addRootNode() {
         zkClient.addPersistNode(rootNodePath, rootNodeDesc.getBytes(CharsetUtil.utf8));
     }
 
-    public void addChatSeverNode(byte[] data){
+    public void addChatSeverNode(byte[] data) {
         zkClient.addEphemeralSequentialNode(chatServerNodePath, data);
     }
 

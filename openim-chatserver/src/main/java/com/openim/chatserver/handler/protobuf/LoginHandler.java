@@ -20,7 +20,7 @@ public class LoginHandler implements IMessageHandler {
 
     private IMessageSender messageSender;
 
-    public LoginHandler(){
+    public LoginHandler() {
         messageSender = ApplicationContextAware.getBean(IMessageSender.class);
     }
 

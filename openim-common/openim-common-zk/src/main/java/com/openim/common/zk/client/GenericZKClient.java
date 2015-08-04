@@ -17,10 +17,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class GenericZKClient implements IZKClient {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GenericZKClient.class);
-
     protected final static Integer MAX_CONNECT_ATTEMPT = 5;
-
+    private static final Logger LOG = LoggerFactory.getLogger(GenericZKClient.class);
     private ZooKeeper zooKeeper;
 
     private AtomicBoolean connected = new AtomicBoolean(false);
@@ -42,7 +40,7 @@ public class GenericZKClient implements IZKClient {
                     LOG.error("未连接到zk");
                 }
             }
-            if(connectAttempt < MAX_CONNECT_ATTEMPT){
+            if (connectAttempt < MAX_CONNECT_ATTEMPT) {
                 connected.set(true);
             }
         } catch (IOException e) {
@@ -82,7 +80,7 @@ public class GenericZKClient implements IZKClient {
                     LOG.error("未连接到zk");
                 }
             }
-            if(connectAttempt < MAX_CONNECT_ATTEMPT){
+            if (connectAttempt < MAX_CONNECT_ATTEMPT) {
                 connected.set(true);
                 updateServerList();
             }
@@ -93,13 +91,13 @@ public class GenericZKClient implements IZKClient {
         }
     }
 
-    private void updateServerList(){
+    private void updateServerList() {
         boolean success = false;
         List<Node> nodeList = null;
-        try{
+        try {
             nodeList = getChildren(listeningPath, true);
             success = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
         nodeChangedListener.onChanged(nodeList, success);
@@ -111,13 +109,13 @@ public class GenericZKClient implements IZKClient {
 
     @Override
     public void addPersistNode(String path, byte[] data) {
-        if(connected.get()){
+        if (connected.get()) {
             try {
                 //不能以"/"结尾
                 Stat stat = zooKeeper.exists(path, true);
-                if(stat != null){
+                if (stat != null) {
                     LOG.info("节点{}已存在", path);
-                }else{
+                } else {
                     //创建目录，需带上"/"，否则为创建节点，导致createServerNode调用失败
                     String createdPath = zooKeeper.create(path,
                             data,
@@ -158,13 +156,13 @@ public class GenericZKClient implements IZKClient {
     }
 
     @Override
-    public List<Node> getChildren(String path, boolean watch) throws Exception  {
+    public List<Node> getChildren(String path, boolean watch) throws Exception {
         List<Node> nodeList = new ArrayList<Node>();
 
         // 获取并监听groupNode的子节点变化
         // watch参数为true, 表示监听子节点变化事件.
         // 每次都需要重新注册监听, 因为一次注册, 只能监听一次事件, 如果还想继续保持监听, 必须重新注册
-        List<String>  subList = zooKeeper.getChildren(path, watch);
+        List<String> subList = zooKeeper.getChildren(path, watch);
         for (String subNode : subList) {
             String nodePath = path + "/" + subNode;
             byte[] data = zooKeeper.getData(nodePath, false, stat);

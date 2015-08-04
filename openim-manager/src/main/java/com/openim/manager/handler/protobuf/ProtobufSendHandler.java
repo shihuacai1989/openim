@@ -31,22 +31,22 @@ public class ProtobufSendHandler implements IMessageHandler<DeviceMsg> {
     @Override
     public void handle(DeviceMsg deviceMsg, HandlerChain handlerChain) {
         String to = deviceMsg.getTo();
-        if(!StringUtils.isEmpty(to)){
-            try{
+        if (!StringUtils.isEmpty(to)) {
+            try {
                 User toUser = loginCache.get(to);
-                if(toUser != null){
+                if (toUser != null) {
                     int loginStatus = toUser.getLoginStatus();
-                    if(loginStatus != LoginStatus.offline){
+                    if (loginStatus != LoginStatus.offline) {
                         String connectServer = toUser.getConnectServer();
 
                         messageSender.sendMessage(MQConstants.openimExchange, connectServer, deviceMsg.toByteArray());
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 LOG.error(e.toString());
             }
 
-        }else{
+        } else {
             LOG.error("发送信息不全：to:{}", to);
         }
         /*int type = deviceMsg.getIntValue(DeviceMsgField.type);

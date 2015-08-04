@@ -28,7 +28,7 @@ public class UserServiceTest {
     private IUserService userService;
 
     @Test
-    public void addUser(){
+    public void addUser() {
         User user = new User();
         user.setLoginId("shihc");
         user.setPassword("111qqq,,,");
@@ -44,37 +44,37 @@ public class UserServiceTest {
     }
 
     @Test
-    public void deleteUser(){
+    public void deleteUser() {
         userService.deleteUser("shihc");
     }
 
     @Test
-    public void userExist(){
+    public void userExist() {
         userService.userExist("shihc", "111qqq,,,");
     }
 
     @Test
-    public void getUser(){
+    public void getUser() {
         userService.getUser("shihc");
     }
 
     @Test
-    public void addGroup(){
+    public void addGroup() {
         userService.addGroup("shihc", "新分组");
     }
 
     @Test
-    public void listGroups(){
+    public void listGroups() {
         userService.listGroups("shihc");
     }
 
     @Test
-    public void addFriend(){
+    public void addFriend() {
         userService.addFriend("shihc", "wll", "group1");
     }
 
     @Test
-    public void listFriends(){
+    public void listFriends() {
         userService.listFriends("shihc");
     }
 }

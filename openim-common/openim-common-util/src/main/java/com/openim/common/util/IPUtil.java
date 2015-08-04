@@ -15,7 +15,7 @@ public class IPUtil {
 
     private static String ip;
 
-    static{
+    static {
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
@@ -25,7 +25,8 @@ public class IPUtil {
 
 
     }
-    public static String getLocalIP(){
+
+    public static String getLocalIP() {
         /*try {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {

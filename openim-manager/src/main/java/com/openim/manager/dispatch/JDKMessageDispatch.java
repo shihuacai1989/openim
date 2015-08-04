@@ -20,26 +20,21 @@ import java.nio.charset.Charset;
 public class JDKMessageDispatch implements IMessageDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDKMessageDispatch.class);
-
+    private static final Charset charset = Charset.forName("UTF-8");
     @Autowired
     private LoginHandler loginHandler;
-
     @Autowired
     private LogoutHandler logoutHandler;
-
     @Autowired
     private SendHandler sendHandler;
 
-    private static final Charset charset = Charset.forName("UTF-8");
-
-
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
-        if(bytes != null){
+        if (bytes != null) {
             try {
                 ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
                 ObjectInputStream input = new ObjectInputStream(bais);
-                DeviceMsg msg = (DeviceMsg)input.readObject();
+                DeviceMsg msg = (DeviceMsg) input.readObject();
 
                 //String message = new String(bytes, CharsetUtil.utf8);
                 //JSONObject jsonObject = JSON.parseObject(message);
@@ -49,14 +44,14 @@ public class JDKMessageDispatch implements IMessageDispatch {
                 int type = msg.getType();
                 if (type == DeviceMsgType.SEND) {
                     sendHandler.handle(msg, null);
-                }else if(type == DeviceMsgType.LOGIN){
+                } else if (type == DeviceMsgType.LOGIN) {
                     loginHandler.handle(msg, null);
-                }else if(type == DeviceMsgType.LOGOUT){
+                } else if (type == DeviceMsgType.LOGOUT) {
                     logoutHandler.handle(msg, null);
-                }else{
+                } else {
                     LOG.error("无法处理收到的消息：{}", msg);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 LOG.error(e.toString());
             }
 

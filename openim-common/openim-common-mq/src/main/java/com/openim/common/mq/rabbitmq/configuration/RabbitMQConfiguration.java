@@ -22,6 +22,7 @@ public class RabbitMQConfiguration {
 
     /**
      * 自动在rabbitmq server中创建队列
+     *
      * @return
      */
     @Bean
@@ -64,12 +65,12 @@ public class RabbitMQConfiguration {
 
 
     @Bean
-    IMessageSender rabbitMQMessageSender(){
+    IMessageSender rabbitMQMessageSender() {
         return new RabbitMQMessageSender();
     }
 
     @Bean
-    RabbitMQMessageListener rabbitMQMessageListener(){
+    RabbitMQMessageListener rabbitMQMessageListener() {
         return new RabbitMQMessageListener();
     }
 

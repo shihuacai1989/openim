@@ -17,7 +17,7 @@ public class SendHandler implements IMessageHandler {
     //private IMessageDispatch messageDispatch;
     private IMessageSender messageSender;
 
-    public SendHandler(){
+    public SendHandler() {
         messageSender = ApplicationContextAware.getBean(IMessageSender.class);
     }
 

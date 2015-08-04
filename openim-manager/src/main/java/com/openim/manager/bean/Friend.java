@@ -2,6 +2,7 @@ package com.openim.manager.bean;
 
 /**
  * Created by shihuacai on 2015/8/3.
+ * 好友
  */
 public class Friend {
     private String friendLoginId;

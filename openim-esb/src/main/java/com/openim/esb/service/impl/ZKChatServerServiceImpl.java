@@ -54,10 +54,10 @@ public class ZKChatServerServiceImpl implements IChatServerService {
                     //nodeList = data;
                     List<String> tmpInnerServers = null;
                     List<String> tmpOuterServers = null;
-                    if(!CollectionUtils.isEmpty(data)){
+                    if (!CollectionUtils.isEmpty(data)) {
                         tmpInnerServers = new ArrayList<String>(data.size());
                         tmpOuterServers = new ArrayList<String>(data.size());
-                        for (int i=0; i<data.size(); i++) {
+                        for (int i = 0; i < data.size(); i++) {
                             byte[] nodeData = data.get(i).getData();
                             JSONObject jsonObject = JSON.parseObject(new String(nodeData, CharsetUtil.utf8));
                             String outerNet = jsonObject.getString(NodeField.outerNet);
@@ -69,7 +69,7 @@ public class ZKChatServerServiceImpl implements IChatServerService {
                     innerServers = tmpInnerServers;
                     outerServers = tmpOuterServers;
                     System.out.println("推送服务地址：" + data);
-                }catch (Exception e){
+                } catch (Exception e) {
                     LOG.error(e.toString());
                 }
 
@@ -82,9 +82,9 @@ public class ZKChatServerServiceImpl implements IChatServerService {
     public CommonResult<String> randomInnerServer() {
         readLock.lock();
         String server = null;
-        if(!CollectionUtils.isEmpty(innerServers)){
+        if (!CollectionUtils.isEmpty(innerServers)) {
             server = innerServers.get(new Random().nextInt(innerServers.size()));
-        }else{
+        } else {
             LOG.error("无推送服务器内网地址");
         }
         readLock.unlock();
@@ -95,9 +95,9 @@ public class ZKChatServerServiceImpl implements IChatServerService {
     public CommonResult<String> randomOuterServer() {
         readLock.lock();
         String server = null;
-        if(!CollectionUtils.isEmpty(outerServers)){
+        if (!CollectionUtils.isEmpty(outerServers)) {
             server = outerServers.get(new Random().nextInt(outerServers.size()));
-        }else{
+        } else {
             LOG.error("无推送服务器外网地址");
         }
         readLock.unlock();

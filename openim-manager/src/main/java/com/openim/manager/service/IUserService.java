@@ -11,11 +11,18 @@ import com.openim.manager.bean.User;
  */
 public interface IUserService {
     CommonResult addUser(User user);
+
     CommonResult<Integer> deleteUser(String loginId);
+
     CommonResult<Boolean> userExist(String loginId, String pwd);
+
     CommonResult<User> getUser(String loginId);
+
     CommonResult<Integer> addGroup(String loginId, String groupName);
+
     ListResult<Group> listGroups(String loginId);
+
     CommonResult<Integer> addFriend(String loginId, String friendLoginId, String groupId);
+
     ListResult<Friend> listFriends(String loginId);
 }

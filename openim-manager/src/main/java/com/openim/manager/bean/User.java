@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by shihuacai on 2015/7/20.
+ * 注册用户
  */
 @Document(collection = "user")
 public class User {
@@ -46,6 +47,12 @@ public class User {
      */
     @Field
     private Date lastLoginTime;
+
+    /**
+     * 终端最后收到的消息的发送时间，对应Message中的sendTime字段
+     */
+    @Field
+    private Date lastReadMsgTime = new Date();
 
     @Field
     private List<Group> groups;
@@ -138,5 +145,13 @@ public class User {
 
     public void setFriends(List<Friend> friends) {
         this.friends = friends;
+    }
+
+    public Date getLastReadMsgTime() {
+        return lastReadMsgTime;
+    }
+
+    public void setLastReadMsgTime(Date lastReadMsgTime) {
+        this.lastReadMsgTime = lastReadMsgTime;
     }
 }

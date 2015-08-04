@@ -22,9 +22,9 @@ public class JDKChatServerMessageDispatch implements IMessageDispatch {
         try {
             ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
             ObjectInputStream input = new ObjectInputStream(bais);
-            DeviceMsg msg = (DeviceMsg)input.readObject();
+            DeviceMsg msg = (DeviceMsg) input.readObject();
             ChannelUtil.sendMessage(msg.getTo(), msg);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
     }

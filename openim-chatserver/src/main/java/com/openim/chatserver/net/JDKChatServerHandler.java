@@ -23,7 +23,7 @@ public class JDKChatServerHandler extends SimpleChannelInboundHandler<DeviceMsg>
 
     private HandlerChain handlerChain;
 
-    public JDKChatServerHandler(){
+    public JDKChatServerHandler() {
         handlerChain = new HandlerChain();
     }
 
@@ -46,17 +46,16 @@ public class JDKChatServerHandler extends SimpleChannelInboundHandler<DeviceMsg>
     protected void channelRead0(ChannelHandlerContext ctx, DeviceMsg msg) throws Exception {
         try {
             handlerChain.handle(msg, handlerChain, ctx.channel());
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
     }
 
     /**
-     *
      * 覆盖 channelActive 方法 在channel被启用的时候触发 (在建立连接的时候)
-     *
+     * <p/>
      * channelActive 和 channelInActive 在后面的内容中讲述，这里先不做详细的描述
-     * */
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);

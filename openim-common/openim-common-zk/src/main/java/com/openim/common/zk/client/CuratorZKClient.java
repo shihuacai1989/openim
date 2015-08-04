@@ -23,9 +23,8 @@ import java.util.concurrent.Executors;
 public class CuratorZKClient implements IZKClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(CuratorZKClient.class);
-    private CuratorFramework client;
     private final ExecutorService pool = Executors.newFixedThreadPool(1);
-
+    private CuratorFramework client;
     private String listeningPath = null;
     private ChatServerNodeChangedListener nodeChangedListener = null;
 
@@ -33,7 +32,7 @@ public class CuratorZKClient implements IZKClient {
     public void connectZK(String zkServers) {
         client = CuratorFrameworkFactory.builder()
                 .connectString(zkServers)
-                //.namespace(Constants.rootNode)
+                        //.namespace(Constants.rootNode)
                 .sessionTimeoutMs(5000)
                 .connectionTimeoutMs(5000)
                 .canBeReadOnly(false)
@@ -41,6 +40,7 @@ public class CuratorZKClient implements IZKClient {
                 .build();
         client.start();
     }
+
     @Override
     public void connectZK(String zkServers, String listeningPath, ChatServerNodeChangedListener nodeChangedListener) {
 
@@ -68,12 +68,12 @@ public class CuratorZKClient implements IZKClient {
                     }
                 }
             }, pool);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
 
 
-            /** 监听数据节点的变化情况 */
+        /** 监听数据节点的变化情况 */
             /*final NodeCache nodeCache = new NodeCache(client, "/" + Constants.rootNode,
                     false);
             nodeCache.start(true);
@@ -87,13 +87,13 @@ public class CuratorZKClient implements IZKClient {
 
     }
 
-    private void updateServerList(){
+    private void updateServerList() {
         boolean success = false;
         List<Node> nodeList = null;
-        try{
+        try {
             nodeList = getChildren(listeningPath, true);
             success = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
         nodeChangedListener.onChanged(nodeList, success);
@@ -126,7 +126,7 @@ public class CuratorZKClient implements IZKClient {
         List<Node> nodeList = new ArrayList<Node>();
 
         List<String> subList = client.getChildren().forPath(listeningPath);
-        if(subList != null && subList.size() > 0){
+        if (subList != null && subList.size() > 0) {
             for (String subNode : subList) {
                 String nodePath = listeningPath + "/" + subNode;
                 byte[] data = client.getData().forPath(nodePath);

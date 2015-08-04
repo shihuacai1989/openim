@@ -13,7 +13,7 @@ public class LoginMemcacheCache implements ILoginCache {
     private static final Logger LOG = LoggerFactory.getLogger(LoginMemcacheCache.class);
 
     /**
-     * @param key loginId
+     * @param key   loginId
      * @param value chatServer 推送服务器对应的队列名称
      */
     @Override

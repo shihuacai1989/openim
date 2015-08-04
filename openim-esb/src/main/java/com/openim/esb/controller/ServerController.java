@@ -18,11 +18,13 @@ public class ServerController {
 
     @Autowired
     private IChatServerService chatServerService;
+
     /**
      * 随机获取局域网的ip地址
+     *
      * @return
      */
-    @RequestMapping(value = "/localNet", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @RequestMapping(value = "/localNet", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public CommonResult localNet() {
         return chatServerService.randomInnerServer();
@@ -30,9 +32,10 @@ public class ServerController {
 
     /**
      * 随机获取公网的ip地址
+     *
      * @return
      */
-    @RequestMapping(value = "/outerNet", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @RequestMapping(value = "/outerNet", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public CommonResult outerNet() {
         return chatServerService.randomOuterServer();

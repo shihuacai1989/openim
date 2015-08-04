@@ -31,21 +31,21 @@ public class SendHandler implements IMessageHandler<DeviceMsg> {
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain) {
         String to = jsonObject.getTo();
-        if(!StringUtils.isEmpty(to)){
-            try{
+        if (!StringUtils.isEmpty(to)) {
+            try {
                 User user = loginCache.get(to);
-                if(user != null){
+                if (user != null) {
                     int loginStatus = user.getLoginStatus();
-                    if(loginStatus != LoginStatus.offline){
+                    if (loginStatus != LoginStatus.offline) {
                         String connectServer = user.getConnectServer();
                         messageSender.sendMessage(MQConstants.openimExchange, connectServer, jsonObject);
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 LOG.error(e.toString());
             }
 
-        }else{
+        } else {
             LOG.error("发送信息不全：to:{}", to);
         }
     }

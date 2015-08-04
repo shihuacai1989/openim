@@ -13,12 +13,12 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.openim")
-public class ManagerApplication{
+public class ManagerApplication {
 
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(ManagerApplication.class);
         //springApplication.addListeners(new ApplicationContextAware());
         springApplication.run(args);

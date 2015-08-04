@@ -28,7 +28,7 @@ public class HandlerChain implements IMessageHandler {
         handlerList.add(new LogoutHandler());
     }*/
 
-    public HandlerChain(){
+    public HandlerChain() {
         handlerList = new ArrayList<IMessageHandler>();
         handlerList.add(new LoginHandler());
         handlerList.add(new SendHandler());
@@ -38,13 +38,14 @@ public class HandlerChain implements IMessageHandler {
         index = -1;
         max = handlerList.size() - 1;
     }
+
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
-        index ++;
-        if(index <= max){
+        index++;
+        if (index <= max) {
             handlerList.get(index).handle(jsonObject, handlerChain, channel);
             index = -1;
-        }else{
+        } else {
             LOG.error("无法处理的客户端消息: {}", jsonObject.toString());
         }
     }

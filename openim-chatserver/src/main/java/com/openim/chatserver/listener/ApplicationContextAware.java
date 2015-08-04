@@ -11,16 +11,16 @@ import org.springframework.context.event.ContextRefreshedEvent;
 public class ApplicationContextAware implements ApplicationListener<ContextRefreshedEvent> {
     private static ApplicationContext applicationContext;
 
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        applicationContext = event.getApplicationContext();
-    }
-
-    public static Object getBean(String name){
+    public static Object getBean(String name) {
         return applicationContext.getBean(name);
     }
 
-    public static <T> T getBean(Class<T> clazz){
+    public static <T> T getBean(Class<T> clazz) {
         return applicationContext.getBean(clazz);
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        applicationContext = event.getApplicationContext();
     }
 }

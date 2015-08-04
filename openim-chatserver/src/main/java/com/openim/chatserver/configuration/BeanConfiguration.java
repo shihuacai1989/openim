@@ -27,7 +27,7 @@ public class BeanConfiguration {
     private String port;
 
     @Bean
-    IMessageDispatch messageDispatch(){
+    IMessageDispatch messageDispatch() {
         return new ProtobufChatServerMessageDispatch();
     }
 
@@ -40,6 +40,7 @@ public class BeanConfiguration {
 
     /**
      * 采用该注解注入对象，方法名不能重名，否则存在一个不执行的情况
+     *
      * @param exchange
      * @return
      */
@@ -59,8 +60,8 @@ public class BeanConfiguration {
         return container;
     }
 
-    private String chatServerListenerQueue(){
-        chatQueueName =  queueTemplate.replace("{server}", IPUtil.getLocalIP()).replace("{port}", port);
+    private String chatServerListenerQueue() {
+        chatQueueName = queueTemplate.replace("{server}", IPUtil.getLocalIP()).replace("{port}", port);
         return chatQueueName;
     }
 }

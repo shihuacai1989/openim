@@ -28,17 +28,17 @@ public class LogoutHandler implements IMessageHandler<DeviceMsg> {
         try {
             String loginId = jsonObject.getLoginId();
             //String serverQueue = jsonObject.getString(DeviceMsgField.serverQueue);
-            if(!StringUtils.isEmpty(loginId)){
+            if (!StringUtils.isEmpty(loginId)) {
                 User user = loginCache.get(loginId);
-                if(user != null){
+                if (user != null) {
                     user.setLoginStatus(LoginStatus.offline);
                     loginCache.add(loginId, user);
                 }
                 //通知其好友下线了，待完成
-            }else{
+            } else {
                 LOG.error("下线信息不全：loginId:{}", loginId);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.toString());
         }
     }

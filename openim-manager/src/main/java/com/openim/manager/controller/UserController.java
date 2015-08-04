@@ -24,24 +24,25 @@ public class UserController {
 
     /**
      * 用户注册
+     *
      * @param loginId
      * @param password
      * @param password2
      * @return
      */
-    @RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public CommonResult register(String loginId, String password, String password2){
+    public CommonResult register(String loginId, String password, String password2) {
         int code = ResultCode.success;
         String error = null;
-        if(StringUtils.isEmpty(loginId) ||
-           StringUtils.isEmpty(password) ||
-           StringUtils.isEmpty(password2)){
+        if (StringUtils.isEmpty(loginId) ||
+                StringUtils.isEmpty(password) ||
+                StringUtils.isEmpty(password2)) {
             code = ResultCode.parameter_null;
-        }else if(!password.equals(password2)){
+        } else if (!password.equals(password2)) {
             code = ResultCode.parameter_error;
             error = "密码与确认密码不一致";
-        }else{
+        } else {
             User user = new User();
             user.setLoginId(loginId);
             user.setPassword(password);
@@ -53,21 +54,21 @@ public class UserController {
         return new CommonResult(code, null, error);
     }
 
-    @RequestMapping(value = "/checkLogin", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @RequestMapping(value = "/checkLogin", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public CommonResult checkLogin(String loginId, String password){
+    public CommonResult checkLogin(String loginId, String password) {
         return userService.userExist(loginId, password);
     }
 
-    @RequestMapping(value = "/getUser", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @RequestMapping(value = "/getUser", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public CommonResult getUser(String loginId){
+    public CommonResult getUser(String loginId) {
         return userService.getUser(loginId);
     }
 
-    @RequestMapping(value = "/addGroup", method = {RequestMethod.GET, RequestMethod.POST}, produces = { "application/json;charset=UTF-8" })
+    @RequestMapping(value = "/addGroup", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public CommonResult addGroup(String loginId, String groupName){
+    public CommonResult addGroup(String loginId, String groupName) {
         return userService.addGroup(loginId, groupName);
     }
 }

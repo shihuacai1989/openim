@@ -12,12 +12,12 @@ import io.netty.channel.Channel;
 public class HeartBeatHandler implements IMessageHandler {
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
-        if(jsonObject != null){
+        if (jsonObject != null) {
             int type = jsonObject.getType();
-            if(type == DeviceMsgType.HEART_BEAT){
+            if (type == DeviceMsgType.HEART_BEAT) {
 
-            }else{
-                handlerChain.handle(jsonObject,handlerChain, channel);
+            } else {
+                handlerChain.handle(jsonObject, handlerChain, channel);
             }
         }
     }

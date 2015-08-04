@@ -24,7 +24,7 @@ public class ChatServer implements InitializingBean {
     @Value("${chat.port}")
     private int port;
 
-    private void startServer(){
+    private void startServer() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {

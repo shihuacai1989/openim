@@ -5,7 +5,7 @@ package com.openim.common.im.exception;
  * Created by shihuacai on 2015/7/30.
  */
 public class NotCompletionException extends Exception {
-    public NotCompletionException(String message){
+    public NotCompletionException(String message) {
         super(message);
     }
 }

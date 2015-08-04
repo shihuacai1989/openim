@@ -17,6 +17,17 @@ public class ChatServer {
         this.port = port;
     }
 
+    public static void main(String[] args) throws Exception {
+        int port;
+        if (args.length > 0) {
+            port = Integer.parseInt(args[0]);
+        } else {
+            port = 9000;
+        }
+        new ChatServer(port).run();
+
+    }
+
     public void run() throws Exception {
 
         EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)
@@ -44,16 +55,5 @@ public class ChatServer {
 
             System.out.println("SimpleChatServer 关闭了");
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        int port;
-        if (args.length > 0) {
-            port = Integer.parseInt(args[0]);
-        } else {
-            port = 9000;
-        }
-        new ChatServer(port).run();
-
     }
 }

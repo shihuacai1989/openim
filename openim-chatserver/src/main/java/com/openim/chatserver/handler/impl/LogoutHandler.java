@@ -16,7 +16,7 @@ import io.netty.channel.Channel;
 public class LogoutHandler implements IMessageHandler {
     private IMessageSender messageSender;
 
-    public LogoutHandler(){
+    public LogoutHandler() {
         messageSender = ApplicationContextAware.getBean(IMessageSender.class);
     }
 

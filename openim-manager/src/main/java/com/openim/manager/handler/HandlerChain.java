@@ -21,7 +21,7 @@ public class HandlerChain implements IMessageHandler<DeviceMsg> {
     private int index;
     private int max;
 
-    public HandlerChain(){
+    public HandlerChain() {
         handlerList = new ArrayList<IMessageHandler>();
         handlerList.add(new LoginHandler());
         handlerList.add(new SendHandler());
@@ -33,11 +33,11 @@ public class HandlerChain implements IMessageHandler<DeviceMsg> {
 
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain) {
-        index ++;
-        if(index <= max){
+        index++;
+        if (index <= max) {
             handlerList.get(index).handle(jsonObject, handlerChain);
             index = -1;
-        }else{
+        } else {
             LOG.error("无法处理的客户端消息: {}", jsonObject.toString());
         }
     }
