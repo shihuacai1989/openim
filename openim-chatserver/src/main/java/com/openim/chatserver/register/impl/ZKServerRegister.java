@@ -21,6 +21,9 @@ public class ZKServerRegister implements IServerRegister {
     @Value("${outerNet}")
     private String outerNet;
 
+    @Value("${chat.port}")
+    private String chatPort;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         register();
@@ -33,7 +36,7 @@ public class ZKServerRegister implements IServerRegister {
         openIMZKClient.addRootNode();
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put(NodeField.innerNet, IPUtil.getLocalIP());
+        jsonObject.put(NodeField.innerNet, IPUtil.getLocalIP() + ":" + chatPort);
         jsonObject.put(NodeField.outerNet, outerNet);
 
         openIMZKClient.addChatSeverNode(jsonObject.toString().getBytes(CharsetUtil.utf8));
