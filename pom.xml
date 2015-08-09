@@ -132,5 +132,20 @@
         </pluginManagement>
     </build>
 
-
+    <!--执行mvn deploy自动上传到本地的nexus仓库
+        需在setting.xml中配置用户名和密码
+        同一个包想重复上传（即版本号也保持不变）需在nexus的configuration中配置Deployment Policy
+    -->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Releases</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
