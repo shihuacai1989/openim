@@ -36,6 +36,13 @@
             <version>2.16</version>
             <!--<version>3.0.2</version>-->
         </dependency>
+
+
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack</artifactId>
+            <version>0.6.7</version>
+        </dependency>
     </dependencies>
     <build>
 
@@ -64,7 +71,7 @@
                     <sourceDirectory>src/main/exchange/avro</sourceDirectory>
                     <outputDirectory>src/main/java</outputDirectory>
                 </configuration>
-                <!--以下官网的配置存在问题，不要采用executions的模式-->
+                <!--以下官网的配置需要通过mvn generate-sources生成源码，直接在intellij中运行，configuration中配置无效-->
                 <!--<executions>
                     <execution>
                         <phase>generate-sources</phase>

@@ -8,6 +8,7 @@ import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.junit.Test;
+import org.msgpack.MessagePack;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -107,5 +108,22 @@ public class SerializeTest {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void messagePackTest(){
+        try {
+            DeviceMsg deviceMsg = new DeviceMsg();
+            deviceMsg.setType(type);
+            deviceMsg.setMsg(msg);
+
+            MessagePack msgpack = new MessagePack();
+            msgpack.register(DeviceMsg.class);
+            byte[] raw = msgpack.write(deviceMsg);
+            //输出20
+            System.out.println("messagePack序列化后大小: " + raw.length);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
