@@ -126,4 +126,14 @@ public class SerializeTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void thriftTest(){
+        /*Pair pair = new Pair();
+        pair.setKey("rowkey").setValue("column-family");
+
+        FileOutputStream fos = new FileOutputStream(new File(datafile));
+        pair.write(new TBinaryProtocol(new TIOStreamTransport(fos)));
+        fos.close();*/
+    }
 }

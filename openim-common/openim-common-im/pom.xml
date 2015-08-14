@@ -43,6 +43,12 @@
             <artifactId>msgpack</artifactId>
             <version>0.6.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.9.2</version>
+        </dependency>
     </dependencies>
     <build>
 
@@ -86,6 +92,16 @@
                         </configuration>
                     </execution>
                 </executions>-->
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.thrift.tools</groupId>
+                <artifactId>maven-thrift-plugin</artifactId>
+                <version>0.1.12</version>
+                <configuration>
+                    <thriftExecutable>thrift/thrift-0.9.2.exe</thriftExecutable>
+                    <thriftSourceRoot>${basedir}/src/main/java</thriftSourceRoot>
+                </configuration>
             </plugin>
 
         </plugins>
