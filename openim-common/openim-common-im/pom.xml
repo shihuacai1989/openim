@@ -19,6 +19,23 @@
             <artifactId>protobuf-java</artifactId>
             <version>2.4.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+
+        <!--
+            java:https://github.com/EsotericSoftware/kryo
+            ios: https://github.com/Feuerwerk/kryococoa
+        -->
+        <dependency>
+            <groupId>com.esotericsoftware.kryo</groupId>
+            <artifactId>kryo</artifactId>
+            <version>2.16</version>
+            <!--<version>3.0.2</version>-->
+        </dependency>
     </dependencies>
     <build>
 
@@ -31,12 +48,37 @@
                 <configuration>
                     <extension>.proto</extension>
                     <inputDirectories>
-                        <inputDirectory>src/main/proto</inputDirectory>
+                        <inputDirectory>src/main/exchange/proto</inputDirectory>
                     </inputDirectories>
                     <cleanOutputFolder>false</cleanOutputFolder>
                     <outputDirectory>src/main/java</outputDirectory>
                     <protocCommand>protoc/protoc.exe</protocCommand>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>1.7.7</version>
+                <configuration>
+                    <sourceDirectory>src/main/exchange/avro</sourceDirectory>
+                    <outputDirectory>src/main/java</outputDirectory>
+                </configuration>
+                <!--以下官网的配置存在问题，不要采用executions的模式-->
+                <!--<executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/avro</sourceDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                            &lt;!&ndash;<sourceDirectory>${project.basedir}/src/main/exchange/avro/</sourceDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>&ndash;&gt;
+                        </configuration>
+                    </execution>
+                </executions>-->
             </plugin>
 
         </plugins>

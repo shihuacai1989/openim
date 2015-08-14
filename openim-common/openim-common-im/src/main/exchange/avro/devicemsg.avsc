@@ -1,0 +1,14 @@
+{
+    "namespace": "com.openim.common.im.bean",
+    "type": "record",
+    "name": "AvroDeviceMsg",
+    "fields": [
+        {"name": "type", "type": ["int", "null"]},
+        {"name": "to",  "type": ["string", "null"]},
+        {"name": "msg", "type": ["string", "null"]},
+        {"name": "from", "type": ["string", "null"]},
+        {"name": "loginId", "type": ["string", "null"]},
+        {"name": "pwd", "type": ["string", "null"]},
+        {"name": "serverQueue", "type": ["string", "null"]}
+    ]
+}

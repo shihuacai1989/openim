@@ -1,7 +1,15 @@
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Output;
+import com.openim.common.im.bean.AvroDeviceMsg;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
+import org.apache.avro.io.DatumWriter;
+import org.apache.avro.io.Encoder;
+import org.apache.avro.io.EncoderFactory;
+import org.apache.avro.specific.SpecificDatumWriter;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -10,14 +18,18 @@ import java.io.ObjectOutputStream;
  * Created by shihuacai on 2015/8/2.
  */
 public class SerializeTest {
+
+    private static final String msg = "测试内容";
+    private static final int type = 1;
+
     @Test
     public void protobufTest() {
         // 经测试，如果增加DeviceMsg的属性，赋予相同的值，其序列化后的大小保持不变，
         // 序列化后的大小与类的字段多少无关，
         // 如果某些字段不赋值，则该字段不会序列化？？？
         ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder();
-        builder.setType(1);
-        builder.setMsg("测试内容");
+        builder.setType(type);
+        builder.setMsg(msg);
         ProtobufDeviceMsg.DeviceMsg deviceMsg = builder.build();
         try {
             FileOutputStream fsout = new FileOutputStream(new File("D:\\protobuf.data"));
@@ -27,7 +39,7 @@ public class SerializeTest {
             e.printStackTrace();
         }
 
-        System.out.println(deviceMsg.toString());
+        //System.out.println(deviceMsg.toString());
         //输出16
         System.out.println("protobuf序列化后大小:" + deviceMsg.toByteArray().length);
     }
@@ -38,8 +50,8 @@ public class SerializeTest {
         // 故序列化后的大小与类的字段多少相关
         // 如果某些字段不赋值，该字段仍然会在序列化对象中
         DeviceMsg deviceMsg = new DeviceMsg();
-        deviceMsg.setType(1);
-        deviceMsg.setMsg("测试内容");
+        deviceMsg.setType(type);
+        deviceMsg.setMsg(msg);
         try {
             FileOutputStream fos = new FileOutputStream("D:\\jdkSerial.data");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -53,5 +65,47 @@ public class SerializeTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void kyroTest(){
+        Kryo kryo = new Kryo();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        Output output = new Output(bos);
+        DeviceMsg deviceMsg = new DeviceMsg();
+        deviceMsg.setType(type);
+        deviceMsg.setMsg(msg);
+        kryo.writeObject(output, deviceMsg);
+        output.close();
+
+        byte[] bytes = bos.toByteArray();
+        //String str = new String(bos.toByteArray());
+        //输出21
+        System.out.println("kyro序列化后大小: " + bytes.length);
+
+        /*Input input = new Input(new ByteArrayInputStream(bytes));
+        DeviceMsg someObject = kryo.readObject(input, DeviceMsg.class);
+        input.close();*/
+    }
+
+    @Test
+    public void avroTest(){
+        try {
+            AvroDeviceMsg deviceMsg = new AvroDeviceMsg();
+            deviceMsg.setType(type);
+            deviceMsg.setMsg(msg);
+            ByteArrayOutputStream out=new ByteArrayOutputStream();
+            //不再需要传schema了，直接用StringPair作为范型和参数，
+            DatumWriter<AvroDeviceMsg> writer=new SpecificDatumWriter<AvroDeviceMsg>(AvroDeviceMsg.class);
+            Encoder encoder= EncoderFactory.get().binaryEncoder(out,null);
+            writer.write(deviceMsg, encoder);
+            encoder.flush();
+            out.close();
+            //输出21
+            System.out.println("avro序列化后大小: " + out.toByteArray().length);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
