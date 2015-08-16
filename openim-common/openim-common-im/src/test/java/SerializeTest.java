@@ -3,10 +3,13 @@ import com.esotericsoftware.kryo.io.Output;
 import com.openim.common.im.bean.AvroDeviceMsg;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
+import com.openim.common.im.bean.ThriftDeviceMsg;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.transport.TIOStreamTransport;
 import org.junit.Test;
 import org.msgpack.MessagePack;
 
@@ -129,11 +132,20 @@ public class SerializeTest {
 
     @Test
     public void thriftTest(){
-        /*Pair pair = new Pair();
-        pair.setKey("rowkey").setValue("column-family");
+        try {
+            ThriftDeviceMsg thriftDeviceMsg = new ThriftDeviceMsg();
+            thriftDeviceMsg.setType(type);
+            thriftDeviceMsg.setMsg(msg);
 
-        FileOutputStream fos = new FileOutputStream(new File(datafile));
-        pair.write(new TBinaryProtocol(new TIOStreamTransport(fos)));
-        fos.close();*/
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            thriftDeviceMsg.write(new TBinaryProtocol(new TIOStreamTransport(baos)));
+
+            baos.close();
+            //输出21
+            System.out.println("thrift序列化后大小: " + baos.toByteArray().length);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

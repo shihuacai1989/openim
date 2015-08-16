@@ -1,4 +1,4 @@
-namespace java com.openim.common.im.bean;
+namespace java com.openim.common.im.bean
 
 struct ThriftDeviceMsg {
     1: required i32 type
