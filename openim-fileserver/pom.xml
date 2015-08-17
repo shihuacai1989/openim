@@ -12,5 +12,19 @@
     <artifactId>openim-fileserver</artifactId>
     <version>0.1</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-bean</artifactId>
+        </dependency>
+    </dependencies>
 </project>

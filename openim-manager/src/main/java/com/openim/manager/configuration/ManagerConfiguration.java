@@ -31,37 +31,9 @@ public class ManagerConfiguration {
     SimpleMessageListenerContainer rabbitMQListenerContainer(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        /*try {
-            //后期改为从zookeeper中获取消息推送服务器列表并实时添加
-            String chatServer = PropertiesLoaderUtils.loadAllProperties("application.properties").getProperty("chatServer");
-            if(!StringUtils.isEmpty(chatServer)){
-                String[] serverArray = chatServer.split(";");
-                container.setQueueNames(serverArray);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
         container.setQueueNames(MQConstants.chatQueue, MQConstants.loginQueue, MQConstants.logoutQueue);
         container.setMessageListener(listenerAdapter);
         return container;
     }
-
-    /*public @Bean
-    MongoTemplate mongoTemplate(Mongo mongo) {
-        MongoTemplate mongoTemplate = new MongoTemplate(mongo, "test");
-        return mongoTemplate;
-    }
-
-    public @Bean
-    MongoClientFactoryBean mongo() {
-        MongoClientFactoryBean mongo = new MongoClientFactoryBean();
-        mongo.setHost("localhost");
-        return mongo;
-    }
-
-    public @Bean
-    PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }*/
 }

@@ -49,11 +49,5 @@ public class ProtobufSendHandler implements IMessageHandler<DeviceMsg> {
         } else {
             LOG.error("发送信息不全：to:{}", to);
         }
-        /*int type = deviceMsg.getIntValue(DeviceMsgField.type);
-        if (type == DeviceMsgType.SEND) {
-
-        } else {
-            handlerChain.handle(deviceMsg, handlerChain);
-        }*/
     }
 }
