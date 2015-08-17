@@ -1,7 +1,7 @@
 package com.openim.fileserver.configuration;
 
 import com.openim.fileserver.service.IFileService;
-import com.openim.fileserver.service.impl.FastDFSFileServiceImpl;
+import com.openim.fileserver.service.impl.LocalFileServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +13,6 @@ public class FileServerConfiguration {
 
     @Bean
     IFileService fileService() {
-        return new FastDFSFileServiceImpl();
+        return new LocalFileServiceImpl();
     }
 }
