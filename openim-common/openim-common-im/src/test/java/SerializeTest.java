@@ -9,6 +9,7 @@ import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.transport.TIOStreamTransport;
 import org.junit.Test;
 import org.msgpack.MessagePack;
@@ -142,8 +143,11 @@ public class SerializeTest {
             thriftDeviceMsg.write(new TBinaryProtocol(new TIOStreamTransport(baos)));
 
             baos.close();
-            //输出21
+            //输出27
             System.out.println("thrift序列化后大小: " + baos.toByteArray().length);
+
+            //采用TCompactProtocol，输出17
+
         }catch (Exception e){
             e.printStackTrace();
         }

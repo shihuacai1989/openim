@@ -51,6 +51,8 @@ public class MessageServiceImpl implements IMessageService {
             Date lastReadMsgTime = user.getLastReadMsgTime();
         }
 
+
+
         return null;
     }
 }
