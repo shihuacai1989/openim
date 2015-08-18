@@ -4,6 +4,7 @@ import com.mongodb.WriteResult;
 import com.openim.common.bean.CommonResult;
 import com.openim.common.bean.ListResult;
 import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.LoginStatus;
 import com.openim.common.util.UUIDUtil;
 import com.openim.manager.bean.Friend;
 import com.openim.manager.bean.Group;
@@ -17,8 +18,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -213,5 +216,48 @@ public class UserServiceImpl implements IUserService {
             LOG.error(e.toString());
         }
         return new ListResult<Friend>(code, data, error);
+    }
+
+    @Override
+    public ListResult<String> listFriendsLoginId(String loginId) {
+        int code = ResultCode.success;
+        List<String> data = null;
+        String error = null;
+        try {
+            if (StringUtils.isEmpty(loginId)) {
+                code = ResultCode.parameter_null;
+            } else {
+                Criteria criteria = new Criteria("loginId").is(loginId);
+                Query query = new Query(criteria);
+                query.fields().include("friends.friendLoginId");
+                User user = mongoTemplate.findOne(query, User.class);
+                if (user != null) {
+                    //data = user.getFriends();
+                    List<Friend> friends = user.getFriends();
+                    if(!CollectionUtils.isEmpty(friends)){
+                        data = new ArrayList<String>(friends.size());
+                        for(Friend friend : friends){
+                            data.add(friend.getFriendLoginId());
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            code = ResultCode.error;
+            LOG.error(e.toString());
+        }
+        return new ListResult<String>(code, data, error);
+    }
+
+    @Override
+    public ListResult<Friend> getOnlineFriends(String loginId) {
+        ListResult<String> result = listFriendsLoginId(loginId);
+        if(result.getCode() == ResultCode.success && !CollectionUtils.isEmpty(result.getData())){
+            List<String> allFriends = result.getData();
+            Criteria criteria = new Criteria("loginId").in(allFriends).and("loginStatus").is(LoginStatus.online);
+
+            //mongoTemplate.find(criteria)
+        }
+        return null;
     }
 }

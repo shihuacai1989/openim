@@ -71,10 +71,16 @@ public class UserServiceTest {
     @Test
     public void addFriend() {
         userService.addFriend("shihc", "wll", "group1");
+        userService.addFriend("shihc", "xml", "group1");
     }
 
     @Test
     public void listFriends() {
         userService.listFriends("shihc");
+    }
+
+    @Test
+    public void listFriendsLoginId() {
+        userService.listFriendsLoginId("shihc");
     }
 }

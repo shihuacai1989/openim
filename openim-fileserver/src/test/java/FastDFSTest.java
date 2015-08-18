@@ -9,4 +9,9 @@ public class FastDFSTest {
     public void uploadFile(){
 
     }
+
+    @Test
+    public void downloadFile(){
+
+    }
 }

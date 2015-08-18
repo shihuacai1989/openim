@@ -25,4 +25,8 @@ public interface IUserService {
     CommonResult<Integer> addFriend(String loginId, String friendLoginId, String groupId);
 
     ListResult<Friend> listFriends(String loginId);
+
+    ListResult<String> listFriendsLoginId(String loginId);
+
+    ListResult<Friend> getOnlineFriends(String loginId);
 }
