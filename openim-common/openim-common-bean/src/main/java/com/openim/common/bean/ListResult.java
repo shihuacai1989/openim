@@ -10,6 +10,11 @@ public class ListResult<T> {
     private String error;
     private List<T> data;
 
+    public ListResult(int code, List<T> data) {
+        this.code = code;
+        this.data = data;
+    }
+
     public ListResult(int code, List<T> data, String error) {
         this.code = code;
         this.error = error;

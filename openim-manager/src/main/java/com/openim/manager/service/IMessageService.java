@@ -9,5 +9,8 @@ import com.openim.manager.bean.Message;
  */
 public interface IMessageService {
     CommonResult<Integer> addMessage(Message message);
-    ListResult<Message> listUnReadMessage(String loginId);
+
+    ListResult<Message> listUnReadMessage(String loginId, Long lastReadMsgTime);
+
+    CommonResult<Long> updateLastReadMessageTime(String loginId, Long lastReadMsgTime);
 }

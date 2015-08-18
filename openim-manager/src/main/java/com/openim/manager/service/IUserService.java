@@ -28,5 +28,5 @@ public interface IUserService {
 
     ListResult<String> listFriendsLoginId(String loginId);
 
-    ListResult<Friend> getOnlineFriends(String loginId);
+    ListResult<User> getOnlineFriends(String loginId);
 }

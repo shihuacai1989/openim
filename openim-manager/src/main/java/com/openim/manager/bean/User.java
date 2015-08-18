@@ -52,7 +52,7 @@ public class User {
      * 终端最后收到的消息的发送时间，对应Message中的sendTime字段
      */
     @Field
-    private Date lastReadMsgTime = new Date();
+    private Date lastReadMsgTime;
 
     @Field
     private List<Group> groups;

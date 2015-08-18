@@ -1,5 +1,6 @@
 package com.openim.manager.service;
 
+import com.openim.common.im.bean.LoginStatus;
 import com.openim.common.util.UUIDUtil;
 import com.openim.manager.ManagerApplication;
 import com.openim.manager.bean.Group;
@@ -28,11 +29,17 @@ public class UserServiceTest {
     private IUserService userService;
 
     @Test
+    public void deleteAll(){
+
+    }
+
+    @Test
     public void addUser() {
         User user = new User();
         user.setLoginId("shihc");
-        user.setPassword("111qqq,,,");
-
+        user.setPassword("shihc");
+        user.setRegisterTime(new Date());
+        user.setLastReadMsgTime(new Date());
         Group group = new Group();
         group.setId(UUIDUtil.genericUUID());
         group.setName("分组一");
@@ -41,6 +48,41 @@ public class UserServiceTest {
         list.add(group);
         user.setGroups(list);
         userService.addUser(user);
+
+
+        User wll = new User();
+        wll.setLoginId("wll");
+        wll.setPassword("wll");
+        wll.setLoginStatus(LoginStatus.online);
+        wll.setRegisterTime(new Date());
+        wll.setLastReadMsgTime(new Date());
+        userService.addUser(wll);
+
+        User xml = new User();
+        xml.setLoginId("xml");
+        xml.setPassword("xml");
+        xml.setLoginStatus(LoginStatus.offline);
+        xml.setRegisterTime(new Date());
+        xml.setLastReadMsgTime(new Date());
+        userService.addUser(xml);
+
+        User gym = new User();
+        gym.setLoginId("gym");
+        gym.setPassword("gym");
+        gym.setLoginStatus(LoginStatus.online);
+        gym.setRegisterTime(new Date());
+        gym.setLastReadMsgTime(new Date());
+        userService.addUser(gym);
+
+        User lkh = new User();
+        lkh.setLoginId("lkh");
+        lkh.setPassword("lkh");
+        lkh.setLoginStatus(LoginStatus.online);
+        lkh.setRegisterTime(new Date());
+        lkh.setLastReadMsgTime(new Date());
+        userService.addUser(lkh);
+
+
     }
 
     @Test
@@ -50,7 +92,7 @@ public class UserServiceTest {
 
     @Test
     public void userExist() {
-        userService.userExist("shihc", "111qqq,,,");
+        userService.userExist("shihc", "shihc");
     }
 
     @Test
@@ -72,6 +114,8 @@ public class UserServiceTest {
     public void addFriend() {
         userService.addFriend("shihc", "wll", "group1");
         userService.addFriend("shihc", "xml", "group1");
+        userService.addFriend("shihc", "gym", "group1");
+        userService.addFriend("shihc", "lkh", "group2");
     }
 
     @Test
@@ -82,5 +126,10 @@ public class UserServiceTest {
     @Test
     public void listFriendsLoginId() {
         userService.listFriendsLoginId("shihc");
+    }
+
+    @Test
+    public void getOnlineFriends() {
+        userService.getOnlineFriends("shihc");
     }
 }
