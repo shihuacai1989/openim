@@ -91,8 +91,8 @@ public class UserServiceTest {
     }
 
     @Test
-    public void userExist() {
-        userService.userExist("shihc", "shihc");
+    public void checkLogin() {
+        userService.checkLogin("shihc", "shihc");
     }
 
     @Test

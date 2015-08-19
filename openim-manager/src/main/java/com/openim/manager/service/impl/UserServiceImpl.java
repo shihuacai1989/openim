@@ -310,6 +310,8 @@ public class UserServiceImpl implements IUserService {
                 query.fields().include("loginId");
                 query.fields().include("connectServer");
                 users = mongoTemplate.find(query, User.class);
+            }else{
+                code = result.getCode();
             }
         }catch (Exception e){
             code = ResultCode.error;
