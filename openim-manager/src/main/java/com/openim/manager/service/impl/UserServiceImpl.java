@@ -297,14 +297,25 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ListResult<Friend> getOnlineFriends(String loginId) {
-        ListResult<String> result = listFriendsLoginId(loginId);
-        if (result.getCode() == ResultCode.success && !CollectionUtils.isEmpty(result.getData())) {
-            List<String> allFriends = result.getData();
-            Criteria criteria = new Criteria("loginId").in(allFriends).and("loginStatus").is(LoginStatus.online);
 
-            //mongoTemplate.find(criteria)
+    public ListResult<User> getOnlineFriends(String loginId) {
+        int code = ResultCode.success;
+        List<User> users = null;
+        try {
+            ListResult<String> result = listFriendsLoginId(loginId);
+            if(result.getCode() == ResultCode.success && !CollectionUtils.isEmpty(result.getData())){
+                List<String> allFriends = result.getData();
+                Criteria criteria = new Criteria("loginId").in(allFriends).and("loginStatus").is(LoginStatus.online);
+                Query query = new Query(criteria);
+                query.fields().include("loginId");
+                query.fields().include("connectServer");
+                users = mongoTemplate.find(query, User.class);
+            }
+        }catch (Exception e){
+            code = ResultCode.error;
+            LOG.error(e.toString());
         }
-        return null;
+
+        return new ListResult<User>(code, users);
     }
 }

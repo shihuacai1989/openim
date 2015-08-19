@@ -1,6 +1,7 @@
 package com.openim.manager.controller;
 
 import com.openim.common.bean.CommonResult;
+import com.openim.common.bean.ListResult;
 import com.openim.common.bean.ResultCode;
 import com.openim.manager.bean.User;
 import com.openim.manager.service.IUserService;
@@ -10,6 +11,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
 
 /**
  * Created by shihuacai on 2015/7/20.
@@ -46,6 +49,10 @@ public class UserController {
             User user = new User();
             user.setLoginId(loginId);
             user.setPassword(password);
+            Date registerTime = new Date();
+            user.setRegisterTime(registerTime);
+            //用户首次注册后，默认将该字段赋值，用于后期比较，获取未读消息
+            user.setLastReadMsgTime(registerTime);
             CommonResult addResult = userService.addUser(user);
             code = addResult.getCode();
             error = addResult.getError();
@@ -70,5 +77,11 @@ public class UserController {
     @ResponseBody
     public CommonResult addGroup(String loginId, String groupName) {
         return userService.addGroup(loginId, groupName);
+    }
+
+    @RequestMapping(value = "/listFriends", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public ListResult listFriends(String loginId){
+        return userService.listFriends(loginId);
     }
 }
