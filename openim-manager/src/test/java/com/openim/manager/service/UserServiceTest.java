@@ -37,6 +37,7 @@ public class UserServiceTest {
     public void addUser() {
         User user = new User();
         user.setLoginId("shihc");
+
         user.setPassword("shihc");
         user.setRegisterTime(new Date());
         user.setLastReadMsgTime(new Date());

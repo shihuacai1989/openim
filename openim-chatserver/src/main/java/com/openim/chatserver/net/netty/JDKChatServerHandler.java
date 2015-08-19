@@ -1,4 +1,4 @@
-package com.openim.chatserver.net;
+package com.openim.chatserver.net.netty;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.handler.impl.HandlerChain;
@@ -10,8 +10,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by shihuacai on 2015/7/21.
+ * 不跨平台
  */
-//@Component
+@Deprecated
 public class JDKChatServerHandler extends SimpleChannelInboundHandler<DeviceMsg> {
     private static final Logger LOG = LoggerFactory.getLogger(JDKChatServerHandler.class);
 

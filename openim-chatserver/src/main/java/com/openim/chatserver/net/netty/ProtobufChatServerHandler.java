@@ -1,4 +1,4 @@
-package com.openim.chatserver.net;
+package com.openim.chatserver.net.netty;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.handler.protobuf.LoginHandler;

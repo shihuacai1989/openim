@@ -1,5 +1,6 @@
-package com.openim.chatserver.net;
+package com.openim.chatserver.net.netty;
 
+import com.openim.chatserver.net.IChatServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -8,23 +9,21 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by shihuacai on 2015/7/20.
- * 终端设备聊天信息通道
+ * Created by shihuacai on 2015/8/19.
  */
 @Component
-public class ChatServer implements InitializingBean {
-
-    private static final Logger LOG = LoggerFactory.getLogger(ChatServer.class);
+public class NettyChatServer implements IChatServer {
+    private static final Logger LOG = LoggerFactory.getLogger(NettyChatServer.class);
 
     @Value("${chat.port}")
     private int port;
 
-    private void startServer() {
+    @Override
+    public void startServer() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {

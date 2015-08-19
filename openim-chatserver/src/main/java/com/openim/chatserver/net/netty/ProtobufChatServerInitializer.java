@@ -1,4 +1,4 @@
-package com.openim.chatserver.net;
+package com.openim.chatserver.net.netty;
 
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelInitializer;

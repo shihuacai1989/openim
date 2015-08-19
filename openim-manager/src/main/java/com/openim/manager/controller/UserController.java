@@ -18,7 +18,7 @@ import java.util.Date;
  * Created by shihuacai on 2015/7/20.
  * 用户控制器
  */
-@RequestMapping("/user")
+@RequestMapping(value = "/user", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
 @Controller
 public class UserController {
 
@@ -33,7 +33,7 @@ public class UserController {
      * @param password2
      * @return
      */
-    @RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping("/register")
     @ResponseBody
     public CommonResult register(String loginId, String password, String password2) {
         int code = ResultCode.success;
@@ -61,25 +61,37 @@ public class UserController {
         return new CommonResult(code, null, error);
     }
 
-    @RequestMapping(value = "/checkLogin", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping("/checkLogin")
     @ResponseBody
     public CommonResult checkLogin(String loginId, String password) {
         return userService.checkLogin(loginId, password);
     }
 
-    @RequestMapping(value = "/getUser", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping("/getUser")
     @ResponseBody
     public CommonResult getUser(String loginId) {
         return userService.getUser(loginId);
     }
 
-    @RequestMapping(value = "/addGroup", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping("/addGroup")
     @ResponseBody
     public CommonResult addGroup(String loginId, String groupName) {
         return userService.addGroup(loginId, groupName);
     }
 
-    @RequestMapping(value = "/listFriends", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping("/listGroups")
+    @ResponseBody
+    public ListResult listGroups(String loginId){
+        return userService.listGroups(loginId);
+    }
+
+    @RequestMapping("/addFriends")
+    @ResponseBody
+    public CommonResult addFriends(String loginId, String friendLoginId, String groupId) {
+        return userService.addFriend(loginId, friendLoginId, groupId);
+    }
+
+    @RequestMapping("/listFriends")
     @ResponseBody
     public ListResult listFriends(String loginId){
         return userService.listFriends(loginId);

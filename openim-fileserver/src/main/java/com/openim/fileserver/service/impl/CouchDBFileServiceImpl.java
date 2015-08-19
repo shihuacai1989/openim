@@ -3,6 +3,7 @@ package com.openim.fileserver.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.openim.common.bean.CommonResult;
+import com.openim.common.bean.ResultCode;
 import com.openim.fileserver.service.IFileService;
 import org.ektorp.AttachmentInputStream;
 import org.ektorp.CouchDbConnector;
@@ -13,7 +14,9 @@ import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.util.UUID;
 
@@ -24,7 +27,8 @@ public class CouchDBFileServiceImpl implements IFileService {
 
     @Override
     public CommonResult<String> upload(MultipartFile file) {
-
+        int code = ResultCode.success;
+        String fileId = null;
 
 
         try {

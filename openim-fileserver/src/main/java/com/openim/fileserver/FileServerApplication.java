@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("com.openim")
+@ComponentScan("com.openim.fileserver")
 public class FileServerApplication {
 
 

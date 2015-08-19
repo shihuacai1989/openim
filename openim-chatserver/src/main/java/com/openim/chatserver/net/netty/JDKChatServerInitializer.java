@@ -1,4 +1,4 @@
-package com.openim.chatserver.net;
+package com.openim.chatserver.net.netty;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -9,7 +9,9 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 
 /**
  * Created by shihuacai on 2015/8/2.
+ * 不跨平台
  */
+@Deprecated
 public class JDKChatServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override

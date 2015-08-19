@@ -113,7 +113,11 @@ public class UserServiceImpl implements IUserService {
                 code = ResultCode.parameter_null;
             } else {
                 Criteria criteria = new Criteria("loginId").is(loginId);
-                data = mongoTemplate.findOne(new Query(criteria), User.class);
+                Query query = new Query(criteria);
+                query.fields().exclude("groups");
+                query.fields().exclude("friends");
+
+                data = mongoTemplate.findOne(query, User.class);
             }
         } catch (Exception e) {
             code = ResultCode.error;
