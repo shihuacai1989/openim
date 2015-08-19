@@ -48,12 +48,14 @@ public class LocalFileServiceImpl implements IFileService {
     }
 
     @Override
-    public InputStream download(String fileId) {
+    public void download(String fileId, OutputStream outputStream) {
         try {
-            return new FileInputStream(localFileDir + File.separator + fileId);
+            InputStream inputStream  = new FileInputStream(localFileDir + File.separator + fileId);
+            IOUtils.copy(inputStream, outputStream);
         } catch (FileNotFoundException e) {
             LOG.error(e.toString());
+        } catch (IOException e) {
+            LOG.error(e.toString());
         }
-        return null;
     }
 }
