@@ -74,19 +74,28 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public CommonResult<Boolean> userExist(String loginId, String pwd) {
+    public CommonResult<Boolean> checkLogin(String loginId, String pwd) {
         int code = ResultCode.success;
         String error = null;
         boolean data = false;
         try {
-            Query query = new Query();
-            query.addCriteria(Criteria.where("loginId").is(loginId));
-            query.addCriteria(Criteria.where("password").is(pwd));
-            query.fields().include("_id");
-            User user = mongoTemplate.findOne(query, User.class);
-            if (user != null) {
-                data = true;
+            if (StringUtils.isEmpty(loginId) || StringUtils.isEmpty(pwd)) {
+                code = ResultCode.parameter_null;
+                error = "用户名和密码不可为空";
+            } else {
+                Query query = new Query();
+                query.addCriteria(Criteria.where("loginId").is(loginId));
+                query.addCriteria(Criteria.where("password").is(pwd));
+                query.fields().include("_id");
+                User user = mongoTemplate.findOne(query, User.class);
+                if (user != null) {
+                    data = true;
+                } else {
+                    code = ResultCode.parameter_error;
+                    error = "用户名或密码错误";
+                }
             }
+
         } catch (Exception e) {
             code = ResultCode.error;
             LOG.error(e.toString());
@@ -100,13 +109,45 @@ public class UserServiceImpl implements IUserService {
         User data = null;
         String error = null;
         try {
-            Criteria criteria = new Criteria("loginId").is(loginId);
-            data = mongoTemplate.findOne(new Query(criteria), User.class);
+            if (StringUtils.isEmpty(loginId)) {
+                code = ResultCode.parameter_null;
+            } else {
+                Criteria criteria = new Criteria("loginId").is(loginId);
+                data = mongoTemplate.findOne(new Query(criteria), User.class);
+            }
         } catch (Exception e) {
             code = ResultCode.error;
             LOG.error(e.toString());
         }
         return new CommonResult<User>(code, data, error);
+    }
+
+    @Override
+    public CommonResult<Boolean> userExist(String loginId) {
+        int code = ResultCode.success;
+        String error = null;
+        boolean data = false;
+        try {
+            if (StringUtils.isEmpty(loginId)) {
+                code = ResultCode.parameter_null;
+            } else {
+                Query query = new Query();
+                query.addCriteria(Criteria.where("loginId").is(loginId));
+
+                query.fields().include("_id");
+                User user = mongoTemplate.findOne(query, User.class);
+                if (user != null) {
+                    data = true;
+                } else {
+                    code = ResultCode.parameter_error;
+                    error = "用户不存在";
+                }
+            }
+        } catch (Exception e) {
+            code = ResultCode.error;
+            LOG.error(e.toString());
+        }
+        return new CommonResult<Boolean>(code, data, error);
     }
 
     @Override
@@ -169,21 +210,27 @@ public class UserServiceImpl implements IUserService {
         int code = ResultCode.success;
         int data = 0;
         String error = null;
-        if (StringUtils.isEmpty(friendLoginId) || StringUtils.isEmpty(groupId)) {
+        if (StringUtils.isEmpty(loginId) || StringUtils.isEmpty(friendLoginId) || StringUtils.isEmpty(groupId)) {
             code = ResultCode.parameter_null;
         } else {
             try {
-                Friend friend = new Friend();
-                friend.setFriendLoginId(friendLoginId);
-                friend.setGroupId(groupId);
+                CommonResult<Boolean> existResult = userExist(friendLoginId);
+                if(existResult.getCode() == ResultCode.success && existResult.getData() == true){
+                    Friend friend = new Friend();
+                    friend.setFriendLoginId(friendLoginId);
+                    friend.setGroupId(groupId);
 
-                Criteria criteria = new Criteria("loginId").is(loginId);
-                Query query = new Query(criteria);
-                Update update = new Update();
-                update.addToSet("friends", friend);
+                    Criteria criteria = new Criteria("loginId").is(loginId);
+                    Query query = new Query(criteria);
+                    Update update = new Update();
+                    update.addToSet("friends", friend);
 
-                WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
-                data = writeResult.getN();
+                    WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
+                    data = writeResult.getN();
+                }else{
+                    code = existResult.getCode();
+                    error = existResult.getError();
+                }
             } catch (Exception e) {
                 error = e.toString();
                 code = ResultCode.error;
@@ -234,9 +281,9 @@ public class UserServiceImpl implements IUserService {
                 if (user != null) {
                     //data = user.getFriends();
                     List<Friend> friends = user.getFriends();
-                    if(!CollectionUtils.isEmpty(friends)){
+                    if (!CollectionUtils.isEmpty(friends)) {
                         data = new ArrayList<String>(friends.size());
-                        for(Friend friend : friends){
+                        for (Friend friend : friends) {
                             data.add(friend.getFriendLoginId());
                         }
                     }
@@ -252,7 +299,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ListResult<Friend> getOnlineFriends(String loginId) {
         ListResult<String> result = listFriendsLoginId(loginId);
-        if(result.getCode() == ResultCode.success && !CollectionUtils.isEmpty(result.getData())){
+        if (result.getCode() == ResultCode.success && !CollectionUtils.isEmpty(result.getData())) {
             List<String> allFriends = result.getData();
             Criteria criteria = new Criteria("loginId").in(allFriends).and("loginStatus").is(LoginStatus.online);
 

@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping(value = "/checkLogin", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public CommonResult checkLogin(String loginId, String password) {
-        return userService.userExist(loginId, password);
+        return userService.checkLogin(loginId, password);
     }
 
     @RequestMapping(value = "/getUser", method = {RequestMethod.GET, RequestMethod.POST}, produces = {"application/json;charset=UTF-8"})

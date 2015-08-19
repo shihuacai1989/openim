@@ -14,9 +14,11 @@ public interface IUserService {
 
     CommonResult<Integer> deleteUser(String loginId);
 
-    CommonResult<Boolean> userExist(String loginId, String pwd);
+    CommonResult<Boolean> checkLogin(String loginId, String pwd);
 
     CommonResult<User> getUser(String loginId);
+
+    CommonResult<Boolean> userExist(String loginId);
 
     CommonResult<Integer> addGroup(String loginId, String groupName);
 
