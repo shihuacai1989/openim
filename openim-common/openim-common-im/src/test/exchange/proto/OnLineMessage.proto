@@ -1,0 +1,10 @@
+package com.openim.common.im.bean;
+
+option java_package = "com.openim.common.im.bean";
+option java_outer_classname = "ProtobufOnLineMessage";
+
+message OnLineMessage {
+  optional string loginId = 5;
+  optional string pwd = 6;
+  optional string serverQueue = 7;
+}

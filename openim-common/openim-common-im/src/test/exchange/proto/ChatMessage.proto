@@ -1,0 +1,10 @@
+package com.openim.common.im.bean;
+
+option java_package = "com.openim.common.im.bean";
+option java_outer_classname = "ProtobufChatMessage";
+
+message ChatMessage {
+  optional string to = 2;
+  optional string msg = 3;
+  optional string from = 4;
+}

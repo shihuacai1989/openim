@@ -40,7 +40,6 @@ public class ChatClient {
                 String line = in.readLine();
                 DeviceMsg deviceMsg = JSON.parseObject(line, DeviceMsg.class);
 
-
                 ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder();
                 builder.setType(deviceMsg.getType());
                 if (deviceMsg.getMsg() != null) {
@@ -54,8 +53,18 @@ public class ChatClient {
 
                 }
 
-                ProtobufDeviceMsg.DeviceMsg protobufMsg = builder.build();
-                channel.writeAndFlush(protobufMsg);
+                /*ProtobufDeviceMsg.DeviceMsg protobufMsg = builder.build();
+                channel.writeAndFlush(protobufMsg);*/
+
+                //模拟粘包现象
+                for(int i=0; i<10000; i++){
+
+                    ProtobufDeviceMsg.DeviceMsg protobufMsg = builder.build();
+                    //channel.writeAndFlush(protobufMsg);
+                    channel.write(protobufMsg);
+                }
+                //不调用该代码，服务端收不到数据，或者调用writeAndFlush
+                channel.flush();
             }
         } catch (Exception e) {
             e.printStackTrace();

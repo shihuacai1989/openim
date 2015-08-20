@@ -6,6 +6,8 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.timeout.IdleStateHandler;
 
 import java.util.concurrent.TimeUnit;
@@ -18,10 +20,21 @@ public class ProtobufChatServerInitializer extends ChannelInitializer<SocketChan
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast("ping", new IdleStateHandler(60, 15, 13,
+        //配置服务端监听读超时，即无法收到客户端发的心跳信息
+        pipeline.addLast("ping", new IdleStateHandler(1000, 0, 0,
                 TimeUnit.SECONDS));
-        pipeline.addLast("encoder", new ProtobufEncoder());
+        //存在粘包的
+        /*pipeline.addLast("encoder", new ProtobufEncoder());
         pipeline.addLast("decoder", new ProtobufDecoder(ProtobufDeviceMsg.DeviceMsg.getDefaultInstance()));
+        pipeline.addLast("handler", new ProtobufChatServerHandler());*/
+
+        //解决粘包的问题
+        pipeline.addLast("frameEncoder", new ProtobufVarint32LengthFieldPrepender());
+        pipeline.addLast("encoder", new ProtobufEncoder());
+
+        pipeline.addLast("frameDecoder", new ProtobufVarint32FrameDecoder());
+        pipeline.addLast("decoder", new ProtobufDecoder(ProtobufDeviceMsg.DeviceMsg.getDefaultInstance()));
+
         pipeline.addLast("handler", new ProtobufChatServerHandler());
 
     }

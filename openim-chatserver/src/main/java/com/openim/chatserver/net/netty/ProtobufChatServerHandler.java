@@ -87,7 +87,7 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Proto
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent) {
-            IdleStateEvent event = (IdleStateEvent) evt;
+            /*IdleStateEvent event = (IdleStateEvent) evt;
             if (event.state().equals(IdleState.READER_IDLE)) {
                 System.out.println("READER_IDLE");
                 // 超时关闭channel
@@ -98,7 +98,10 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Proto
                 System.out.println("ALL_IDLE");
                 // 发送心跳
                 ctx.channel().write("ping");
-            }
+            }*/
+            System.out.println("READER_IDLE");
+            //采用客户端向服务端发心跳的机制，服务端只需监听读心跳（即未读到客户端的心跳）
+            ChannelUtil.remove(ctx.channel());
         }
         super.userEventTriggered(ctx, evt);
     }

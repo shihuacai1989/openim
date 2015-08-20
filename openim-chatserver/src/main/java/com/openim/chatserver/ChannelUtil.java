@@ -30,6 +30,7 @@ public class ChannelUtil {
     }
 
     public static void remove(Channel channel) {
+        channel.close();
         Attribute<String> attribute = channel.attr(loginIdKey);
         String loginId = attribute.get();
         remove(loginId);
