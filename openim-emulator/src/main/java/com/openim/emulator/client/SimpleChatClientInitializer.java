@@ -24,9 +24,7 @@ public class SimpleChatClientInitializer extends ChannelInitializer<SocketChanne
         pipeline.addLast("encoder", new ObjectEncoder());
         pipeline.addLast("decoder", new ObjectDecoder(ClassResolvers.cacheDisabled(this.getClass().getClassLoader())));
 
-
         // 自己的逻辑Handler
         pipeline.addLast("handler", new SimpleChatClientHandler());
-
     }
 }
