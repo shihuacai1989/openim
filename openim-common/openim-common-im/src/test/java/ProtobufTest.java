@@ -30,6 +30,14 @@ public class ProtobufTest {
         messageMap.put(onLineName, onLineDescriptor);
 
         System.out.println(messageMap);
+
+
+        Descriptors.FileDescriptor file = ProtobufChatMessage.getDescriptor();
+        String name = "ChatMessage";
+        Descriptors.Descriptor type = file.findMessageTypeByName(name);
+        System.out.println(type);
+        DynamicMessage msg = DynamicMessage.getDefaultInstance(type);
+        System.out.print(msg);
     }
 
     @Test

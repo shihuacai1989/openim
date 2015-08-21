@@ -20,8 +20,8 @@ public class ProtobufChatServerInitializer extends ChannelInitializer<SocketChan
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        //配置服务端监听读超时，即无法收到客户端发的心跳信息
-        pipeline.addLast("ping", new IdleStateHandler(1000, 0, 0,
+        //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
+        pipeline.addLast("ping", new IdleStateHandler(120, 0, 0,
                 TimeUnit.SECONDS));
         //存在粘包的
         /*pipeline.addLast("encoder", new ProtobufEncoder());
