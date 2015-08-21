@@ -1,0 +1,9 @@
+package com.openim.common.im.bean.protbuf;
+
+option java_outer_classname = "ProtobufReceiveMessage";
+
+message ReceiveMessage {
+  optional string from = 1;
+  optional string to = 2;
+  optional int64 msgTime = 3;
+}

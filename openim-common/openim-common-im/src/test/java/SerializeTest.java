@@ -1,23 +1,21 @@
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Output;
+import com.google.protobuf.ByteString;
 import com.openim.common.im.bean.AvroDeviceMsg;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.im.bean.ThriftDeviceMsg;
+import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.transport.TIOStreamTransport;
 import org.junit.Test;
 import org.msgpack.MessagePack;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
  * Created by shihuacai on 2015/8/2.
@@ -29,6 +27,8 @@ public class SerializeTest {
 
     @Test
     public void protobufTest() {
+        /*ProtobufChatMessage.ChatMessage.Builder builder = ProtobufChatMessage.ChatMessage.newBuilder();
+        builder.set*/
         // 经测试，如果增加DeviceMsg的属性，赋予相同的值，其序列化后的大小保持不变，
         // 序列化后的大小与类的字段多少无关，
         // 如果某些字段不赋值，则该字段不会序列化？？？
@@ -46,6 +46,8 @@ public class SerializeTest {
 
         //System.out.println(deviceMsg.toString());
         //输出16
+        ByteString byteString = deviceMsg.toByteString();
+
         System.out.println("protobuf序列化后大小:" + deviceMsg.toByteArray().length);
     }
 

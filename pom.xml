@@ -19,7 +19,7 @@
 
     <properties>
 
-        <protobuf.version>2.6.1</protobuf.version>
+        <protobuf.version>2.4.1</protobuf.version>
         <netty.version>4.0.29.Final</netty.version>
         <openim.version>0.1</openim.version>
         <spring.boot.version>1.2.5.RELEASE</spring.boot.version>

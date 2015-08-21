@@ -1,0 +1,7 @@
+package com.openim.common.im.bean.protbuf;
+
+option java_outer_classname = "ProtobufDisconnectMessage";
+
+message DisconnectMessage {
+  optional string loginId = 1;
+}

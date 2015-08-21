@@ -18,7 +18,6 @@
         <module>openim-common-zk</module>
         <module>openim-common-bean</module>
         <module>openim-common-im</module>
-        <module>openim-common-netty</module>
     </modules>
 
 

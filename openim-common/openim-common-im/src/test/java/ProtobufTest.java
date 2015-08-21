@@ -1,9 +1,5 @@
-import com.google.protobuf.DescriptorProtos;
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.DynamicMessage;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.openim.common.im.bean.ProtobufChatMessage;
-import com.openim.common.im.bean.ProtobufOnLineMessage;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +15,7 @@ public class ProtobufTest {
 
     @Before
     public void init(){
-        messageMap = new HashMap<String, Descriptors.Descriptor>();
+        /*messageMap = new HashMap<String, Descriptors.Descriptor>();
         Descriptors.Descriptor chatDescriptor = ProtobufChatMessage.ChatMessage.getDescriptor();
         String chatName = chatDescriptor.getName();
 
@@ -37,7 +33,7 @@ public class ProtobufTest {
         Descriptors.Descriptor type = file.findMessageTypeByName(name);
         System.out.println(type);
         DynamicMessage msg = DynamicMessage.getDefaultInstance(type);
-        System.out.print(msg);
+        System.out.print(msg);*/
     }
 
     @Test

@@ -1,6 +1,7 @@
-package com.openim.netty.handler.protobuf;
+package com.openim.common.im.codec.netty;
 
 import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.MessageLite;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -13,8 +14,13 @@ import java.util.List;
  */
 public class OpenIMProtobufDecoder extends ByteToMessageDecoder {
 
+    MessageLite messageLite;
+    public OpenIMProtobufDecoder(MessageLite messageLite){
+        this.messageLite = messageLite;
+    }
+
     @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+    public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         in.markReaderIndex();
         final byte[] buf = new byte[5];
         for (int i = 0; i < buf.length; i ++) {
@@ -34,19 +40,14 @@ public class OpenIMProtobufDecoder extends ByteToMessageDecoder {
                     in.resetReaderIndex();
                     return;
                 } else {
-                    ByteBuf byteBuf = in.readBytes(length);
-                    byte msgType = byteBuf.getByte(0);
-
-                    //CodedInputStream.readRawVarint32();
-                    int type = in.readByte();
-
+                    byte msgType = in.readByte();
                     byte[] messageBody = new byte[length - 1];
-                    byteBuf.readBytes(messageBody, 1, length - 1);
+                    in.readBytes(messageBody, 0, length - 1);
 
                     ExchangeMessage exchangeMessage = new ExchangeMessage();
-                    exchangeMessage.setType(type);
+                    exchangeMessage.setType(msgType);
                     //待实现
-                    exchangeMessage.setMessageLite(null);
+                    exchangeMessage.setMessageLite(messageLite.newBuilderForType().mergeFrom(messageBody).build());
                     out.add(exchangeMessage);
                     return;
                 }

@@ -13,11 +13,17 @@
     <artifactId>openim-common-im</artifactId>
 
     <properties>
-        <protobuf.version>2.6.1</protobuf.version>
+        <!--<protobuf.version>2.6.1</protobuf.version>-->
         <!--<protobuf.version>2.4.1</protobuf.version>-->
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
@@ -131,19 +137,19 @@
     </build>
 
 
-    <profiles>
+    <!--<profiles>
         <profile>
-            <id>proto-test</id>
+            <id>protobuf</id>
             <build>
                 <plugins>
 
                     <plugin>
-                        <!--https://github.com/igor-petruk/protobuf-maven-plugin.git-->
+                        &lt;!&ndash;https://github.com/igor-petruk/protobuf-maven-plugin.git&ndash;&gt;
                         <groupId>com.github.igor-petruk.protobuf</groupId>
                         <artifactId>protobuf-maven-plugin</artifactId>
                         <version>0.6.5</version>
 
-                        <!--root中的junit为test, -DskipTests无效，why???-->
+                        &lt;!&ndash;root中的junit为test, -DskipTests无效，why???&ndash;&gt;
                         <dependencies>
                             <dependency>
                                 <groupId>junit</groupId>
@@ -153,25 +159,40 @@
                             </dependency>
                         </dependencies>
                         <executions>
-                            <execution>
-                                <id>compile-protoc</id>
+                            &lt;!&ndash;<execution>
+                                <id>compile-protoc-test</id>
                                 <phase>generate-sources</phase>
                                 <goals>
                                     <goal>run</goal>
                                 </goals>
+                            </execution>&ndash;&gt;
+                            <execution>
+                                <id>compile-protoc-main</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                &lt;!&ndash;<configuration>
+                                    <inputDirectories>
+                                        <inputDirectory>src/main/exchange/proto</inputDirectory>
+                                    </inputDirectories>
+                                    <cleanOutputFolder>false</cleanOutputFolder>
+                                    <outputDirectory>src/main/java</outputDirectory>
+                                    <protocCommand>protoc/protoc-${protobuf.version}.exe</protocCommand>
+                                </configuration>&ndash;&gt;
                             </execution>
                         </executions>
                         <configuration>
                             <inputDirectories>
-                                <inputDirectory>src/test/exchange/proto</inputDirectory>
+                                <inputDirectory>src/main/exchange/proto</inputDirectory>
                             </inputDirectories>
                             <cleanOutputFolder>false</cleanOutputFolder>
-                            <outputDirectory>src/test/java</outputDirectory>
+                            <outputDirectory>src/main/java</outputDirectory>
                             <protocCommand>protoc/protoc-${protobuf.version}.exe</protocCommand>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 </project>

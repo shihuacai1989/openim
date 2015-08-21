@@ -1,0 +1,7 @@
+package com.openim.common.im.bean.protbuf;
+
+option java_outer_classname = "ProtobufHeadBeatMessage";
+
+message HeadBeatMessage {
+  optional int32 headbeat = 1;
+}

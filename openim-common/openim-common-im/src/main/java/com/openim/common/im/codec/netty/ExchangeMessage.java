@@ -1,4 +1,4 @@
-package com.openim.netty.handler.protobuf;
+package com.openim.common.im.codec.netty;
 
 import com.google.protobuf.MessageLite;
 
@@ -8,6 +8,7 @@ import com.google.protobuf.MessageLite;
 public class ExchangeMessage {
 
     private static final int MAX_VALUE = 127;
+    private static final int MIN_VALUE = 0;
     private int type;
     private MessageLite messageLite;
 
@@ -16,8 +17,8 @@ public class ExchangeMessage {
     }
 
     public void setType(int type) {
-        if(type > MAX_VALUE){
-            throw new IllegalArgumentException("type must less or equal than " + MAX_VALUE);
+        if(type > MAX_VALUE || type < MIN_VALUE){
+            throw new IllegalArgumentException(MIN_VALUE + " <= type <= " + MAX_VALUE);
         }
         this.type = type;
     }

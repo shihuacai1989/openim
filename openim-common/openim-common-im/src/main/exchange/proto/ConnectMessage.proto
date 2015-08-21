@@ -1,0 +1,9 @@
+package com.openim.common.im.bean.protbuf;
+
+option java_outer_classname = "ProtobufConnectMessage";
+
+message ConnectMessage {
+  optional string loginId = 1;
+  optional string password = 2;
+  optional string serverQueue = 3;
+}
