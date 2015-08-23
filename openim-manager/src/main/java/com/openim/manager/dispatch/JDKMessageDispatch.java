@@ -42,7 +42,7 @@ public class JDKMessageDispatch implements IMessageDispatch {
                 /*HandlerChain chain = new HandlerChain();
                 chain.handle(jsonObject, chain);*/
                 int type = msg.getType();
-                if (type == DeviceMsgType.SEND) {
+                if (type == DeviceMsgType.CHAT) {
                     sendHandler.handle(msg, null);
                 } else if (type == DeviceMsgType.LOGIN) {
                     loginHandler.handle(msg, null);

@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.netty;
+package com.openim.chatserver.net.netty.v1;
 
 import com.openim.chatserver.net.IChatServer;
 import io.netty.bootstrap.ServerBootstrap;

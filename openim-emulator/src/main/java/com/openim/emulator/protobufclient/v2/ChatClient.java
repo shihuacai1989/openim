@@ -1,4 +1,4 @@
-package com.openim.emulator.protobufclient;
+package com.openim.emulator.protobufclient.v2;
 
 import com.alibaba.fastjson.JSON;
 import com.openim.common.im.bean.DeviceMsg;

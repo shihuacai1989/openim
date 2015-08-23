@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.netty;
+package com.openim.chatserver.net.netty.v1;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.handler.impl.HandlerChain;

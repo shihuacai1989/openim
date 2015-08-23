@@ -33,7 +33,7 @@ public class ProtobufMessageDispatch implements IMessageDispatch {
             ProtobufDeviceMsg.DeviceMsg msg = ProtobufDeviceMsg.DeviceMsg.parseFrom(bytes);
 
             int type = msg.getType();
-            if (type == DeviceMsgType.SEND) {
+            if (type == DeviceMsgType.CHAT) {
                 sendHandler.handle(msg, null);
             } else if (type == DeviceMsgType.LOGIN) {
                 loginHandler.handle(msg, null);

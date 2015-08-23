@@ -25,7 +25,7 @@ public class SendHandler implements IMessageHandler {
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
         int type = jsonObject.getType();
-        if (type == DeviceMsgType.SEND) {
+        if (type == DeviceMsgType.CHAT) {
             Attribute<String> attribute = channel.attr(ChannelUtil.loginIdKey);
             jsonObject.setFrom(attribute.get());
             messageSender.sendMessage(MQConstants.openimExchange, MQConstants.chatRouteKey, jsonObject);

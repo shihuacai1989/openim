@@ -24,7 +24,7 @@ public class SendHandler implements IMessageHandler {
     @Override
     public void handle(ProtobufDeviceMsg.DeviceMsg deviceMsg, Channel channel) {
         int type = deviceMsg.getType();
-        if (type == DeviceMsgType.SEND) {
+        if (type == DeviceMsgType.CHAT) {
             Attribute<String> attribute = channel.attr(ChannelUtil.loginIdKey);
             ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setFrom(attribute.get());
             messageSender.sendMessage(MQConstants.openimExchange, MQConstants.chatRouteKey, builder.build().toByteArray());

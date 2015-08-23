@@ -3,44 +3,44 @@
 
 package com.openim.common.im.bean.protbuf;
 
-public final class ProtobufHeadBeatMessage {
-  private ProtobufHeadBeatMessage() {}
+public final class ProtobufHeartBeatMessage {
+  private ProtobufHeartBeatMessage() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface HeadBeatMessageOrBuilder
+  public interface HeartBeatMessageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
     // optional int32 headbeat = 1;
     boolean hasHeadbeat();
     int getHeadbeat();
   }
-  public static final class HeadBeatMessage extends
+  public static final class HeartBeatMessage extends
       com.google.protobuf.GeneratedMessage
-      implements HeadBeatMessageOrBuilder {
-    // Use HeadBeatMessage.newBuilder() to construct.
-    private HeadBeatMessage(Builder builder) {
+      implements HeartBeatMessageOrBuilder {
+    // Use HeartBeatMessage.newBuilder() to construct.
+    private HeartBeatMessage(Builder builder) {
       super(builder);
     }
-    private HeadBeatMessage(boolean noInit) {}
+    private HeartBeatMessage(boolean noInit) {}
     
-    private static final HeadBeatMessage defaultInstance;
-    public static HeadBeatMessage getDefaultInstance() {
+    private static final HeartBeatMessage defaultInstance;
+    public static HeartBeatMessage getDefaultInstance() {
       return defaultInstance;
     }
     
-    public HeadBeatMessage getDefaultInstanceForType() {
+    public HeartBeatMessage getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_descriptor;
+      return com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_fieldAccessorTable;
+      return com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -97,41 +97,41 @@ public final class ProtobufHeadBeatMessage {
       return super.writeReplace();
     }
     
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(byte[] data)
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(java.io.InputStream input)
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseDelimitedFrom(java.io.InputStream input)
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -140,7 +140,7 @@ public final class ProtobufHeadBeatMessage {
         return null;
       }
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseDelimitedFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -151,12 +151,12 @@ public final class ProtobufHeadBeatMessage {
         return null;
       }
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage parseFrom(
+    public static com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -166,7 +166,7 @@ public final class ProtobufHeadBeatMessage {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage prototype) {
+    public static Builder newBuilder(com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -179,18 +179,18 @@ public final class ProtobufHeadBeatMessage {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessageOrBuilder {
+       implements com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_descriptor;
+        return com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_fieldAccessorTable;
+        return com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_fieldAccessorTable;
       }
       
-      // Construct using com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage.newBuilder()
+      // Construct using com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -220,24 +220,24 @@ public final class ProtobufHeadBeatMessage {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage.getDescriptor();
+        return com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage.getDescriptor();
       }
       
-      public com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage getDefaultInstanceForType() {
-        return com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage.getDefaultInstance();
+      public com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage getDefaultInstanceForType() {
+        return com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage.getDefaultInstance();
       }
       
-      public com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage build() {
-        com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage result = buildPartial();
+      public com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage build() {
+        com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage buildParsed()
+      private com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage result = buildPartial();
+        com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -245,8 +245,8 @@ public final class ProtobufHeadBeatMessage {
         return result;
       }
       
-      public com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage buildPartial() {
-        com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage result = new com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage(this);
+      public com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage buildPartial() {
+        com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage result = new com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -259,16 +259,16 @@ public final class ProtobufHeadBeatMessage {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage) {
-          return mergeFrom((com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage)other);
+        if (other instanceof com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage) {
+          return mergeFrom((com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage other) {
-        if (other == com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage other) {
+        if (other == com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage.getDefaultInstance()) return this;
         if (other.hasHeadbeat()) {
           setHeadbeat(other.getHeadbeat());
         }
@@ -335,22 +335,22 @@ public final class ProtobufHeadBeatMessage {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:com.openim.common.im.bean.protbuf.HeadBeatMessage)
+      // @@protoc_insertion_point(builder_scope:com.openim.common.im.bean.protbuf.HeartBeatMessage)
     }
     
     static {
-      defaultInstance = new HeadBeatMessage(true);
+      defaultInstance = new HeartBeatMessage(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.openim.common.im.bean.protbuf.HeadBeatMessage)
+    // @@protoc_insertion_point(class_scope:com.openim.common.im.bean.protbuf.HeartBeatMessage)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_descriptor;
+    internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_fieldAccessorTable;
+      internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -361,23 +361,23 @@ public final class ProtobufHeadBeatMessage {
   static {
     java.lang.String[] descriptorData = {
       "\n\025HeadBeatMessage.proto\022!com.openim.comm" +
-      "on.im.bean.protbuf\"#\n\017HeadBeatMessage\022\020\n" +
-      "\010headbeat\030\001 \001(\005B\031B\027ProtobufHeadBeatMessa" +
-      "ge"
+      "on.im.bean.protbuf\"$\n\020HeartBeatMessage\022\020" +
+      "\n\010headbeat\030\001 \001(\005B\032B\030ProtobufHeartBeatMes" +
+      "sage"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_descriptor =
+          internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_fieldAccessorTable = new
+          internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_openim_common_im_bean_protbuf_HeadBeatMessage_descriptor,
+              internal_static_com_openim_common_im_bean_protbuf_HeartBeatMessage_descriptor,
               new java.lang.String[] { "Headbeat", },
-              com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage.class,
-              com.openim.common.im.bean.protbuf.ProtobufHeadBeatMessage.HeadBeatMessage.Builder.class);
+              com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage.class,
+              com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage.HeartBeatMessage.Builder.class);
           return null;
         }
       };

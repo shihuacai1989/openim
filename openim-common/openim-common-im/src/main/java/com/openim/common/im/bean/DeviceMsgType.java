@@ -9,7 +9,7 @@ public class DeviceMsgType {
 
     public static final int LOGIN = 1;
 
-    public static final int SEND = 2;
+    public static final int CHAT = 2;
 
 
     public static final int LOGOUT = 3;

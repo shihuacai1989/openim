@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.netty;
+package com.openim.chatserver.net.netty.v1;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

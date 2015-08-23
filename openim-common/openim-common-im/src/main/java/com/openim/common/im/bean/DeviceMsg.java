@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by shihuacai on 2015/8/1.
  */
+@Deprecated
 public class DeviceMsg implements Serializable {
     private int type;
     private String to;
