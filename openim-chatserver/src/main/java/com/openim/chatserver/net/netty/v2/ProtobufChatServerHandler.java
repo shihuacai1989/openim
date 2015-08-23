@@ -1,12 +1,11 @@
 package com.openim.chatserver.net.netty.v2;
 
-import com.google.protobuf.MessageLite;
 import com.openim.chatserver.ChannelUtil;
-import com.openim.chatserver.handler.protobuf.LoginHandler;
-import com.openim.chatserver.handler.protobuf.LogoutHandler;
-import com.openim.chatserver.handler.protobuf.SendHandler;
+import com.openim.chatserver.handler.netty.v2.LoginHandler;
+import com.openim.chatserver.handler.netty.v2.LogoutHandler;
+import com.openim.chatserver.handler.netty.v2.SendHandler;
 import com.openim.common.im.bean.DeviceMsgType;
-import com.openim.common.im.bean.ProtobufDeviceMsg;
+import com.openim.common.im.codec.netty.ExchangeMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -17,7 +16,7 @@ import org.slf4j.LoggerFactory;
  * Created by shihuacai on 2015/7/21.
  */
 //@Component
-public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<MessageLite> {
+public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<ExchangeMessage> {
     private static final Logger LOG = LoggerFactory.getLogger(ProtobufChatServerHandler.class);
 
     //private HandlerChain handlerChain;
@@ -41,9 +40,9 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Messa
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, MessageLite msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, ExchangeMessage msg) throws Exception {
         try {
-            /*System.out.print(msg);
+            System.out.print(msg);
             int type = msg.getType();
             if (type == DeviceMsgType.LOGIN) {
                 loginHandler.handle(msg, ctx.channel());
@@ -51,7 +50,7 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Messa
                 logoutHandler.handle(msg, ctx.channel());
             } else if (type == DeviceMsgType.CHAT) {
                 sendHandler.handle(msg, ctx.channel());
-            }*/
+            }
             //handlerChain.handle(msg, handlerChain, ctx.channel());
         } catch (Exception e) {
             LOG.error(e.toString());

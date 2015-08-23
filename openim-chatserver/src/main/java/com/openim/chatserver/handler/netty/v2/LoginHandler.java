@@ -1,12 +1,9 @@
-package com.openim.chatserver.handler.protobuf;
+package com.openim.chatserver.handler.netty.v2;
 
-import com.openim.chatserver.ChannelUtil;
-import com.openim.chatserver.configuration.BeanConfiguration;
+import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.chatserver.listener.ApplicationContextAware;
-import com.openim.common.im.bean.DeviceMsgType;
-import com.openim.common.im.bean.ProtobufDeviceMsg;
+import com.openim.common.im.codec.netty.ExchangeMessage;
 import com.openim.common.mq.IMessageSender;
-import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +11,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by shihuacai on 2015/7/22.
  */
-public class LoginHandler implements IMessageHandler {
+public class LoginHandler implements IMessageHandler<ExchangeMessage, Channel> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandler.class);
 
@@ -25,8 +22,8 @@ public class LoginHandler implements IMessageHandler {
     }
 
     @Override
-    public void handle(ProtobufDeviceMsg.DeviceMsg deviceMsg, Channel channel) {
-        if (deviceMsg != null) {
+    public void handle(ExchangeMessage deviceMsg, Channel channel) {
+        /*if (deviceMsg != null) {
             int type = deviceMsg.getType();
             if (type == DeviceMsgType.LOGIN) {
                 String loginId = deviceMsg.getLoginId();
@@ -38,6 +35,6 @@ public class LoginHandler implements IMessageHandler {
                 ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setServerQueue(BeanConfiguration.chatQueueName);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, builder.build().toByteArray());
             }
-        }
+        }*/
     }
 }

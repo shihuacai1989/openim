@@ -1,9 +1,9 @@
-package com.openim.chatserver.handler.protobuf;
+package com.openim.chatserver.handler.netty.jdk;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.listener.ApplicationContextAware;
+import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.DeviceMsgType;
-import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
@@ -11,7 +11,7 @@ import io.netty.channel.Channel;
 /**
  * Created by shihuacai on 2015/7/22.
  */
-//@Component
+@Deprecated
 public class LogoutHandler implements IMessageHandler {
     private IMessageSender messageSender;
 
@@ -20,11 +20,13 @@ public class LogoutHandler implements IMessageHandler {
     }
 
     @Override
-    public void handle(ProtobufDeviceMsg.DeviceMsg deviceMsg, Channel channel) {
-        int type = deviceMsg.getType();
+    public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
+        int type = jsonObject.getType();
         if (type == DeviceMsgType.LOGOUT) {
-            messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, deviceMsg.toByteArray());
+            messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, jsonObject);
             ChannelUtil.remove(channel);
+        } else {
+            handlerChain.handle(jsonObject, handlerChain, channel);
         }
     }
 }

@@ -73,7 +73,6 @@ public class OpenIMProtobufDecoder extends ByteToMessageDecoder {
                     }else{
                         ExchangeMessage exchangeMessage = new ExchangeMessage();
                         exchangeMessage.setType(msgType);
-                        //待实现
                         exchangeMessage.setMessageLite(messageLite.newBuilderForType().mergeFrom(messageBody).build());
                         out.add(exchangeMessage);
                     }

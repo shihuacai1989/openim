@@ -1,11 +1,11 @@
-package com.openim.chatserver.handler.impl;
+package com.openim.chatserver.handler.netty.v1;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.configuration.BeanConfiguration;
 import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.chatserver.listener.ApplicationContextAware;
-import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by shihuacai on 2015/7/22.
  */
-public class LoginHandler implements IMessageHandler {
+public class LoginHandler implements IMessageHandler<ProtobufDeviceMsg.DeviceMsg, Channel> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandler.class);
 
@@ -26,20 +26,18 @@ public class LoginHandler implements IMessageHandler {
     }
 
     @Override
-    public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
-        if (jsonObject != null) {
-            int type = jsonObject.getType();
+    public void handle(ProtobufDeviceMsg.DeviceMsg deviceMsg, Channel channel) {
+        if (deviceMsg != null) {
+            int type = deviceMsg.getType();
             if (type == DeviceMsgType.LOGIN) {
-                String loginId = jsonObject.getLoginId();
-                String pwd = jsonObject.getPwd();
+                String loginId = deviceMsg.getLoginId();
+                String pwd = deviceMsg.getPwd();
                 //后期完成登录验证
 
                 ChannelUtil.add(loginId, channel);
-                jsonObject.setServerQueue(BeanConfiguration.chatQueueName);
-                messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, jsonObject);
 
-            } else {
-                handlerChain.handle(jsonObject, handlerChain, channel);
+                ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setServerQueue(BeanConfiguration.chatQueueName);
+                messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, builder.build().toByteArray());
             }
         }
     }

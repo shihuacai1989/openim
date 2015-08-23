@@ -1,9 +1,9 @@
 package com.openim.chatserver.net.netty.v1;
 
 import com.openim.chatserver.ChannelUtil;
-import com.openim.chatserver.handler.protobuf.LoginHandler;
-import com.openim.chatserver.handler.protobuf.LogoutHandler;
-import com.openim.chatserver.handler.protobuf.SendHandler;
+import com.openim.chatserver.handler.netty.v1.LoginHandler;
+import com.openim.chatserver.handler.netty.v1.LogoutHandler;
+import com.openim.chatserver.handler.netty.v1.SendHandler;
 import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelHandlerContext;

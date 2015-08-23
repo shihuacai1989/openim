@@ -1,6 +1,5 @@
-package com.openim.chatserver.handler.impl;
+package com.openim.chatserver.handler.netty.jdk;
 
-import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.common.im.bean.DeviceMsg;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -12,6 +11,7 @@ import java.util.List;
 /**
  * Created by shihuacai on 2015/7/23.
  */
+@Deprecated
 public class HandlerChain implements IMessageHandler {
     private static final Logger LOG = LoggerFactory.getLogger(HandlerChain.class);
 

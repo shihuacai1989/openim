@@ -1,6 +1,5 @@
-package com.openim.chatserver.handler.impl;
+package com.openim.chatserver.handler.netty.jdk;
 
-import com.openim.chatserver.handler.IMessageHandler;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.DeviceMsgType;
 import io.netty.channel.Channel;
@@ -8,7 +7,7 @@ import io.netty.channel.Channel;
 /**
  * Created by shihuacai on 2015/7/22.
  */
-//@Component
+@Deprecated
 public class HeartBeatHandler implements IMessageHandler {
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
