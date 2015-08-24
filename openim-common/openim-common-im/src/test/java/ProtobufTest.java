@@ -1,9 +1,7 @@
 import com.google.protobuf.Descriptors;
-import com.google.protobuf.DynamicMessage;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

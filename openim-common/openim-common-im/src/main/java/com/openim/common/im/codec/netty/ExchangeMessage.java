@@ -8,11 +8,17 @@ import com.mongodb.BasicDBObject;
  */
 public class ExchangeMessage {
 
+
     private static final int MAX_VALUE = 127;
     private static final int MIN_VALUE = 0;
+
+    //@JsonProperty
     private int type;
+
+    //@JsonIgnore
     private MessageLite messageLite;
 
+    //@JsonProperty
     public int getType() {
         return type;
     }
@@ -23,7 +29,7 @@ public class ExchangeMessage {
         }
         this.type = type;
     }
-
+    //@JsonIgnore
     public MessageLite getMessageLite() {
         return messageLite;
     }
@@ -36,7 +42,7 @@ public class ExchangeMessage {
     public String toString() {
         return toBsonString();
     }
-
+    //@JsonIgnore
     public String toBsonString(){
         BasicDBObject obj = new BasicDBObject();
         obj.put("type", type);

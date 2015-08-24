@@ -1,7 +1,5 @@
 package com.openim.chatserver.net.handler;
 
-import io.netty.channel.Channel;
-
 /**
  * Created by shihuacai on 2015/7/22.
  */

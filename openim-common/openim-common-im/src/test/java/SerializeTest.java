@@ -5,7 +5,6 @@ import com.openim.common.im.bean.AvroDeviceMsg;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.im.bean.ThriftDeviceMsg;
-import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
@@ -15,7 +14,10 @@ import org.apache.thrift.transport.TIOStreamTransport;
 import org.junit.Test;
 import org.msgpack.MessagePack;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * Created by shihuacai on 2015/8/2.

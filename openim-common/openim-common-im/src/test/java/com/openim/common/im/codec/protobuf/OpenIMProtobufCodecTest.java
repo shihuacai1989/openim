@@ -40,7 +40,7 @@ public class OpenIMProtobufCodecTest {
     }
 
     private void testDecoder(byte[] encoderData) throws Exception {
-        OpenIMProtobufDecoder decoder = new OpenIMProtobufDecoder(ProtobufConnectMessage.ConnectMessage.getDefaultInstance());
+        OpenIMProtobufDecoder decoder = new OpenIMProtobufDecoder();
         ByteBuf byteBuf = Unpooled.copiedBuffer(encoderData);
         decoder.decode(null,byteBuf, new ArrayList<Object>());
     }

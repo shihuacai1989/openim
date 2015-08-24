@@ -1,6 +1,5 @@
 package com.openim.emulator.protobufclient.v1;
 
-import com.google.protobuf.Descriptors;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
