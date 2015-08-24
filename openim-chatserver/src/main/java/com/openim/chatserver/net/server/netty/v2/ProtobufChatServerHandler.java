@@ -1,10 +1,11 @@
 package com.openim.chatserver.net.server.netty.v2;
 
-import com.openim.chatserver.ChannelUtil;
+import com.google.protobuf.MessageLite;
+import com.openim.chatserver.net.handler.netty.v2.ChatHandler;
 import com.openim.chatserver.net.handler.netty.v2.LoginHandler;
 import com.openim.chatserver.net.handler.netty.v2.LogoutHandler;
-import com.openim.chatserver.net.handler.netty.v2.ChatHandler;
 import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
 import com.openim.common.im.codec.netty.ExchangeMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -35,7 +36,7 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Excha
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {  // (3)
-        ChannelUtil.remove(ctx.channel());
+        handleLogout(ctx);
     }
 
 
@@ -51,7 +52,6 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Excha
             } else if (type == DeviceMsgType.CHAT) {
                 chatHandler.handle(msg, ctx.channel());
             }
-            //handlerChain.handle(msg, handlerChain, ctx.channel());
         } catch (Exception e) {
             LOG.error(e.toString());
         }
@@ -100,8 +100,18 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Excha
             }*/
             System.out.println("READER_IDLE");
             //采用客户端向服务端发心跳的机制，服务端只需监听读心跳（即未读到客户端的心跳）
-            ChannelUtil.remove(ctx.channel());
+            handleLogout(ctx);
         }
         super.userEventTriggered(ctx, evt);
+    }
+
+    private void handleLogout(ChannelHandlerContext ctx){
+        ExchangeMessage exchangeMessage = new ExchangeMessage();
+        exchangeMessage.setType(DeviceMsgType.LOGOUT);
+
+        MessageLite messageLite = ProtobufDisconnectMessage.DisconnectMessage.newBuilder().build();
+        exchangeMessage.setMessageLite(messageLite);
+
+        logoutHandler.handle(exchangeMessage, ctx.channel());
     }
 }

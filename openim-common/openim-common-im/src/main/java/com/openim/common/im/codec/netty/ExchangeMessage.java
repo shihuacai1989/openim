@@ -1,6 +1,7 @@
 package com.openim.common.im.codec.netty;
 
 import com.google.protobuf.MessageLite;
+import com.mongodb.BasicDBObject;
 
 /**
  * Created by shihuacai on 2015/8/20.
@@ -29,5 +30,17 @@ public class ExchangeMessage {
 
     public void setMessageLite(MessageLite messageLite) {
         this.messageLite = messageLite;
+    }
+
+    @Override
+    public String toString() {
+        return toBsonString();
+    }
+
+    public String toBsonString(){
+        BasicDBObject obj = new BasicDBObject();
+        obj.put("type", type);
+        obj.put("message", messageLite.toByteArray());
+        return obj.toString();
     }
 }
