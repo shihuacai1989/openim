@@ -4,9 +4,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.mq.IMessageDispatch;
-import com.openim.manager.handler.protobuf.ProtobufLoginHandler;
-import com.openim.manager.handler.protobuf.ProtobufLogoutHandler;
-import com.openim.manager.handler.protobuf.ProtobufSendHandler;
+import com.openim.manager.dispatch.handler.v1.LoginHandler;
+import com.openim.manager.dispatch.handler.v1.LogoutHandler;
+import com.openim.manager.dispatch.handler.v1.SendHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +16,17 @@ import java.nio.charset.Charset;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class ProtobufMessageDispatch implements IMessageDispatch {
+@Deprecated
+public class MessageDispatchV1 implements IMessageDispatch {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProtobufMessageDispatch.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MessageDispatchV1.class);
     private static final Charset charset = Charset.forName("UTF-8");
     @Autowired
-    private ProtobufLoginHandler loginHandler;
+    private LoginHandler loginHandler;
     @Autowired
-    private ProtobufLogoutHandler logoutHandler;
+    private LogoutHandler logoutHandler;
     @Autowired
-    private ProtobufSendHandler sendHandler;
+    private SendHandler sendHandler;
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {

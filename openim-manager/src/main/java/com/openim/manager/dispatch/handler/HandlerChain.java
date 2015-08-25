@@ -1,9 +1,9 @@
-package com.openim.manager.handler;
+package com.openim.manager.dispatch.handler;
 
 import com.openim.common.im.bean.DeviceMsg;
-import com.openim.manager.handler.jdk.LoginHandler;
-import com.openim.manager.handler.jdk.LogoutHandler;
-import com.openim.manager.handler.jdk.SendHandler;
+import com.openim.manager.dispatch.handler.jdk.LoginHandler;
+import com.openim.manager.dispatch.handler.jdk.LogoutHandler;
+import com.openim.manager.dispatch.handler.jdk.SendHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by shihuacai on 2015/7/23.
  */
+@Deprecated
 public class HandlerChain implements IMessageHandler<DeviceMsg> {
     private static final Logger LOG = LoggerFactory.getLogger(HandlerChain.class);
 

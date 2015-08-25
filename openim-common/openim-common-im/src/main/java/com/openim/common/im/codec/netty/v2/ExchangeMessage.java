@@ -1,7 +1,9 @@
-package com.openim.common.im.codec.netty;
+package com.openim.common.im.codec.netty.v2;
 
 import com.google.protobuf.MessageLite;
 import com.mongodb.BasicDBObject;
+import com.mongodb.util.JSON;
+import org.bson.BSONObject;
 
 /**
  * Created by shihuacai on 2015/8/20.
@@ -47,6 +49,9 @@ public class ExchangeMessage {
         BasicDBObject obj = new BasicDBObject();
         obj.put("type", type);
         obj.put("message", messageLite.toByteArray());
+
+        /*BSONObject.
+        BasicDBObject doc = (BasicDBObject) JSON.parse(jsonString);*/
         return obj.toString();
     }
 }

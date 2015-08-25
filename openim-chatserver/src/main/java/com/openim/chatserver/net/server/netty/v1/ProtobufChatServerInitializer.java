@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by shihuacai on 2015/8/2.
  */
+@Deprecated
 public class ProtobufChatServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override

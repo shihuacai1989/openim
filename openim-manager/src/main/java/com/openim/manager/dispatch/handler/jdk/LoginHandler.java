@@ -1,20 +1,20 @@
-package com.openim.manager.handler.jdk;
+package com.openim.manager.dispatch.handler.jdk;
 
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
-import com.openim.manager.handler.HandlerChain;
-import com.openim.manager.handler.IMessageHandler;
+import com.openim.manager.dispatch.handler.HandlerChain;
+import com.openim.manager.dispatch.handler.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
  * Created by shihc on 2015/7/30.
  */
-@Component
+//@Component
+@Deprecated
 public class LoginHandler implements IMessageHandler<DeviceMsg> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandler.class);

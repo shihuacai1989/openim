@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by shihuacai on 2015/8/19.
  */
-@Component
+@Deprecated
 public class NettyChatServer implements IChatServer {
     private static final Logger LOG = LoggerFactory.getLogger(NettyChatServer.class);
 

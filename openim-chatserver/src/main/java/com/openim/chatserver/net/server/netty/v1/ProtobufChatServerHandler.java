@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by shihuacai on 2015/7/21.
  */
-//@Component
+@Deprecated
 public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<ProtobufDeviceMsg.DeviceMsg> {
     private static final Logger LOG = LoggerFactory.getLogger(ProtobufChatServerHandler.class);
 

@@ -6,7 +6,7 @@ import com.openim.chatserver.net.handler.netty.v2.LoginHandler;
 import com.openim.chatserver.net.handler.netty.v2.LogoutHandler;
 import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
-import com.openim.common.im.codec.netty.ExchangeMessage;
+import com.openim.common.im.codec.netty.v2.ExchangeMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;

@@ -5,7 +5,7 @@ import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.chatserver.net.handler.IMessageHandler;
 import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
-import com.openim.common.im.codec.netty.ExchangeMessage;
+import com.openim.common.im.codec.netty.v2.ExchangeMessage;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;

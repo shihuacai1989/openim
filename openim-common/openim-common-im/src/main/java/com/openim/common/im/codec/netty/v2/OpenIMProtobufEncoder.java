@@ -1,4 +1,4 @@
-package com.openim.common.im.codec.netty;
+package com.openim.common.im.codec.netty.v2;
 
 import com.google.protobuf.CodedOutputStream;
 import com.google.protobuf.MessageLite;

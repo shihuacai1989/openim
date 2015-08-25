@@ -1,4 +1,4 @@
-package com.openim.manager.handler;
+package com.openim.manager.dispatch.handler;
 
 /**
  * Created by shihc on 2015/7/30.

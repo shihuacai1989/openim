@@ -4,7 +4,7 @@ import com.openim.common.mq.IMessageDispatch;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.cache.login.ILoginCache;
 import com.openim.manager.cache.login.LoginMemoryCache;
-import com.openim.manager.dispatch.ProtobufMessageDispatch;
+import com.openim.manager.dispatch.MessageDispatchV2;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -24,7 +24,7 @@ public class ManagerConfiguration {
 
     @Bean
     IMessageDispatch messageDispatch() {
-        return new ProtobufMessageDispatch();
+        return new MessageDispatchV2();
     }
 
     @Bean

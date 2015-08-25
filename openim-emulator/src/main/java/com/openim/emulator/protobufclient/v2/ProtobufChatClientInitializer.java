@@ -1,7 +1,7 @@
 package com.openim.emulator.protobufclient.v2;
 
-import com.openim.common.im.codec.netty.OpenIMProtobufDecoder;
-import com.openim.common.im.codec.netty.OpenIMProtobufEncoder;
+import com.openim.common.im.codec.netty.v2.OpenIMProtobufDecoder;
+import com.openim.common.im.codec.netty.v2.OpenIMProtobufEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

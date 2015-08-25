@@ -1,13 +1,12 @@
-package com.openim.manager.handler.protobuf;
+package com.openim.manager.dispatch.handler.v2;
 
 import com.openim.common.im.bean.LoginStatus;
-import com.openim.common.im.bean.ProtobufDeviceMsg.DeviceMsg;
+import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
+import com.openim.common.im.codec.netty.v2.ExchangeMessage;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
-import com.openim.manager.handler.HandlerChain;
-import com.openim.manager.handler.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,9 @@ import org.springframework.util.StringUtils;
  * Created by shihc on 2015/7/30.
  */
 @Component
-public class ProtobufSendHandler implements IMessageHandler<DeviceMsg> {
+public class ChatHandler implements IMessageHandler<ExchangeMessage> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProtobufSendHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
 
     @Autowired
     private IMessageSender messageSender;
@@ -29,25 +28,24 @@ public class ProtobufSendHandler implements IMessageHandler<DeviceMsg> {
     private ILoginCache loginCache;
 
     @Override
-    public void handle(DeviceMsg deviceMsg, HandlerChain handlerChain) {
-        String to = deviceMsg.getTo();
-        if (!StringUtils.isEmpty(to)) {
-            try {
+    public void handle(ExchangeMessage exchangeMessage) {
+        try {
+            ProtobufChatMessage.ChatMessage chatMessage = (ProtobufChatMessage.ChatMessage) exchangeMessage.getMessageLite();
+            String to = chatMessage.getTo();
+            if (!StringUtils.isEmpty(to)) {
                 User toUser = loginCache.get(to);
                 if (toUser != null) {
                     int loginStatus = toUser.getLoginStatus();
                     if (loginStatus != LoginStatus.offline) {
                         String connectServer = toUser.getConnectServer();
-
-                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, deviceMsg.toByteArray());
+                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, exchangeMessage.toBsonString());
                     }
                 }
-            } catch (Exception e) {
-                LOG.error(e.toString());
+            } else {
+                LOG.error("发送信息不全：to:{}", to);
             }
-
-        } else {
-            LOG.error("发送信息不全：to:{}", to);
+        } catch (Exception e) {
+            LOG.error(e.toString());
         }
     }
 }
