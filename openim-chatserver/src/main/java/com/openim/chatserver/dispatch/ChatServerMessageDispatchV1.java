@@ -10,9 +10,10 @@ import org.slf4j.LoggerFactory;
  * protocolbuffer
  * Created by shihuacai on 2015/7/29.
  */
-public class ProtobufChatServerMessageDispatch implements IMessageDispatch {
+@Deprecated
+public class ChatServerMessageDispatchV1 implements IMessageDispatch {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProtobufChatServerMessageDispatch.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV1.class);
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
