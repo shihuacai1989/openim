@@ -1,7 +1,6 @@
 package com.openim.common.im.bean;
 
 import com.google.protobuf.MessageLite;
-import com.mongodb.BasicDBObject;
 
 /**
  * Created by shihuacai on 2015/8/20.
@@ -12,13 +11,10 @@ public class ExchangeMessage {
     private static final int MAX_VALUE = 127;
     private static final int MIN_VALUE = 0;
 
-    //@JsonProperty
     private int type;
 
-    //@JsonIgnore
     private MessageLite messageLite;
 
-    //@JsonProperty
     public int getType() {
         return type;
     }
@@ -38,18 +34,16 @@ public class ExchangeMessage {
         this.messageLite = messageLite;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return toBsonString();
     }
-    //@JsonIgnore
+
     public String toBsonString(){
         BasicDBObject obj = new BasicDBObject();
         obj.put("type", type);
         obj.put("message", messageLite.toByteArray());
 
-        /*BSONObject.
-        BasicDBObject doc = (BasicDBObject) JSON.parse(jsonString);*/
         return obj.toString();
-    }
+    }*/
 }

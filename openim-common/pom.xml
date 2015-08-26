@@ -16,7 +16,6 @@
         <module>openim-common-util</module>
         <module>openim-common-mq</module>
         <module>openim-common-zk</module>
-        <module>openim-common-bean</module>
         <module>openim-common-im</module>
     </modules>
 

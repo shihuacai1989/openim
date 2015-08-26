@@ -1,24 +1,27 @@
-package com.openim.common.bean;
-
-import java.util.List;
+package com.openim.common.im.bean;
 
 /**
  * Created by shihuacai on 2015/7/20.
  */
-public class ListResult<T> {
+public class CommonResult<T> {
     private int code;
     private String error;
-    private List<T> data;
+    private T data;
 
-    public ListResult(int code, List<T> data) {
+    public CommonResult(int code, T data, String error) {
+        this.code = code;
+        this.error = error;
+        this.data = data;
+    }
+
+    public CommonResult(int code, T data) {
         this.code = code;
         this.data = data;
     }
 
-    public ListResult(int code, List<T> data, String error) {
+    public CommonResult(int code) {
         this.code = code;
-        this.error = error;
-        this.data = data;
+        this.data = null;
     }
 
     public int getCode() {
@@ -37,11 +40,17 @@ public class ListResult<T> {
         this.error = error;
     }
 
-    public List<T> getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(List<T> data) {
+    public void setData(T data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        String data = String.format("code:%s, error:%s", code, error);
+        return data;
     }
 }

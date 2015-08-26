@@ -4,7 +4,7 @@ import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.configuration.BeanConfiguration;
 import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.common.im.bean.DeviceMsg;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
@@ -29,7 +29,7 @@ public class LoginHandler implements IMessageHandler {
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
         if (jsonObject != null) {
             int type = jsonObject.getType();
-            if (type == DeviceMsgType.LOGIN) {
+            if (type == MessageType.LOGIN) {
                 String loginId = jsonObject.getLoginId();
                 String pwd = jsonObject.getPwd();
                 //后期完成登录验证

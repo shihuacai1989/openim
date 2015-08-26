@@ -1,6 +1,6 @@
 package com.openim.esb.controller;
 
-import com.openim.common.bean.CommonResult;
+import com.openim.common.im.bean.CommonResult;
 import com.openim.esb.service.IChatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

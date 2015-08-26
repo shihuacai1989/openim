@@ -1,6 +1,6 @@
 package com.openim.fileserver.controller;
 
-import com.openim.common.bean.CommonResult;
+import com.openim.common.im.bean.CommonResult;
 import com.openim.fileserver.service.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

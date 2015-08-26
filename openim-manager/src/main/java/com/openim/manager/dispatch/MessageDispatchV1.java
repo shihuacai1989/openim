@@ -1,7 +1,7 @@
 package com.openim.manager.dispatch;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.mq.IMessageDispatch;
 import com.openim.manager.dispatch.handler.v1.LoginHandler;
@@ -34,11 +34,11 @@ public class MessageDispatchV1 implements IMessageDispatch {
             ProtobufDeviceMsg.DeviceMsg msg = ProtobufDeviceMsg.DeviceMsg.parseFrom(bytes);
 
             int type = msg.getType();
-            if (type == DeviceMsgType.CHAT) {
+            if (type == MessageType.CHAT) {
                 sendHandler.handle(msg, null);
-            } else if (type == DeviceMsgType.LOGIN) {
+            } else if (type == MessageType.LOGIN) {
                 loginHandler.handle(msg, null);
-            } else if (type == DeviceMsgType.LOGOUT) {
+            } else if (type == MessageType.LOGOUT) {
                 logoutHandler.handle(msg, null);
             } else {
                 LOG.error("无法处理收到的消息：{}", msg);

@@ -41,7 +41,7 @@ public class LoginHandler implements IMessageHandler<DeviceMsg> {
         }
 
         /*int type = deviceMsg.getIntValue(DeviceMsgField.type);
-        if (type == DeviceMsgType.LOGIN) {
+        if (type == MessageType.LOGIN) {
 
         } else {
             handlerChain.handle(deviceMsg, handlerChain);

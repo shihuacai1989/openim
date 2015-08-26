@@ -1,6 +1,6 @@
 package com.openim.esb.service;
 
-import com.openim.common.bean.CommonResult;
+import com.openim.common.im.bean.CommonResult;
 import org.springframework.beans.factory.InitializingBean;
 
 /**

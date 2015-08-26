@@ -22,9 +22,13 @@
             <groupId>com.openim</groupId>
             <artifactId>openim-common-util</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.openim</groupId>
             <artifactId>openim-common-bean</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-im</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>

@@ -15,10 +15,12 @@
         <module>openim-common</module>
         <module>openim-emulator</module>
         <module>openim-fileserver</module>
+        <module>openim-analysis</module>
     </modules>
 
     <properties>
 
+        <mongo.java.version>2.13.0</mongo.java.version>
         <protobuf.version>2.4.1</protobuf.version>
         <netty.version>4.0.29.Final</netty.version>
         <openim.version>0.1</openim.version>
@@ -32,7 +34,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!--<scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -53,6 +55,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.1.45</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo.java.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.protobuf</groupId>
@@ -84,11 +91,11 @@
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-            <dependency>
+            <!--<dependency>
                 <groupId>com.openim</groupId>
                 <artifactId>openim-common-bean</artifactId>
                 <version>${openim.version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>com.openim</groupId>
                 <artifactId>openim-common-im</artifactId>

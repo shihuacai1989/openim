@@ -1,10 +1,10 @@
 package com.openim.manager.service.impl;
 
 import com.mongodb.WriteResult;
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ListResult;
-import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ListResult;
 import com.openim.common.im.bean.LoginStatus;
+import com.openim.common.im.bean.ResultCode;
 import com.openim.common.util.UUIDUtil;
 import com.openim.manager.bean.Friend;
 import com.openim.manager.bean.Group;

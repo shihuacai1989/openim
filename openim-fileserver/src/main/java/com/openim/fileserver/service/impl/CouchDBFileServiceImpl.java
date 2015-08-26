@@ -2,8 +2,8 @@ package com.openim.fileserver.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ResultCode;
 import com.openim.fileserver.service.IFileService;
 import org.ektorp.AttachmentInputStream;
 import org.ektorp.CouchDbConnector;

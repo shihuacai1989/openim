@@ -1,7 +1,7 @@
 package com.openim.manager.dispatch;
 
 import com.openim.common.im.bean.DeviceMsg;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.mq.IMessageDispatch;
 import com.openim.manager.dispatch.handler.jdk.LoginHandler;
 import com.openim.manager.dispatch.handler.jdk.LogoutHandler;
@@ -43,11 +43,11 @@ public class JDKMessageDispatch implements IMessageDispatch {
                 /*HandlerChain chain = new HandlerChain();
                 chain.handle(jsonObject, chain);*/
                 int type = msg.getType();
-                if (type == DeviceMsgType.CHAT) {
+                if (type == MessageType.CHAT) {
                     sendHandler.handle(msg, null);
-                } else if (type == DeviceMsgType.LOGIN) {
+                } else if (type == MessageType.LOGIN) {
                     loginHandler.handle(msg, null);
-                } else if (type == DeviceMsgType.LOGOUT) {
+                } else if (type == MessageType.LOGOUT) {
                     logoutHandler.handle(msg, null);
                 } else {
                     LOG.error("无法处理收到的消息：{}", msg);

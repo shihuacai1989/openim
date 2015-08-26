@@ -3,7 +3,7 @@ package com.openim.common.im.codec.netty.v2;
 import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.MessageLite;
 import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.containter.MessageTypeContainerV2;
+import com.openim.common.im.containter.MessageParserV2;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -50,13 +50,13 @@ public class OpenIMProtobufDecoder extends ByteToMessageDecoder {
                     byte[] messageBody = new byte[length - 1];
                     in.readBytes(messageBody, 0, length - 1);
 
-                    MessageLite messageLite = MessageTypeContainerV2.getMessageLite(msgType);
+                    MessageLite messageLite = MessageParserV2.parse(msgType, messageBody);
                     if(messageLite == null){
                         LOG.error("msgType:{}不存在", msgType);
                     }else{
                         ExchangeMessage exchangeMessage = new ExchangeMessage();
                         exchangeMessage.setType(msgType);
-                        exchangeMessage.setMessageLite(messageLite.newBuilderForType().mergeFrom(messageBody).build());
+                        exchangeMessage.setMessageLite(messageLite);
                         out.add(exchangeMessage);
                     }
                 }

@@ -3,7 +3,7 @@ package com.openim.chatserver.net.handler.netty.v1;
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.chatserver.net.handler.IMessageHandler;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
@@ -25,7 +25,7 @@ public class ChatHandler implements IMessageHandler<ProtobufDeviceMsg.DeviceMsg,
     @Override
     public void handle(ProtobufDeviceMsg.DeviceMsg deviceMsg, Channel channel) {
         int type = deviceMsg.getType();
-        if (type == DeviceMsgType.CHAT) {
+        if (type == MessageType.CHAT) {
             Attribute<String> attribute = channel.attr(ChannelUtil.loginIdKey);
             ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setFrom(attribute.get());
             messageSender.sendMessage(MQConstants.openimExchange, MQConstants.chatRouteKey, builder.build().toByteArray());

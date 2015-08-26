@@ -43,7 +43,7 @@ public class DisconnectHandler implements IMessageHandler<ExchangeMessage> {
         }
 
         /*int type = deviceMsg.getIntValue(DeviceMsgField.type);
-        if (type == DeviceMsgType.LOGOUT) {
+        if (type == MessageType.LOGOUT) {
 
         } else {
             handlerChain.handle(deviceMsg, handlerChain);

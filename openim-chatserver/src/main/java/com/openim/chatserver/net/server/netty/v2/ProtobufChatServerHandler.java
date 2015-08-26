@@ -4,8 +4,8 @@ import com.google.protobuf.MessageLite;
 import com.openim.chatserver.net.handler.netty.v2.ChatHandler;
 import com.openim.chatserver.net.handler.netty.v2.LoginHandler;
 import com.openim.chatserver.net.handler.netty.v2.LogoutHandler;
-import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -45,11 +45,11 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Excha
         try {
             System.out.print(msg);
             int type = msg.getType();
-            if (type == DeviceMsgType.LOGIN) {
+            if (type == MessageType.LOGIN) {
                 loginHandler.handle(msg, ctx.channel());
-            } else if (type == DeviceMsgType.LOGOUT) {
+            } else if (type == MessageType.LOGOUT) {
                 logoutHandler.handle(msg, ctx.channel());
-            } else if (type == DeviceMsgType.CHAT) {
+            } else if (type == MessageType.CHAT) {
                 chatHandler.handle(msg, ctx.channel());
             }
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Excha
 
     private void handleLogout(ChannelHandlerContext ctx){
         ExchangeMessage exchangeMessage = new ExchangeMessage();
-        exchangeMessage.setType(DeviceMsgType.LOGOUT);
+        exchangeMessage.setType(MessageType.LOGOUT);
 
         MessageLite messageLite = ProtobufDisconnectMessage.DisconnectMessage.newBuilder().build();
         exchangeMessage.setMessageLite(messageLite);

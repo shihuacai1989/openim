@@ -12,12 +12,12 @@
     <groupId>com.openim</groupId>
     <artifactId>openim-common-im</artifactId>
 
-    <properties>
-        <!--<protobuf.version>2.6.1</protobuf.version>-->
-        <!--<protobuf.version>2.4.1</protobuf.version>-->
-    </properties>
-
     <dependencies>
+
+        <!--<dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-bean</artifactId>
+        </dependency>-->
         <!--<dependency>
             <groupId>de.undercouch</groupId>
             <artifactId>bson4jackson</artifactId>
@@ -45,7 +45,6 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>${protobuf.version}</version>
         </dependency>
 
         <dependency>

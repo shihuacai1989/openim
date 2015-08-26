@@ -1,8 +1,8 @@
 package com.openim.manager.service.impl;
 
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ListResult;
-import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ListResult;
+import com.openim.common.im.bean.ResultCode;
 import com.openim.manager.bean.Message;
 import com.openim.manager.bean.User;
 import com.openim.manager.service.IMessageService;

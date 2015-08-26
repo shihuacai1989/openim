@@ -1,7 +1,7 @@
 package com.openim.chatserver.net.handler.netty.jdk;
 
 import com.openim.common.im.bean.DeviceMsg;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import io.netty.channel.Channel;
 
 /**
@@ -13,7 +13,7 @@ public class HeartBeatHandler implements IMessageHandler {
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
         if (jsonObject != null) {
             int type = jsonObject.getType();
-            if (type == DeviceMsgType.HEART_BEAT) {
+            if (type == MessageType.HEART_BEAT) {
 
             } else {
                 handlerChain.handle(jsonObject, handlerChain, channel);

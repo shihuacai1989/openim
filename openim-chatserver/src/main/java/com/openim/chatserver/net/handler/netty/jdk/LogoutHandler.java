@@ -3,7 +3,7 @@ package com.openim.chatserver.net.handler.netty.jdk;
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.common.im.bean.DeviceMsg;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
@@ -22,7 +22,7 @@ public class LogoutHandler implements IMessageHandler {
     @Override
     public void handle(DeviceMsg jsonObject, HandlerChain handlerChain, Channel channel) {
         int type = jsonObject.getType();
-        if (type == DeviceMsgType.LOGOUT) {
+        if (type == MessageType.LOGOUT) {
             messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, jsonObject);
             ChannelUtil.remove(channel);
         } else {

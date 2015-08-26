@@ -1,7 +1,7 @@
 package com.openim.fileserver.service.impl;
 
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ResultCode;
 import com.openim.common.util.UUIDUtil;
 import com.openim.fileserver.service.IFileService;
 import org.apache.commons.io.IOUtils;

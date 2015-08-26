@@ -4,13 +4,11 @@ package com.openim.common.im.bean;
  * Created by shihuacai on 2015/7/21.
  * 终端发送消息类型
  */
-public class DeviceMsgType {
-
+public class MessageType {
 
     public static final int LOGIN = 1;
 
     public static final int CHAT = 2;
-
 
     public static final int LOGOUT = 3;
 

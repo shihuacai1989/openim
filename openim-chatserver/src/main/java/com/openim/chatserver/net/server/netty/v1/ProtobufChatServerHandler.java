@@ -4,7 +4,7 @@ import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.net.handler.netty.v1.ChatHandler;
 import com.openim.chatserver.net.handler.netty.v1.LoginHandler;
 import com.openim.chatserver.net.handler.netty.v1.LogoutHandler;
-import com.openim.common.im.bean.DeviceMsgType;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -44,11 +44,11 @@ public class ProtobufChatServerHandler extends SimpleChannelInboundHandler<Proto
         try {
             System.out.print(msg);
             int type = msg.getType();
-            if (type == DeviceMsgType.LOGIN) {
+            if (type == MessageType.LOGIN) {
                 loginHandler.handle(msg, ctx.channel());
-            } else if (type == DeviceMsgType.LOGOUT) {
+            } else if (type == MessageType.LOGOUT) {
                 logoutHandler.handle(msg, ctx.channel());
-            } else if (type == DeviceMsgType.CHAT) {
+            } else if (type == MessageType.CHAT) {
                 chatHandler.handle(msg, ctx.channel());
             }
             //handlerChain.handle(msg, handlerChain, ctx.channel());

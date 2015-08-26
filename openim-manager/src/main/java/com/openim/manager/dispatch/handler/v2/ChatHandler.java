@@ -4,6 +4,8 @@ import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.LoginStatus;
 import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import com.openim.common.mq.IMessageSender;
+import com.openim.common.mq.codec.IMQCodec;
+import com.openim.common.mq.codec.MQBsonCodec;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
@@ -20,6 +22,8 @@ import org.springframework.util.StringUtils;
 public class ChatHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
+
+    private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
 
     @Autowired
     private IMessageSender messageSender;
@@ -38,7 +42,7 @@ public class ChatHandler implements IMessageHandler<ExchangeMessage> {
                     int loginStatus = toUser.getLoginStatus();
                     if (loginStatus != LoginStatus.offline) {
                         String connectServer = toUser.getConnectServer();
-                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, exchangeMessage.toBsonString());
+                        messageSender.sendMessage(MQConstants.openimExchange, connectServer, mqCodec.encode(exchangeMessage));
                     }
                 }
             } else {

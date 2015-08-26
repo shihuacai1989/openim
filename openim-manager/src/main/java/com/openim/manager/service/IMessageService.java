@@ -1,7 +1,7 @@
 package com.openim.manager.service;
 
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ListResult;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ListResult;
 import com.openim.manager.bean.Message;
 
 /**

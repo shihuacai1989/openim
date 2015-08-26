@@ -2,8 +2,8 @@ package com.openim.esb.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ResultCode;
 import com.openim.common.util.CharsetUtil;
 import com.openim.common.zk.ChatServerNodeChangedListener;
 import com.openim.common.zk.OpenIMZKClient;

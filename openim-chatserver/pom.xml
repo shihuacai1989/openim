@@ -26,10 +26,10 @@
             <artifactId>netty-all</artifactId>
             <version>${netty.version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.openim</groupId>
             <artifactId>openim-common-bean</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.openim</groupId>
             <artifactId>openim-common-im</artifactId>

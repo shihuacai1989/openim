@@ -3,10 +3,12 @@ package com.openim.chatserver.net.handler.netty.v2;
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.listener.ApplicationContextAware;
 import com.openim.chatserver.net.handler.IMessageHandler;
-import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
 import com.openim.common.mq.IMessageSender;
+import com.openim.common.mq.codec.IMQCodec;
+import com.openim.common.mq.codec.MQBsonCodec;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -21,6 +23,8 @@ public class LogoutHandler implements IMessageHandler<ExchangeMessage, Channel> 
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandler.class);
 
+    private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
+
     private IMessageSender messageSender;
 
     public LogoutHandler() {
@@ -29,7 +33,7 @@ public class LogoutHandler implements IMessageHandler<ExchangeMessage, Channel> 
 
     @Override
     public void handle(ExchangeMessage exchangeMessage, Channel channel) {
-        if (exchangeMessage.getType() == DeviceMsgType.LOGOUT) {
+        if (exchangeMessage.getType() == MessageType.LOGOUT) {
             try {
                 String loginId = ChannelUtil.remove(channel);
                 if(!StringUtils.isEmpty(loginId)){
@@ -37,13 +41,13 @@ public class LogoutHandler implements IMessageHandler<ExchangeMessage, Channel> 
                     disconnectMessage = disconnectMessage.toBuilder().setLoginId(loginId).build();
                     exchangeMessage.setMessageLite(disconnectMessage);
 
-                    messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, exchangeMessage.toBsonString());
+                    messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, mqCodec.encode(exchangeMessage));
                 }
             }catch (Exception e){
                 LOG.error(e.toString());
             }
         } else {
-            LOG.error("数据类型错误: " + exchangeMessage.toBsonString());
+            LOG.error("数据类型错误: " + mqCodec.encode(exchangeMessage));
         }
     }
 }

@@ -1,14 +1,12 @@
 package com.openim.chatserver.dispatch;
 
-import com.google.protobuf.MessageLite;
 import com.openim.chatserver.dispatch.handle.v2.ChatHandler;
 import com.openim.chatserver.dispatch.handle.v2.IMessageHandler;
-import com.openim.common.im.bean.DeviceMsgType;
 import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.containter.MessageTypeContainerV2;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.mq.IMessageDispatch;
-import org.bson.BSON;
-import org.bson.BSONObject;
+import com.openim.common.mq.codec.IMQCodec;
+import com.openim.common.mq.codec.MQBsonCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,23 +20,26 @@ public class ChatServerMessageDispatchV2 implements IMessageDispatch {
 
     private static IMessageHandler chatHandler = new ChatHandler();
 
+    private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
-        LOG.error("待完成");
         try {
-            BSONObject bsonObject = BSON.decode(bytes);
+            /*BSONObject bsonObject = BSON.decode(bytes);
             int type = Integer.valueOf(String.valueOf(bsonObject.get("type")));
             byte[] messageBytes = (byte[])bsonObject.get("message");
 
             ExchangeMessage exchangeMessage = new ExchangeMessage();
             exchangeMessage.setType(type);
-            MessageLite messageLite = MessageTypeContainerV2.getMessageLite(type).newBuilderForType().mergeFrom(messageBytes).build();
-            exchangeMessage.setMessageLite(messageLite);
+            MessageLite messageLite = MessageParserV2.parse(type, messageBytes);
+            exchangeMessage.setMessageLite(messageLite);*/
 
-
-            if(type == DeviceMsgType.CHAT){
-                chatHandler.handle(exchangeMessage);
+            ExchangeMessage exchangeMessage = mqCodec.decode(bytes);
+            if(exchangeMessage != null){
+                int type = exchangeMessage.getType();
+                if(type == MessageType.CHAT){
+                    chatHandler.handle(exchangeMessage);
+                }
             }
         }catch (Exception e){
             LOG.error(e.toString());

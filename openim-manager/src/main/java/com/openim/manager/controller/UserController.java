@@ -1,8 +1,8 @@
 package com.openim.manager.controller;
 
-import com.openim.common.bean.CommonResult;
-import com.openim.common.bean.ListResult;
-import com.openim.common.bean.ResultCode;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ListResult;
+import com.openim.common.im.bean.ResultCode;
 import com.openim.manager.bean.User;
 import com.openim.manager.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

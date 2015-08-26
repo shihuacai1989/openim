@@ -1,6 +1,6 @@
 package com.openim.manager.controller;
 
-import com.openim.common.bean.ListResult;
+import com.openim.common.im.bean.ListResult;
 import com.openim.manager.bean.Message;
 import com.openim.manager.service.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
