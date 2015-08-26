@@ -1,9 +1,7 @@
-package com.openim.common.im.codec.netty.v2;
+package com.openim.common.im.bean;
 
 import com.google.protobuf.MessageLite;
 import com.mongodb.BasicDBObject;
-import com.mongodb.util.JSON;
-import org.bson.BSONObject;
 
 /**
  * Created by shihuacai on 2015/8/20.

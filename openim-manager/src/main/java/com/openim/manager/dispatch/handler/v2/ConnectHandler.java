@@ -1,7 +1,7 @@
 package com.openim.manager.dispatch.handler.v2;
 
+import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
-import com.openim.common.im.codec.netty.v2.ExchangeMessage;
 import com.openim.manager.bean.User;
 import com.openim.manager.cache.login.ILoginCache;
 import org.slf4j.Logger;

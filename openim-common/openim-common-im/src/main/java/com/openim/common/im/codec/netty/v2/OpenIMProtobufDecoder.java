@@ -2,6 +2,7 @@ package com.openim.common.im.codec.netty.v2;
 
 import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.MessageLite;
+import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.containter.MessageTypeContainerV2;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

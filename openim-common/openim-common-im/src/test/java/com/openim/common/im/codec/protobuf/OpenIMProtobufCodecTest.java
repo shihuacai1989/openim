@@ -1,7 +1,7 @@
 package com.openim.common.im.codec.protobuf;
 
+import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
-import com.openim.common.im.codec.netty.v2.ExchangeMessage;
 import com.openim.common.im.codec.netty.v2.OpenIMProtobufDecoder;
 import com.openim.common.im.codec.netty.v2.OpenIMProtobufEncoder;
 import io.netty.buffer.ByteBuf;
