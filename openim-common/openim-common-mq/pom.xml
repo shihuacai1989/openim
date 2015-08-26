@@ -19,11 +19,6 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>com.openim</groupId>
-            <artifactId>openim-common-bean</artifactId>
-        </dependency>-->
-
         <dependency>
             <groupId>com.openim</groupId>
             <artifactId>openim-common-im</artifactId>

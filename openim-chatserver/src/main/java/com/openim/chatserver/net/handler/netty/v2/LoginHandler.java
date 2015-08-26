@@ -8,8 +8,8 @@ import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import com.openim.common.mq.IMessageSender;
-import com.openim.common.mq.codec.IMQCodec;
-import com.openim.common.mq.codec.MQBsonCodec;
+import com.openim.common.im.codec.mq.IMQCodec;
+import com.openim.common.im.codec.mq.MQBsonCodec;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -32,19 +32,7 @@ public class LoginHandler implements IMessageHandler<ExchangeMessage, Channel> {
 
     @Override
     public void handle(ExchangeMessage exchangeMessage, Channel channel) {
-        /*if (deviceMsg != null) {
-            int type = deviceMsg.getType();
-            if (type == MessageType.LOGIN) {
-                String loginId = deviceMsg.getLoginId();
-                String pwd = deviceMsg.getPwd();
-                //后期完成登录验证
 
-                ChannelUtil.add(loginId, channel);
-
-                ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setServerQueue(BeanConfiguration.chatQueueName);
-                messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, builder.build().toByteArray());
-            }
-        }*/
         if (exchangeMessage.getType() == MessageType.LOGIN) {
             try {
                 ProtobufConnectMessage.ConnectMessage connectMessage = (ProtobufConnectMessage.ConnectMessage)exchangeMessage.getMessageLite();
@@ -53,8 +41,8 @@ public class LoginHandler implements IMessageHandler<ExchangeMessage, Channel> {
                 String loginId = connectMessage.getLoginId();
                 ChannelUtil.add(loginId, channel);
 
-                ProtobufConnectMessage.ConnectMessage.Builder builder = connectMessage.toBuilder().setServerQueue(BeanConfiguration.chatQueueName);
-                exchangeMessage.setMessageLite(builder.build());
+                connectMessage = connectMessage.toBuilder().setServerQueue(BeanConfiguration.chatQueueName).build();
+                exchangeMessage.setMessageLite(connectMessage);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, mqCodec.encode(exchangeMessage));
             }catch (Exception e){
                 LOG.error(e.toString());

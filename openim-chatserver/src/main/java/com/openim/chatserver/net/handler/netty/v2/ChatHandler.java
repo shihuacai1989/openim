@@ -7,8 +7,8 @@ import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import com.openim.common.mq.IMessageSender;
-import com.openim.common.mq.codec.IMQCodec;
-import com.openim.common.mq.codec.MQBsonCodec;
+import com.openim.common.im.codec.mq.IMQCodec;
+import com.openim.common.im.codec.mq.MQBsonCodec;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
@@ -40,14 +40,13 @@ public class ChatHandler implements IMessageHandler<ExchangeMessage, Channel> {
                 Attribute<String> attribute = channel.attr(ChannelUtil.loginIdKey);
 
                 ProtobufChatMessage.ChatMessage chatMessage = (ProtobufChatMessage.ChatMessage)deviceMsg.getMessageLite();
-                ProtobufChatMessage.ChatMessage.Builder builder = chatMessage.toBuilder().setFrom(attribute.get());
-                deviceMsg.setMessageLite(builder.build());
+                chatMessage = chatMessage.toBuilder().setFrom(attribute.get()).build();
+                deviceMsg.setMessageLite(chatMessage);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.chatRouteKey, mqCodec.encode(deviceMsg));
             }catch (Exception e){
                 LOG.error(e.toString());
             }
         } else {
-
             LOG.error("数据类型错误: " + mqCodec.encode(deviceMsg));
         }
     }

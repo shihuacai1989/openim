@@ -1,4 +1,4 @@
-package com.openim.common.mq.codec;
+package com.openim.common.im.codec.mq;
 
 import com.google.protobuf.MessageLite;
 import com.mongodb.BasicDBObject;
@@ -8,6 +8,7 @@ import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
 import com.openim.common.im.bean.protbuf.ProtobufHeartBeatMessage;
+import com.openim.common.im.containter.MessageParserV2;
 import org.bson.BSON;
 import org.bson.BSONObject;
 import org.slf4j.Logger;
@@ -40,34 +41,9 @@ public class MQBsonCodec implements IMQCodec<ExchangeMessage> {
 
             ExchangeMessage exchangeMessage = new ExchangeMessage();
             exchangeMessage.setType(type);
-            MessageLite messageLite = parse(type, messageBytes);
+            MessageLite messageLite = MessageParserV2.parse(type, messageBytes);
             exchangeMessage.setMessageLite(messageLite);
             return exchangeMessage;
-        }catch (Exception e){
-            LOG.error(e.toString());
-        }
-        return null;
-    }
-
-    private MessageLite parse(int type, byte[] bytes){
-        try {
-            if(type == MessageType.CHAT){
-                return ProtobufChatMessage.ChatMessage.parseFrom(bytes);
-            }else if(type == MessageType.LOGOUT){
-                return ProtobufDisconnectMessage.DisconnectMessage.parseFrom(bytes);
-            }else if(type == MessageType.LOGIN){
-                return ProtobufConnectMessage.ConnectMessage.parseFrom(bytes);
-            }else if(type == MessageType.HEART_BEAT){
-                return ProtobufHeartBeatMessage.HeartBeatMessage.parseFrom(bytes);
-            }else if(type == MessageType.LEAVE){
-                return null;
-            }else if(type == MessageType.RECEIVE){
-                return null;
-            }else if(type == MessageType.Working){
-                return null;
-            }else{
-                return null;
-            }
         }catch (Exception e){
             LOG.error(e.toString());
         }

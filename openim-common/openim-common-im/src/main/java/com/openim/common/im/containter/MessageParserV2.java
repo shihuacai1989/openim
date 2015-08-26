@@ -1,6 +1,7 @@
 package com.openim.common.im.containter;
 
 import com.google.protobuf.MessageLite;
+import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.*;
 import org.slf4j.Logger;
@@ -12,7 +13,6 @@ import java.util.Map;
 /**
  * Created by shihc on 2015/8/25.
  */
-@Deprecated
 public class MessageParserV2 {
     private static final Logger LOG = LoggerFactory.getLogger(MessageParserV2.class);
 
@@ -38,7 +38,16 @@ public class MessageParserV2 {
         //ProtobufChatMessage.ChatMessage.parseFrom()
         return messageTypeMap.get(type);
     }
-
+    public static MessageLite parse(ExchangeMessage exchangeMessage){
+        try {
+            int type = exchangeMessage.getType();
+            byte[] bytes = exchangeMessage.getMessageLite().toByteArray();
+            return parse(type, bytes);
+        }catch (Exception e){
+            LOG.error(e.toString());
+        }
+        return null;
+    }
     public static MessageLite parse(int type, byte[] bytes){
         try {
             if(type == MessageType.CHAT){

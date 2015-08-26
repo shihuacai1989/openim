@@ -5,8 +5,8 @@ import com.openim.chatserver.dispatch.handle.v2.IMessageHandler;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.mq.IMessageDispatch;
-import com.openim.common.mq.codec.IMQCodec;
-import com.openim.common.mq.codec.MQBsonCodec;
+import com.openim.common.im.codec.mq.IMQCodec;
+import com.openim.common.im.codec.mq.MQBsonCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

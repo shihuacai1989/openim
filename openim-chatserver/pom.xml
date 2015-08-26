@@ -26,10 +26,6 @@
             <artifactId>netty-all</artifactId>
             <version>${netty.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.openim</groupId>
-            <artifactId>openim-common-bean</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>com.openim</groupId>
             <artifactId>openim-common-im</artifactId>
@@ -64,7 +60,7 @@
 
     <build>
         <!-- 生成的jar或war包的名称 -->
-        <finalName>openim-server</finalName>
+        <finalName>openim-chatserver</finalName>
         <!--<plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

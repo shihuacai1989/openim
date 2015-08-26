@@ -42,14 +42,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--<dependency>
-            <groupId>com.openim</groupId>
-            <artifactId>openim-common-bean</artifactId>
-        </dependency>-->
-        <dependency>
-            <groupId>com.openim</groupId>
-            <artifactId>openim-common-im</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.openim</groupId>
             <artifactId>openim-common-im</artifactId>
