@@ -1,13 +1,18 @@
-package com.openim.emulator.protobufclient.v2;
+package com.openim.emulator.client.netty.v1;
 
 import com.alibaba.fastjson.JSON;
 import com.openim.common.im.bean.DeviceMsg;
+import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
+import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
+import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.apache.commons.lang.math.NumberUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,6 +23,9 @@ import java.io.InputStreamReader;
 public class ChatClient {
     private final String host;
     private final int port;
+
+
+
     public ChatClient(String host, int port) {
         this.host = host;
         this.port = port;
@@ -36,6 +44,8 @@ public class ChatClient {
                     .handler(new ProtobufChatClientInitializer());
             Channel channel = bootstrap.connect(host, port).sync().channel();
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("为方便测试，默认两个用户:user1,user2，退出系统请输入quit \r\n");
+            System.out.println("请输入登录名(user1或user2):\r\n");
             while (true) {
                 String line = in.readLine();
                 DeviceMsg deviceMsg = JSON.parseObject(line, DeviceMsg.class);
@@ -73,4 +83,6 @@ public class ChatClient {
         }
 
     }
+
+
 }

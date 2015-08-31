@@ -6,8 +6,8 @@ import com.openim.chatserver.net.server.netty.INettyMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
-import com.openim.common.im.codec.netty.v2.OpenIMProtobufDecoder;
-import com.openim.common.im.codec.netty.v2.OpenIMProtobufEncoder;
+import com.openim.common.im.codec.netty.OpenIMProtobufDecoderV2;
+import com.openim.common.im.codec.netty.OpenIMProtobufEncoderV2;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -17,6 +17,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +32,9 @@ public class NettyChatServerV2 implements IChatServer {
 
     @Value("${chat.port}")
     private int port;
+
+    @Autowired
+    private INettyMessageDispatch messageDispatch;
 
     @Override
     public void startServer() {
@@ -77,17 +81,15 @@ public class NettyChatServerV2 implements IChatServer {
             //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
             pipeline.addLast("ping", new IdleStateHandler(120, 0, 0, TimeUnit.SECONDS));
 
-            pipeline.addLast("encoder", new OpenIMProtobufEncoder());
-            pipeline.addLast("decoder", new OpenIMProtobufDecoder());
+            pipeline.addLast("encoder", new OpenIMProtobufEncoderV2());
+            pipeline.addLast("decoder", new OpenIMProtobufDecoderV2());
             pipeline.addLast("handler", new ChatServerHandlerV2());
 
         }
     }
 
-    private static class ChatServerHandlerV2 extends SimpleChannelInboundHandler<ExchangeMessage> {
-        private static final Logger LOG = LoggerFactory.getLogger(ChatServerHandlerV2.class);
-
-        private static final INettyMessageDispatch messageDispatch = new NettyMessageDispatchV2();
+    private class ChatServerHandlerV2 extends SimpleChannelInboundHandler<ExchangeMessage> {
+        private final Logger LOG = LoggerFactory.getLogger(ChatServerHandlerV2.class);
 
     /*private static LoginHandler loginHandler = new LoginHandler();
     private static LogoutHandler logoutHandler = new LogoutHandler();

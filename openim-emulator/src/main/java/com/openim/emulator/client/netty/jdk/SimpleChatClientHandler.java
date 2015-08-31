@@ -1,4 +1,4 @@
-package com.openim.emulator.client;
+package com.openim.emulator.client.netty.jdk;
 
 import com.openim.common.im.bean.DeviceMsg;
 import io.netty.channel.ChannelHandlerContext;

@@ -1,9 +1,10 @@
 package com.openim.common.im.codec.protobuf;
 
 import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
-import com.openim.common.im.codec.netty.v2.OpenIMProtobufDecoder;
-import com.openim.common.im.codec.netty.v2.OpenIMProtobufEncoder;
+import com.openim.common.im.codec.netty.OpenIMProtobufDecoderV2;
+import com.openim.common.im.codec.netty.OpenIMProtobufEncoderV2;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.junit.Test;
@@ -30,9 +31,9 @@ public class OpenIMProtobufCodecTest {
         ProtobufConnectMessage.ConnectMessage connectMessage = ProtobufConnectMessage.ConnectMessage.newBuilder().setLoginId("测试").setPassword("测试").build();
 
         ExchangeMessage message = new ExchangeMessage();
-        message.setType(127);
+        message.setType(MessageType.CHAT);
         message.setMessageLite(connectMessage);
-        OpenIMProtobufEncoder encoder = new OpenIMProtobufEncoder();
+        OpenIMProtobufEncoderV2 encoder = new OpenIMProtobufEncoderV2();
         encoder.encode(null, message, byteBuf);
 
         return byteBuf.array();
@@ -40,7 +41,7 @@ public class OpenIMProtobufCodecTest {
     }
 
     private void testDecoder(byte[] encoderData) throws Exception {
-        OpenIMProtobufDecoder decoder = new OpenIMProtobufDecoder();
+        OpenIMProtobufDecoderV2 decoder = new OpenIMProtobufDecoderV2();
         ByteBuf byteBuf = Unpooled.copiedBuffer(encoderData);
         decoder.decode(null,byteBuf, new ArrayList<Object>());
     }

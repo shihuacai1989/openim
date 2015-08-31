@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Created by shihuacai on 2015/7/28.
  */
 @Component
-public class TestMessageDispatch implements IMessageDispatch {
+public class TestMessageDispatch implements IMessageQueueDispatch {
     private static final Logger LOG = LoggerFactory.getLogger(TestMessageDispatch.class);
 
     @Override

@@ -6,7 +6,7 @@ import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.codec.mq.IMQCodec;
 import com.openim.common.im.codec.mq.MQBsonCodec;
-import com.openim.common.mq.IMessageDispatch;
+import com.openim.common.mq.IMessageQueueDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class ChatServerMessageDispatchV2 implements IMessageDispatch {
+public class ChatServerMessageDispatchV2 implements IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV2.class);
 

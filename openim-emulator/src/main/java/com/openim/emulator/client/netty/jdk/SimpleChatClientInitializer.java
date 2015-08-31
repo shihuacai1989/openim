@@ -1,4 +1,4 @@
-package com.openim.emulator.client;
+package com.openim.emulator.client.netty.jdk;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

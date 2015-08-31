@@ -5,7 +5,7 @@ import com.openim.chatserver.net.server.IChatServer;
 /**
  * Created by shihuacai on 2015/8/19.
  */
-public class MinaChatServer implements IChatServer {
+public class MinaChatServerV2 implements IChatServer {
 
     @Override
     public void startServer() {

@@ -13,23 +13,26 @@ import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
  * Created by shihuacai on 2015/7/22.
  */
-//@Component
+@Component
 public class LogoutHandlerV2 implements INettyMessageHandlerV2 {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandlerV2.class);
 
     private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
 
+    @Autowired
     private IMessageSender messageSender;
 
-    public LogoutHandlerV2() {
+    /*public LogoutHandlerV2() {
         messageSender = ApplicationContextAware.getBean(IMessageSender.class);
-    }
+    }*/
 
     @Override
     public void handle(Channel channel, ExchangeMessage exchangeMessage) {

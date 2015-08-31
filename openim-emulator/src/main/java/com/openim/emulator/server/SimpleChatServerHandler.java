@@ -11,6 +11,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 /**
  * Created by shihuacai on 2015/7/22.
  */
+@Deprecated
 public class SimpleChatServerHandler extends SimpleChannelInboundHandler<DeviceMsg> {
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 

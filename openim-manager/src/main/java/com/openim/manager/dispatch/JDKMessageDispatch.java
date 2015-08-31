@@ -2,7 +2,7 @@ package com.openim.manager.dispatch;
 
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.mq.IMessageDispatch;
+import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.manager.dispatch.handler.jdk.LoginHandler;
 import com.openim.manager.dispatch.handler.jdk.LogoutHandler;
 import com.openim.manager.dispatch.handler.jdk.SendHandler;
@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
  * Created by shihuacai on 2015/7/29.
  */
 @Deprecated
-public class JDKMessageDispatch implements IMessageDispatch {
+public class JDKMessageDispatch implements IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDKMessageDispatch.class);
     private static final Charset charset = Charset.forName("UTF-8");

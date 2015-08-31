@@ -14,22 +14,25 @@ import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by shihuacai on 2015/7/22.
  */
-//@Component
+@Component
 public class ChatHandlerV2 implements INettyMessageHandlerV2 {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandlerV2.class);
 
     private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
 
+    @Autowired
     private IMessageSender messageSender;
 
-    public ChatHandlerV2() {
+    /*public ChatHandlerV2() {
         messageSender = ApplicationContextAware.getBean(IMessageSender.class);
-    }
+    }*/
 
     @Override
     public void handle(Channel channel, ExchangeMessage exchangeMessage) {

@@ -10,6 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * Created by shihuacai on 2015/7/22.
  */
+@Deprecated
 public class ChatServer {
     private int port;
 

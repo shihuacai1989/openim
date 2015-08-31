@@ -1,4 +1,4 @@
-package com.openim.common.im.codec.netty.v2;
+package com.openim.common.im.codec.netty;
 
 import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.MessageLite;
@@ -16,14 +16,9 @@ import java.util.List;
 /**
  * Created by shihuacai on 2015/8/20.
  */
-public class OpenIMProtobufDecoder extends ByteToMessageDecoder {
+public class OpenIMProtobufDecoderV2 extends ByteToMessageDecoder {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OpenIMProtobufDecoder.class);
-
-    /*MessageLite messageLite;
-    public OpenIMProtobufDecoder(MessageLite messageLite){
-        this.messageLite = messageLite;
-    }*/
+    private static final Logger LOG = LoggerFactory.getLogger(OpenIMProtobufDecoderV2.class);
 
     @Override
     public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {

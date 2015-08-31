@@ -1,6 +1,6 @@
 package com.openim.common.mq.rabbitmq.listener;
 
-import com.openim.common.mq.IMessageDispatch;
+import com.openim.common.mq.IMessageQueueDispatch;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RabbitMQMessageListener implements MessageListener {
 
     @Autowired
-    IMessageDispatch messageDispatch;
+    IMessageQueueDispatch messageDispatch;
 
     @Override
     public void onMessage(Message amqpMessage) {

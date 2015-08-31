@@ -4,7 +4,7 @@ import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.codec.mq.IMQCodec;
 import com.openim.common.im.codec.mq.MQBsonCodec;
-import com.openim.common.mq.IMessageDispatch;
+import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.util.CharsetUtil;
 import com.openim.manager.dispatch.handler.v2.ChatHandler;
 import com.openim.manager.dispatch.handler.v2.ConnectHandler;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class MessageDispatchV2 implements IMessageDispatch {
+public class MessageDispatchV2 implements IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(MessageDispatchV2.class);
     //private static final Charset charset = Charset.forName("UTF-8");

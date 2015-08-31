@@ -10,6 +10,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 /**
  * Created by shihuacai on 2015/7/22.
  */
+@Deprecated
 public class SimpleChatServerInitializer extends
         ChannelInitializer<SocketChannel> {
 

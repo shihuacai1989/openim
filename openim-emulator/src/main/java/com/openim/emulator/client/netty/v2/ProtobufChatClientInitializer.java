@@ -1,7 +1,7 @@
-package com.openim.emulator.protobufclient.v2;
+package com.openim.emulator.client.netty.v2;
 
-import com.openim.common.im.codec.netty.v2.OpenIMProtobufDecoder;
-import com.openim.common.im.codec.netty.v2.OpenIMProtobufEncoder;
+import com.openim.common.im.codec.netty.OpenIMProtobufDecoderV2;
+import com.openim.common.im.codec.netty.OpenIMProtobufEncoderV2;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -15,8 +15,8 @@ public class ProtobufChatClientInitializer extends ChannelInitializer<SocketChan
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
 
-        pipeline.addLast("encoder", new OpenIMProtobufEncoder());
-        pipeline.addLast("decoder", new OpenIMProtobufDecoder());
+        pipeline.addLast("encoder", new OpenIMProtobufEncoderV2());
+        pipeline.addLast("decoder", new OpenIMProtobufDecoderV2());
         pipeline.addLast("handler", new ProtobufChatClientHandler());
 
     }

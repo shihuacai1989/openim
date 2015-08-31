@@ -1,4 +1,4 @@
-package com.openim.emulator.protobufclient.v1;
+package com.openim.emulator.client.netty.v1;
 
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelInitializer;

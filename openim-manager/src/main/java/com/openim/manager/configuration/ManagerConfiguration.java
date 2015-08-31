@@ -1,6 +1,6 @@
 package com.openim.manager.configuration;
 
-import com.openim.common.mq.IMessageDispatch;
+import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.cache.login.ILoginCache;
 import com.openim.manager.cache.login.LoginMemoryCache;
@@ -23,7 +23,7 @@ public class ManagerConfiguration {
     }
 
     @Bean
-    IMessageDispatch messageDispatch() {
+    IMessageQueueDispatch messageDispatch() {
         return new MessageDispatchV2();
     }
 

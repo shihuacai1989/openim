@@ -9,6 +9,8 @@ import com.openim.common.im.bean.MessageType;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,20 +18,23 @@ import java.util.Map;
 /**
  * Created by shihc on 2015/8/31.
  */
-public class NettyMessageDispatchV2 implements INettyMessageDispatch {
+public class NettyMessageDispatchV2 implements INettyMessageDispatch, InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(NettyMessageDispatchV2.class);
     /*private static LoginHandler loginHandler = new LoginHandler();
     private static LogoutHandler logoutHandler = new LogoutHandler();
     private static ChatHandler chatHandler = new ChatHandler();*/
 
-    private static final Map<Integer, INettyMessageHandlerV2> handlerMap = new HashMap<Integer, INettyMessageHandlerV2>(){
-        {
-            put(MessageType.LOGIN, new LoginHandlerV2());
-            put(MessageType.LOGOUT, new LogoutHandlerV2());
-            put(MessageType.CHAT, new ChatHandlerV2());
-        }
-    };
+    @Autowired
+    private LoginHandlerV2 loginHandlerV2;
+
+    @Autowired
+    private LogoutHandlerV2 logoutHandlerV2;
+
+    @Autowired
+    private ChatHandlerV2 chatHandlerV2;
+
+    private static final Map<Integer, INettyMessageHandlerV2> handlerMap = new HashMap<Integer, INettyMessageHandlerV2>();
 
     @Override
     public void dispatch(ChannelHandlerContext ctx, ExchangeMessage msg) {
@@ -39,14 +44,12 @@ public class NettyMessageDispatchV2 implements INettyMessageDispatch {
         }else{
             LOG.error("未找到的消息处理器: " + msg);
         }
+    }
 
-        /*int type = msg.getType();
-        if (type == MessageType.LOGIN) {
-            loginHandler.handle(msg, ctx.channel());
-        } else if (type == MessageType.LOGOUT) {
-            logoutHandler.handle(msg, ctx.channel());
-        } else if (type == MessageType.CHAT) {
-            chatHandler.handle(msg, ctx.channel());
-        }*/
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        handlerMap.put(MessageType.LOGIN, loginHandlerV2);
+        handlerMap.put(MessageType.LOGOUT, logoutHandlerV2);
+        handlerMap.put(MessageType.CHAT, chatHandlerV2);
     }
 }
