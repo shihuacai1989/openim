@@ -1,11 +1,32 @@
 package com.openim.common.im.codec.protobuf;
 
+import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
+import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
+import com.openim.common.im.codec.mq.IMQCodec;
+import com.openim.common.im.codec.mq.MQBsonCodec;
 import org.junit.Test;
 
 /**
  * Created by shihuacai on 2015/8/24.
  */
 public class BsonTest {
+
+    @Test
+    public void mongoBsonTest(){
+        ProtobufChatMessage.ChatMessage chatMessage = ProtobufChatMessage.ChatMessage.newBuilder().setTo("接受者").setMsg("消息体").build();
+        ExchangeMessage exchangeMessage = new ExchangeMessage();
+        exchangeMessage.setType(MessageType.CHAT);
+        exchangeMessage.setMessageLite(chatMessage);
+
+        IMQCodec<ExchangeMessage> imqCodec = new MQBsonCodec();
+        byte[] encodeData = imqCodec.encode(exchangeMessage);
+
+
+        ExchangeMessage exchangeMessage1 = imqCodec.decode(encodeData);
+        System.out.println(exchangeMessage1);
+
+    }
 
     @Test
     public void bson4jacksonTest() {

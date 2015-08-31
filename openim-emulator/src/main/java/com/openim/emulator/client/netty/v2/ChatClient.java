@@ -1,10 +1,7 @@
 package com.openim.emulator.client.netty.v2;
 
-import com.alibaba.fastjson.JSON;
-import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.ProtobufDeviceMsg;
 import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import io.netty.bootstrap.Bootstrap;
@@ -28,6 +25,7 @@ public class ChatClient {
     private String user2 = "user2";
 
     private String currentUser = null;
+    private String targetUser = null;
 
     public ChatClient(String host, int port) {
         this.host = host;
@@ -69,7 +67,7 @@ public class ChatClient {
                             exchangeMessage.setMessageLite(connectMessage);
                             channel.writeAndFlush(exchangeMessage);
 
-                            String targetUser = currentUser.equals(user1) ? user2 : user1;
+                            targetUser = currentUser.equals(user1) ? user2 : user1;
                             //System.out.println("开始向" + targetUser + "发送消息");
 
                             currentOps = CurrentOps.chat;
@@ -78,7 +76,7 @@ public class ChatClient {
                         }
 
                     }else if(currentOps == CurrentOps.chat){
-                        ProtobufChatMessage.ChatMessage chatMessage = ProtobufChatMessage.ChatMessage.newBuilder().setMsg(line).build();
+                        ProtobufChatMessage.ChatMessage chatMessage = ProtobufChatMessage.ChatMessage.newBuilder().setMsg(line).setTo(targetUser).build();
                         ExchangeMessage exchangeMessage = new ExchangeMessage();
                         exchangeMessage.setType(MessageType.CHAT);
                         exchangeMessage.setMessageLite(chatMessage);

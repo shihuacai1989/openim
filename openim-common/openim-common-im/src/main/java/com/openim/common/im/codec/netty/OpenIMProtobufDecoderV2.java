@@ -54,6 +54,7 @@ public class OpenIMProtobufDecoderV2 extends ByteToMessageDecoder {
                         exchangeMessage.setMessageLite(messageLite);
                         out.add(exchangeMessage);
                     }
+                    return;
                 }
             }
         }

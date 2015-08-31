@@ -26,7 +26,7 @@ public class ZKServerRegister implements IServerRegister {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        //如果zk为启动，则连接出错，阻塞在此处，影响系统其他组件的初始化工作，故新开一个线程注册服务;
+        //如果zk未启动，则连接出错，阻塞在此处，影响系统其他组件的初始化工作，故新开一个线程注册服务;
         new Thread(new Runnable() {
             @Override
             public void run() {
