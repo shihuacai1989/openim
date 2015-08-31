@@ -1,6 +1,7 @@
 package com.openim.emulator.client.netty.v2;
 
 import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,8 +11,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 public class ProtobufChatClientHandler extends SimpleChannelInboundHandler<ExchangeMessage> {
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ExchangeMessage s) throws Exception {
-        System.out.println(s);
+    protected void channelRead0(ChannelHandlerContext ctx, ExchangeMessage exchangeMessage) throws Exception {
+        int type = exchangeMessage.getType();
+
+        if(type == MessageType.CHAT) {
+            System.out.println(exchangeMessage.getMessageLite().toString());
+        }
     }
 
     @Override

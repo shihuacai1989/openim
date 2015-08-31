@@ -1,6 +1,7 @@
 package com.openim.chatserver.dispatch;
 
 import com.openim.chatserver.dispatch.handle.v2.ChatHandler;
+import com.openim.chatserver.dispatch.handle.v2.FriendOnLineHandler;
 import com.openim.chatserver.dispatch.handle.v2.IMessageHandler;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
@@ -25,6 +26,7 @@ public class ChatServerMessageDispatchV2 implements IMessageQueueDispatch {
     private static Map<Integer, IMessageHandler> msgHandler = new HashMap<Integer, IMessageHandler>(){
         {
             put(MessageType.CHAT, new ChatHandler());
+            put(MessageType.FRIEND_ONLINE, new FriendOnLineHandler());
         }
     };
 

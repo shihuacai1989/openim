@@ -27,6 +27,11 @@ public class MessageType {
     public static final int Working = 7;
 
     /**
+     * 好友上线
+     */
+    public static final int FRIEND_ONLINE = 8;
+
+    /**
      * 消息打开回执
      */
     //public static final int OPEN = 4;

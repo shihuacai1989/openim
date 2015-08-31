@@ -324,4 +324,26 @@ public class UserServiceImpl implements IUserService {
 
         return new ListResult<User>(code, users);
     }
+
+    @Override
+    public CommonResult<Integer> updateUserServerQueue(String loginId, String serverQueue) {
+        int code = ResultCode.success;
+        int updateCount = 0;
+        String error = null;
+        try {
+            Query query = new Query(new Criteria("loginId").is(loginId));
+
+            Update update = new Update();
+            update.set("connectServer", serverQueue);
+
+            WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
+            updateCount = writeResult.getN();
+        } catch (Exception e) {
+            code = ResultCode.error;
+            error = e.toString();
+            LOG.error(e.toString());
+        }
+
+        return new CommonResult<Integer>(code, updateCount, error);
+    }
 }

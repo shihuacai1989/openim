@@ -3,7 +3,6 @@
 
 package com.openim.common.im.bean;
 
-@Deprecated
 public final class ProtobufDeviceMsg {
   private ProtobufDeviceMsg() {}
   public static void registerAllExtensions(

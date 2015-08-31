@@ -34,7 +34,7 @@ public class ChatHandler implements IMessageHandler<ExchangeMessage> {
     @Override
     public void handle(ExchangeMessage exchangeMessage) {
         try {
-            ProtobufChatMessage.ChatMessage chatMessage = (ProtobufChatMessage.ChatMessage) exchangeMessage.getMessageLite();
+            ProtobufChatMessage.ChatMessage chatMessage = exchangeMessage.getMessageLite();
             String to = chatMessage.getTo();
             if (!StringUtils.isEmpty(to)) {
                 User toUser = loginCache.get(to);
