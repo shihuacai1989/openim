@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.server.mina;
+package com.openim.chatserver.net.server.mina.v2;
 
 import com.openim.chatserver.net.server.IChatServer;
 

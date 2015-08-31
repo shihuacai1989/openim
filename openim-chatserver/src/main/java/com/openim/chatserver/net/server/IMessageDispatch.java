@@ -1,8 +1,5 @@
 package com.openim.chatserver.net.server;
 
-import com.openim.common.im.bean.ExchangeMessage;
-import io.netty.channel.ChannelHandlerContext;
-
 /**
  * Created by shihc on 2015/8/31.
  */

@@ -8,5 +8,5 @@ import io.netty.channel.Channel;
  * Created by shihuacai on 2015/7/22.
  */
 public interface INettyMessageHandlerV2 extends IMessageHandler<Channel, ExchangeMessage> {
-    void handle(Channel channel, ExchangeMessage message);
+    //void handle(Channel channel, ExchangeMessage message);
 }

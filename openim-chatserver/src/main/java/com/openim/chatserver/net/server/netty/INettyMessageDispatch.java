@@ -2,7 +2,6 @@ package com.openim.chatserver.net.server.netty;
 
 import com.openim.chatserver.net.server.IMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 
 /**

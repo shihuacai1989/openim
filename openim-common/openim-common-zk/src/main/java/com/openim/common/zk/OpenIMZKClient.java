@@ -2,7 +2,6 @@ package com.openim.common.zk;
 
 import com.openim.common.util.CharsetUtil;
 import com.openim.common.zk.client.CuratorZKClient;
-import com.openim.common.zk.client.GenericZKClient;
 import com.openim.common.zk.client.IZKClient;
 import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang.StringUtils;

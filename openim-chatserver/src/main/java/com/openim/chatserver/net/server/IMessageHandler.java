@@ -1,8 +1,5 @@
 package com.openim.chatserver.net.server;
 
-import com.openim.common.im.bean.ExchangeMessage;
-import io.netty.channel.Channel;
-
 /**
  * Created by shihuacai on 2015/7/22.
  */

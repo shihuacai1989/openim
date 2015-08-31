@@ -1,9 +1,9 @@
 package com.openim.chatserver.net.server.netty.v2;
 
+import com.openim.chatserver.net.server.netty.INettyMessageDispatch;
 import com.openim.chatserver.net.server.netty.v2.hander.ChatHandlerV2;
 import com.openim.chatserver.net.server.netty.v2.hander.LoginHandlerV2;
 import com.openim.chatserver.net.server.netty.v2.hander.LogoutHandlerV2;
-import com.openim.chatserver.net.server.netty.INettyMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import io.netty.channel.ChannelHandlerContext;
