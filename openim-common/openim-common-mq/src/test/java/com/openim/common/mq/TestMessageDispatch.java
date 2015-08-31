@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class TestMessageDispatch implements IMessageDispatch {
-    Logger LOG = LoggerFactory.getLogger(TestMessageDispatch.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TestMessageDispatch.class);
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] message) {
-        LOG.info("exchange:{}, routeKey:{}, message:{}", exchange, routeKey, message);
+        //LOG.info("exchange:{}, routeKey:{}, message:{}", exchange, routeKey, message);
         //System.out.println(message);
     }
 }

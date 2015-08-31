@@ -1,6 +1,6 @@
 package com.openim.common.zk.client;
 
-import com.openim.common.zk.ChatServerNodeChangedListener;
+import com.openim.common.zk.INodeChangedListener;
 import com.openim.common.zk.bean.Node;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface IZKClient {
 
     void connectZK(String zkServers);
 
-    void connectZK(String zkServers, String listeningPath, ChatServerNodeChangedListener listener);
+    void connectZK(String zkServers, String listeningPath, INodeChangedListener listener);
 
     void addPersistNode(String path, byte[] data);
 

@@ -1,6 +1,6 @@
 package com.openim.common.zk.client;
 
-import com.openim.common.zk.ChatServerNodeChangedListener;
+import com.openim.common.zk.INodeChangedListener;
 import com.openim.common.zk.bean.Node;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
@@ -25,7 +25,7 @@ public class GenericZKClient implements IZKClient {
     private Stat stat = new Stat();
 
     private String listeningPath = null;
-    private ChatServerNodeChangedListener nodeChangedListener = null;
+    private INodeChangedListener nodeChangedListener = null;
 
     @Override
     public void connectZK(String zkServers) {
@@ -51,7 +51,7 @@ public class GenericZKClient implements IZKClient {
     }
 
     @Override
-    public void connectZK(String zkServers, String listeningPath, ChatServerNodeChangedListener nodeChangedListener) {
+    public void connectZK(String zkServers, String listeningPath, INodeChangedListener nodeChangedListener) {
         try {
             this.listeningPath = listeningPath;
             this.nodeChangedListener = nodeChangedListener;

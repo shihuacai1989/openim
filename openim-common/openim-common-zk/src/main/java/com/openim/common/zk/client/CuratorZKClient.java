@@ -1,6 +1,6 @@
 package com.openim.common.zk.client;
 
-import com.openim.common.zk.ChatServerNodeChangedListener;
+import com.openim.common.zk.INodeChangedListener;
 import com.openim.common.zk.bean.Node;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -26,7 +26,7 @@ public class CuratorZKClient implements IZKClient {
     private final ExecutorService pool = Executors.newFixedThreadPool(1);
     private CuratorFramework client;
     private String listeningPath = null;
-    private ChatServerNodeChangedListener nodeChangedListener = null;
+    private INodeChangedListener nodeChangedListener = null;
 
     @Override
     public void connectZK(String zkServers) {
@@ -42,7 +42,7 @@ public class CuratorZKClient implements IZKClient {
     }
 
     @Override
-    public void connectZK(String zkServers, String listeningPath, ChatServerNodeChangedListener nodeChangedListener) {
+    public void connectZK(String zkServers, String listeningPath, INodeChangedListener nodeChangedListener) {
 
         connectZK(zkServers);
 

@@ -10,35 +10,35 @@ import com.openim.common.im.codec.mq.MQBsonCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * protocolbuffer
  * Created by shihuacai on 2015/7/29.
  */
 public class ChatServerMessageDispatchV2 implements IMessageDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV2.class);
 
-    private static IMessageHandler chatHandler = new ChatHandler();
-
     private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
+
+    private static Map<Integer, IMessageHandler> msgHandler = new HashMap<Integer, IMessageHandler>(){
+        {
+            put(MessageType.CHAT, new ChatHandler());
+        }
+    };
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
         try {
-            /*BSONObject bsonObject = BSON.decode(bytes);
-            int type = Integer.valueOf(String.valueOf(bsonObject.get("type")));
-            byte[] messageBytes = (byte[])bsonObject.get("message");
-
-            ExchangeMessage exchangeMessage = new ExchangeMessage();
-            exchangeMessage.setType(type);
-            MessageLite messageLite = MessageParserV2.parse(type, messageBytes);
-            exchangeMessage.setMessageLite(messageLite);*/
-
             ExchangeMessage exchangeMessage = mqCodec.decode(bytes);
             if(exchangeMessage != null){
                 int type = exchangeMessage.getType();
-                if(type == MessageType.CHAT){
-                    chatHandler.handle(exchangeMessage);
+                IMessageHandler messageHandler = msgHandler.get(type);
+                if(messageHandler != null){
+                    messageHandler.handle(exchangeMessage);
+                }else{
+                    LOG.error("未找到指定type的消息处理器, {}", exchangeMessage);
                 }
             }
         }catch (Exception e){

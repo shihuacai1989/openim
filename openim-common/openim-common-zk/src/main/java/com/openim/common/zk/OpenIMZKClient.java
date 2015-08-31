@@ -2,6 +2,7 @@ package com.openim.common.zk;
 
 import com.openim.common.util.CharsetUtil;
 import com.openim.common.zk.client.CuratorZKClient;
+import com.openim.common.zk.client.GenericZKClient;
 import com.openim.common.zk.client.IZKClient;
 import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +31,7 @@ public class OpenIMZKClient {
             throw new NullArgumentException("zkServers不可为空");
         }
         this.zkServers = zkServers;
+        //zkClient = new GenericZKClient();
         zkClient = new CuratorZKClient();
     }
 
@@ -37,8 +39,8 @@ public class OpenIMZKClient {
         zkClient.connectZK(zkServers);
     }
 
-    public void connectZKServer(ChatServerNodeChangedListener chatServerNodeChangedListener) {
-        zkClient.connectZK(zkServers, rootNodePath, chatServerNodeChangedListener);
+    public void connectZKServer(INodeChangedListener iNodeChangedListener) {
+        zkClient.connectZK(zkServers, rootNodePath, iNodeChangedListener);
     }
 
     public void addRootNode() {

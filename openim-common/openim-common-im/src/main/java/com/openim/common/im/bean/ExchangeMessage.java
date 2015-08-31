@@ -26,12 +26,17 @@ public class ExchangeMessage {
         this.type = type;
     }
     //@JsonIgnore
-    public MessageLite getMessageLite() {
-        return messageLite;
+    public <T extends MessageLite> T getMessageLite() {
+        return (T)messageLite;
     }
 
     public void setMessageLite(MessageLite messageLite) {
         this.messageLite = messageLite;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("type:%d, message:%s", type, String.valueOf(messageLite.toByteArray()));
     }
 
     /*@Override

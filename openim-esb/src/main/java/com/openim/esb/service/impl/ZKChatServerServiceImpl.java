@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.openim.common.im.bean.CommonResult;
 import com.openim.common.im.bean.ResultCode;
 import com.openim.common.util.CharsetUtil;
-import com.openim.common.zk.ChatServerNodeChangedListener;
+import com.openim.common.zk.INodeChangedListener;
 import com.openim.common.zk.OpenIMZKClient;
 import com.openim.common.zk.bean.Node;
 import com.openim.common.zk.bean.NodeField;
@@ -46,7 +46,7 @@ public class ZKChatServerServiceImpl implements IChatServerService {
     @Override
     public void afterPropertiesSet() throws Exception {
         OpenIMZKClient imZKClient = new OpenIMZKClient(zkServers);
-        imZKClient.connectZKServer(new ChatServerNodeChangedListener() {
+        imZKClient.connectZKServer(new INodeChangedListener() {
             @Override
             public void onChanged(List<Node> data, boolean success) {
                 writeLock.lock();
