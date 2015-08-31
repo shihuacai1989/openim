@@ -1,8 +1,8 @@
 package com.openim.chatserver.configuration;
 
 import com.openim.chatserver.dispatch.ChatServerMessageDispatchV2;
-import com.openim.chatserver.net.server.netty.INettyMessageDispatch;
-import com.openim.chatserver.net.server.netty.v2.NettyMessageDispatchV2;
+import com.openim.chatserver.net.netty.INettyMessageDispatch;
+import com.openim.chatserver.net.netty.v2.NettyMessageDispatchV2;
 import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.util.IPUtil;
 import org.springframework.amqp.core.Binding;
