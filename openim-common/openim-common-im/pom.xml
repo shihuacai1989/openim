@@ -26,6 +26,29 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-integration-spring</artifactId>
+            <version>1.1.7</version>
+            <!--<exclusions>
+
+                <exclusion>
+                    <groupId>org.apache.mina</groupId>
+                    <artifactId>mina-filter-ssl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+
+
+
+        <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
         </dependency>

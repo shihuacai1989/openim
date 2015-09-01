@@ -23,6 +23,7 @@
         <mongo.java.version>2.13.0</mongo.java.version>
         <protobuf.version>2.4.1</protobuf.version>
         <netty.version>4.0.29.Final</netty.version>
+        <mina.version>2.0.9</mina.version>
         <openim.version>0.1</openim.version>
         <spring.boot.version>1.2.5.RELEASE</spring.boot.version>
         <spring.version>4.1.7.RELEASE</spring.version>
@@ -44,6 +45,10 @@
     </dependencies>
 
     <dependencyManagement>
+
+
+
+
         <dependencies>
             <dependency>
                 <groupId>junit</groupId>
@@ -55,6 +60,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.1.45</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.mina</groupId>
+                <artifactId>mina-core</artifactId>
+                <version>${mina.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mongodb</groupId>

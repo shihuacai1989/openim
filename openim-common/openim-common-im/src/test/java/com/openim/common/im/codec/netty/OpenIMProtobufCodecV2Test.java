@@ -1,4 +1,4 @@
-package com.openim.common.im.codec.protobuf;
+package com.openim.common.im.codec.netty;
 
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by shihuacai on 2015/8/20.
  */
-public class OpenIMProtobufCodecTest {
+public class OpenIMProtobufCodecV2Test {
 
     @Test
     public void testCodec() throws Exception {

@@ -22,8 +22,6 @@ public class ChatHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);
 
-    //private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
-
     @Autowired
     private IMessageSender messageSender;
 

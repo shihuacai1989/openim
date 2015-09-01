@@ -1,4 +1,4 @@
-package com.openim.common.im.codec.protobuf;
+package com.openim.common.im.codec.mq;
 
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;

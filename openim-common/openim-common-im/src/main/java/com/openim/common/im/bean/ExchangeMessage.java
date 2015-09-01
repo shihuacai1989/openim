@@ -1,6 +1,7 @@
 package com.openim.common.im.bean;
 
 import com.google.protobuf.MessageLite;
+import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 
 /**
  * Created by shihuacai on 2015/8/20.
@@ -36,7 +37,7 @@ public class ExchangeMessage {
 
     @Override
     public String toString() {
-        return String.format("type:%d, message:%s", type, String.valueOf(messageLite.toByteArray()));
+        return new String(MQBsonCodecUtilV2.encode(this));
     }
 
     /*@Override
