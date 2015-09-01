@@ -17,23 +17,20 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by shihuacai on 2015/8/19.
  */
-@Component
 public class NettyChatServerV2 implements IChatServer {
     private static final Logger LOG = LoggerFactory.getLogger(NettyChatServerV2.class);
 
     @Value("${chat.port}")
     private int port;
 
-    @Autowired
+    //@Autowired
     private INettyMessageDispatch messageDispatch;
 
     @Override
