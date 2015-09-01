@@ -17,7 +17,7 @@ public class NettySession implements Session {
 
     @Override
     public String getLoginId() {
-        return null;
+        return loginId;
     }
 
     @Override
