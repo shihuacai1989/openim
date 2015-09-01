@@ -13,12 +13,12 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by shihuacai on 2015/8/26.
  */
-public class MQBsonCodec implements IMQCodec<ExchangeMessage> {
+public class MQBsonCodecUtilV2{
 
-    private static final Logger LOG = LoggerFactory.getLogger(MQBsonCodec.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MQBsonCodecUtilV2.class);
 
-    @Override
-    public byte[] encode(ExchangeMessage msg) {
+
+    public static byte[] encode(ExchangeMessage msg) {
         if(msg != null){
             /*BasicDBObject obj = new BasicDBObject();
             obj.put("type", msg.getType());
@@ -35,8 +35,7 @@ public class MQBsonCodec implements IMQCodec<ExchangeMessage> {
         return null;
     }
 
-    @Override
-    public ExchangeMessage decode(byte[] bytes) {
+    public static ExchangeMessage decode(byte[] bytes) {
         try {
             BasicBSONDecoder decoder = new BasicBSONDecoder();
             BSONObject bsonObject = decoder.readObject(bytes);
@@ -48,18 +47,6 @@ public class MQBsonCodec implements IMQCodec<ExchangeMessage> {
             MessageLite messageLite = MessageParserV2.parse(type, messageBytes);
             exchangeMessage.setMessageLite(messageLite);
             return exchangeMessage;
-
-
-
-            /*BSONObject bsonObject = BSON.decode(bytes);
-            int type = Integer.valueOf(String.valueOf(bsonObject.get("type")));
-            byte[] messageBytes = (byte[])bsonObject.get("message");
-
-            ExchangeMessage exchangeMessage = new ExchangeMessage();
-            exchangeMessage.setType(type);
-            MessageLite messageLite = MessageParserV2.parse(type, messageBytes);
-            exchangeMessage.setMessageLite(messageLite);
-            return exchangeMessage;*/
         }catch (Exception e){
             LOG.error(e.toString());
         }

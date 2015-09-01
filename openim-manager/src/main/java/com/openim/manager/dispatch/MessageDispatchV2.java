@@ -2,8 +2,7 @@ package com.openim.manager.dispatch;
 
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.codec.mq.IMQCodec;
-import com.openim.common.im.codec.mq.MQBsonCodec;
+import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.util.CharsetUtil;
 import com.openim.manager.dispatch.handler.v2.ChatHandler;
@@ -20,7 +19,7 @@ public class MessageDispatchV2 implements IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(MessageDispatchV2.class);
     //private static final Charset charset = Charset.forName("UTF-8");
-    private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
+    //private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 
     @Autowired
     private ConnectHandler loginHandler;
@@ -32,7 +31,7 @@ public class MessageDispatchV2 implements IMessageQueueDispatch {
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] c) {
         try {
-            ExchangeMessage exchangeMessage = mqCodec.decode(c);
+            ExchangeMessage exchangeMessage = MQBsonCodecUtilV2.decode(c);
             if(exchangeMessage != null){
                 int type = exchangeMessage.getType();
                 if (type == MessageType.CHAT) {

@@ -32,5 +32,5 @@ public interface IUserService {
 
     ListResult<User> getOnlineFriends(String loginId);
 
-    CommonResult<Integer> updateUserServerQueue(String loginId, String serverQueue);
+    CommonResult<Integer> updateUserLoginStatus(String loginId, int loginStatus, String serverQueue);
 }

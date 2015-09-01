@@ -32,6 +32,10 @@ public class MessageType {
     public static final int FRIEND_ONLINE = 8;
 
     /**
+     * 好友下线
+     */
+    public static final int FRIEND_OFFLINE = 9;
+    /**
      * 消息打开回执
      */
     //public static final int OPEN = 4;

@@ -3,8 +3,7 @@ package com.openim.common.im.codec.protobuf;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
-import com.openim.common.im.codec.mq.IMQCodec;
-import com.openim.common.im.codec.mq.MQBsonCodec;
+import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import org.junit.Test;
 
 /**
@@ -19,11 +18,10 @@ public class BsonTest {
         exchangeMessage.setType(MessageType.CHAT);
         exchangeMessage.setMessageLite(chatMessage);
 
-        IMQCodec<ExchangeMessage> imqCodec = new MQBsonCodec();
-        byte[] encodeData = imqCodec.encode(exchangeMessage);
+        byte[] encodeData = MQBsonCodecUtilV2.encode(exchangeMessage);
 
 
-        ExchangeMessage exchangeMessage1 = imqCodec.decode(encodeData);
+        ExchangeMessage exchangeMessage1 = MQBsonCodecUtilV2.decode(encodeData);
         System.out.println(exchangeMessage1);
 
     }

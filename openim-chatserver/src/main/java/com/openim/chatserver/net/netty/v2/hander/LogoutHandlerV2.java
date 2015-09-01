@@ -5,8 +5,7 @@ import com.openim.chatserver.net.netty.v2.INettyMessageHandlerV2;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
-import com.openim.common.im.codec.mq.IMQCodec;
-import com.openim.common.im.codec.mq.MQBsonCodec;
+import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import io.netty.channel.Channel;
@@ -24,7 +23,7 @@ public class LogoutHandlerV2 implements INettyMessageHandlerV2 {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandlerV2.class);
 
-    private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
+    //private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 
     @Autowired
     private IMessageSender messageSender;
@@ -43,13 +42,13 @@ public class LogoutHandlerV2 implements INettyMessageHandlerV2 {
                     disconnectMessage = disconnectMessage.toBuilder().setLoginId(loginId).build();
                     exchangeMessage.setMessageLite(disconnectMessage);
 
-                    messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, mqCodec.encode(exchangeMessage));
+                    messageSender.sendMessage(MQConstants.openimExchange, MQConstants.logoutRouteKey, MQBsonCodecUtilV2.encode(exchangeMessage));
                 }
             }catch (Exception e){
                 LOG.error(e.toString());
             }
         } else {
-            LOG.error("数据类型错误: " + mqCodec.encode(exchangeMessage));
+            LOG.error("数据类型错误: " + MQBsonCodecUtilV2.encode(exchangeMessage));
         }
     }
 }

@@ -5,8 +5,7 @@ import com.openim.chatserver.dispatch.handle.v2.FriendOnLineHandler;
 import com.openim.chatserver.dispatch.handle.v2.IMessageHandler;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.codec.mq.IMQCodec;
-import com.openim.common.im.codec.mq.MQBsonCodec;
+import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageQueueDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ public class ChatServerMessageDispatchV2 implements IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV2.class);
 
-    private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
+    //private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 
     private static Map<Integer, IMessageHandler> msgHandler = new HashMap<Integer, IMessageHandler>(){
         {
@@ -33,7 +32,7 @@ public class ChatServerMessageDispatchV2 implements IMessageQueueDispatch {
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] bytes) {
         try {
-            ExchangeMessage exchangeMessage = mqCodec.decode(bytes);
+            ExchangeMessage exchangeMessage = MQBsonCodecUtilV2.decode(bytes);
             if(exchangeMessage != null){
                 int type = exchangeMessage.getType();
                 IMessageHandler messageHandler = msgHandler.get(type);

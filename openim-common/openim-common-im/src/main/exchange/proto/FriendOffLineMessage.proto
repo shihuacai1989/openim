@@ -1,0 +1,8 @@
+package com.openim.common.im.bean.protbuf;
+
+option java_outer_classname = "ProtobufFriendOffLineMessage";
+
+message FriendOffLineMessage {
+  optional string loginId = 1;
+  optional string friendLoginId = 2;
+}

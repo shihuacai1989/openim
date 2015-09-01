@@ -1,13 +1,9 @@
 package com.openim.manager.dispatch.handler.v2;
 
-import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.bean.ListResult;
-import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.ResultCode;
+import com.openim.common.im.bean.*;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import com.openim.common.im.bean.protbuf.ProtobufFriendOnLineMessage;
-import com.openim.common.im.codec.mq.IMQCodec;
-import com.openim.common.im.codec.mq.MQBsonCodec;
+import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.bean.User;
@@ -30,7 +26,7 @@ public class ConnectHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ConnectHandler.class);
 
-    private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodec();
+    //private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 
     @Autowired
     private ILoginCache loginCache;
@@ -53,7 +49,7 @@ public class ConnectHandler implements IMessageHandler<ExchangeMessage> {
                 user.setLoginId(loginId);
                 loginCache.add(loginId, user);
 
-                userService.updateUserServerQueue(loginId, serverQueue);
+                userService.updateUserLoginStatus(loginId, LoginStatus.online, serverQueue);
 
                 //通知其好友上线了
                 ListResult<User> onlineResult = userService.getOnlineFriends(loginId);
@@ -68,10 +64,9 @@ public class ConnectHandler implements IMessageHandler<ExchangeMessage> {
                         ExchangeMessage onlineMessage = new ExchangeMessage();
                         onlineMessage.setType(MessageType.FRIEND_ONLINE);
                         onlineMessage.setMessageLite(friendOnLineMessage);
-                        messageSender.sendMessage(MQConstants.openimExchange, friend.getConnectServer(), mqCodec.encode(onlineMessage));
+                        messageSender.sendMessage(MQConstants.openimExchange, friend.getConnectServer(), MQBsonCodecUtilV2.encode(onlineMessage));
                     }
                 }
-
             } else {
                 LOG.error("登录信息不全：loginId:{}, serverQueue:{}", loginId, serverQueue);
             }

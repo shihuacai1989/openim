@@ -301,7 +301,6 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-
     public ListResult<User> getOnlineFriends(String loginId) {
         int code = ResultCode.success;
         List<User> users = null;
@@ -326,7 +325,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public CommonResult<Integer> updateUserServerQueue(String loginId, String serverQueue) {
+    public CommonResult<Integer> updateUserLoginStatus(String loginId, int loginStatus, String serverQueue) {
         int code = ResultCode.success;
         int updateCount = 0;
         String error = null;
@@ -334,8 +333,10 @@ public class UserServiceImpl implements IUserService {
             Query query = new Query(new Criteria("loginId").is(loginId));
 
             Update update = new Update();
-            update.set("connectServer", serverQueue);
-
+            update.set("loginStatus", loginStatus);
+            if(loginStatus != LoginStatus.offline){
+                update.set("connectServer", serverQueue);
+            }
             WriteResult writeResult = mongoTemplate.updateFirst(query, update, User.class);
             updateCount = writeResult.getN();
         } catch (Exception e) {
