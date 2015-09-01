@@ -3,13 +3,10 @@ package com.openim.common.im.codec.mina;
 import com.google.protobuf.CodedOutputStream;
 import com.google.protobuf.MessageLite;
 import com.openim.common.im.bean.ExchangeMessage;
-import io.netty.buffer.ByteBufOutputStream;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoderAdapter;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;
-
-import java.io.ByteArrayOutputStream;
 
 /**
  * Created by shihc on 2015/9/1.

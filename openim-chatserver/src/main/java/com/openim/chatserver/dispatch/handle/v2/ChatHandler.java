@@ -1,6 +1,6 @@
 package com.openim.chatserver.dispatch.handle.v2;
 
-import com.openim.chatserver.ChannelUtil;
+import com.openim.chatserver.SessionManager;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 
@@ -13,6 +13,6 @@ public class ChatHandler implements IMessageHandler {
     public void handle(ExchangeMessage exchangeMessage) {
         ProtobufChatMessage.ChatMessage  chatMessage = exchangeMessage.getMessageLite();
         String to = chatMessage.getTo();
-        ChannelUtil.sendMessage(to, exchangeMessage);
+        SessionManager.sendMessage(to, exchangeMessage);
     }
 }

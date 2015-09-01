@@ -26,6 +26,8 @@ public class ProtobufChatClientHandler extends SimpleChannelInboundHandler<Excha
         }else if(type == MessageType.FRIEND_OFFLINE){
             ProtobufFriendOffLineMessage.FriendOffLineMessage friendOffLineMessage = exchangeMessage.getMessageLite();
             System.out.println("好友下线, friendLoginId:" + friendOffLineMessage.getFriendLoginId());
+        }else{
+            System.out.println("无法处理的消息");
         }
     }
 

@@ -34,9 +34,9 @@ public class SessionManager {
     }
 
     public static void sendMessage(String loginId, Object message) {
-        Session channel = get(loginId);
-        if (channel != null) {
-            channel.write(message);
+        Session session = get(loginId);
+        if (session != null) {
+            session.write(message);
         }
     }
 }

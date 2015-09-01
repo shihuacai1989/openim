@@ -46,8 +46,8 @@ public class ChatClient {
             Channel channel = bootstrap.connect(host, port).sync().channel();
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("为方便测试，默认两个用户:user1,user2，退出系统请输入quit \r");
-            System.out.println("请输入登录名(user1或user2):");
+            System.out.println("为方便测试，默认两个用户:user1,user2，退出系统请输入quit");
+            System.out.print("请输入登录名(user1或user2):");
 
             while (true) {
                 String line = in.readLine();
@@ -72,7 +72,7 @@ public class ChatClient {
 
                             currentOps = CurrentOps.chat;
                         }else{
-                            //System.out.println("登录用户只能为user1或user2");
+                            System.out.println("登录用户只能为user1或user2");
                         }
 
                     }else if(currentOps == CurrentOps.chat){

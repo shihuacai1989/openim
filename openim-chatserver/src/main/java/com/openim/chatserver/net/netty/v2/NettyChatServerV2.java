@@ -17,6 +17,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.concurrent.TimeUnit;
@@ -30,7 +31,7 @@ public class NettyChatServerV2 implements IChatServer {
     @Value("${chat.port}")
     private int port;
 
-    //@Autowired
+    @Autowired
     private INettyMessageDispatch messageDispatch;
 
     @Override
@@ -76,7 +77,7 @@ public class NettyChatServerV2 implements IChatServer {
         protected void initChannel(SocketChannel ch) throws Exception {
             ChannelPipeline pipeline = ch.pipeline();
             //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
-            pipeline.addLast("ping", new IdleStateHandler(120, 0, 0, TimeUnit.SECONDS));
+            pipeline.addLast("ping", new IdleStateHandler(1200, 0, 0, TimeUnit.SECONDS));
 
             pipeline.addLast("encoder", new OpenIMProtobufEncoderV2());
             pipeline.addLast("decoder", new OpenIMProtobufDecoderV2());

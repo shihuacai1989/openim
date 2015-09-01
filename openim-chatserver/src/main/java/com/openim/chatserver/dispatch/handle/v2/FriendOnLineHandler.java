@@ -1,8 +1,7 @@
 package com.openim.chatserver.dispatch.handle.v2;
 
-import com.openim.chatserver.ChannelUtil;
+import com.openim.chatserver.SessionManager;
 import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
 import com.openim.common.im.bean.protbuf.ProtobufFriendOnLineMessage;
 
 /**
@@ -14,6 +13,6 @@ public class FriendOnLineHandler implements IMessageHandler {
     public void handle(ExchangeMessage exchangeMessage) {
         ProtobufFriendOnLineMessage.FriendOnLineMessage  chatMessage = exchangeMessage.getMessageLite();
         String loginId = chatMessage.getLoginId();
-        ChannelUtil.sendMessage(loginId, exchangeMessage);
+        SessionManager.sendMessage(loginId, exchangeMessage);
     }
 }

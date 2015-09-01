@@ -19,6 +19,7 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.net.InetSocketAddress;
 
@@ -28,6 +29,9 @@ import java.net.InetSocketAddress;
 public class MinaChatServerV2 implements IChatServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(MinaChatServerV2.class);
+
+    @Value("${chat.port}")
+    private int port;
 
     @Autowired
     private LoginHandlerV2 loginHandler;
@@ -49,7 +53,7 @@ public class MinaChatServerV2 implements IChatServer {
                     new ProtocolCodecFilter(new OpenIMProtobufEncoderV2(), new OpenIMProtobufDecoderV2()));
 
             acceptor.setHandler(new TcpServerHandle());
-            acceptor.bind(new InetSocketAddress(10000));
+            acceptor.bind(new InetSocketAddress(port));
         }catch (Exception e){
             e.printStackTrace();
         }

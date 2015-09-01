@@ -12,10 +12,12 @@ import com.openim.common.mq.constants.MQConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by shihc on 2015/9/1.
  */
+@Component
 public class LoginHandlerV2 implements IMessageHandlerV2 {
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandlerV2.class);
 

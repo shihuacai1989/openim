@@ -11,6 +11,7 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/7/29.
  */
+@Deprecated
 public class ChannelUtil {
     public static final AttributeKey<String> loginIdKey = AttributeKey.valueOf("loginId");
 

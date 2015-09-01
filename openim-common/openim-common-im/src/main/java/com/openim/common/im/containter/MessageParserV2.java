@@ -64,6 +64,10 @@ public class MessageParserV2 {
                 return null;
             }else if(type == MessageType.Working){
                 return null;
+            }else if(type == MessageType.FRIEND_ONLINE){
+                return ProtobufFriendOnLineMessage.FriendOnLineMessage.parseFrom(bytes);
+            }else if(type == MessageType.FRIEND_OFFLINE){
+                return ProtobufFriendOffLineMessage.FriendOffLineMessage.parseFrom(bytes);
             }else{
                 return null;
             }

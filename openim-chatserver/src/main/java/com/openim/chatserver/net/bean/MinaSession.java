@@ -6,9 +6,9 @@ import org.apache.mina.core.session.IoSession;
  * Created by shihc on 2015/9/1.
  */
 public class MinaSession implements Session {
-    String loginId;
+    private String loginId;
 
-    IoSession ioSession;
+    private IoSession ioSession;
 
     public MinaSession(String loginId, IoSession ioSession) {
         this.loginId = loginId;
@@ -27,6 +27,6 @@ public class MinaSession implements Session {
 
     @Override
     public void write(Object message) {
-
+        ioSession.write(message);
     }
 }

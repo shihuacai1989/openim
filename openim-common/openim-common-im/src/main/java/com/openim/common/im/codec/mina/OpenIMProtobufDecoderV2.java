@@ -4,9 +4,6 @@ import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.MessageLite;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.containter.MessageParserV2;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.CorruptedFrameException;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
@@ -14,8 +11,6 @@ import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * Created by shihuacai on 2015/8/20.

@@ -3,8 +3,6 @@ package com.openim.common.im.codec.netty;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
-import com.openim.common.im.codec.netty.OpenIMProtobufDecoderV2;
-import com.openim.common.im.codec.netty.OpenIMProtobufEncoderV2;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.junit.Test;

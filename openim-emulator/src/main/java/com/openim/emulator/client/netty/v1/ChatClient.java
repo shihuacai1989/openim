@@ -2,17 +2,12 @@ package com.openim.emulator.client.netty.v1;
 
 import com.alibaba.fastjson.JSON;
 import com.openim.common.im.bean.DeviceMsg;
-import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
-import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import org.apache.commons.lang.math.NumberUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -32,6 +32,48 @@ public class UserServiceTest {
     public void deleteAll(){
 
     }
+    @Test
+    public void addUser1() {
+        User user = new User();
+        user.setLoginId("user1");
+
+        user.setPassword("user1");
+        user.setRegisterTime(new Date());
+        user.setLastReadMsgTime(new Date());
+
+        Group group = new Group();
+        String groupId = UUIDUtil.genericUUID();
+        group.setId(groupId);
+        group.setName("好友");
+        group.setCreateTime(new Date());
+        List<Group> list = new ArrayList<Group>();
+        list.add(group);
+        user.setGroups(list);
+        userService.addUser(user);
+
+        userService.addFriend("user1", "user2", groupId);
+    }
+
+    @Test
+    public void addUser2() {
+        User wll = new User();
+        wll.setLoginId("user2");
+        wll.setPassword("user2");
+        wll.setLoginStatus(LoginStatus.online);
+        wll.setRegisterTime(new Date());
+        wll.setLastReadMsgTime(new Date());
+        Group group2 = new Group();
+        String groupId2 = UUIDUtil.genericUUID();
+        group2.setId(groupId2);
+        group2.setName("好友");
+        group2.setCreateTime(new Date());
+        List<Group> list2 = new ArrayList<Group>();
+        list2.add(group2);
+        wll.setGroups(list2);
+        userService.addUser(wll);
+
+        userService.addFriend("user2", "user1", groupId2);
+    }
 
     @Test
     public void addUser() {
