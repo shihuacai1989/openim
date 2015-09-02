@@ -9,8 +9,8 @@ import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.util.IPUtil;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -71,7 +71,7 @@ public class BeanConfiguration {
      * @return
      */
     @Bean
-    Binding bindingChatServerQueue(TopicExchange exchange) {
+    Binding bindingChatServerQueue(DirectExchange exchange) {
         Queue queue = serverQueue();
         return BindingBuilder.bind(queue).to(exchange).with(chatServerListenerQueue());
     }

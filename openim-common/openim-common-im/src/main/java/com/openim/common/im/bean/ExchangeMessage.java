@@ -2,12 +2,12 @@ package com.openim.common.im.bean;
 
 import com.google.protobuf.MessageLite;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
+import io.netty.util.CharsetUtil;
 
 /**
  * Created by shihuacai on 2015/8/20.
  */
 public class ExchangeMessage {
-
 
     private static final int MAX_VALUE = 127;
     private static final int MIN_VALUE = 0;
@@ -37,7 +37,7 @@ public class ExchangeMessage {
 
     @Override
     public String toString() {
-        return new String(MQBsonCodecUtilV2.encode(this));
+        return new String(MQBsonCodecUtilV2.encode(this), CharsetUtil.UTF_8);
     }
 
     /*@Override
