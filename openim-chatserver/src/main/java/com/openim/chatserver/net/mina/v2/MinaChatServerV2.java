@@ -1,18 +1,14 @@
 package com.openim.chatserver.net.mina.v2;
 
+import com.openim.chatserver.net.Constants;
 import com.openim.chatserver.net.IChatServer;
-import com.openim.chatserver.net.bean.MinaSession;
-import com.openim.chatserver.net.bean.Session;
-import com.openim.chatserver.net.handler.v2.ChatHandlerV2;
-import com.openim.chatserver.net.handler.v2.LoginHandlerV2;
-import com.openim.chatserver.net.handler.v2.LogoutHandlerV2;
+import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import com.openim.common.im.codec.mina.OpenIMProtobufDecoderV2;
 import com.openim.common.im.codec.mina.OpenIMProtobufEncoderV2;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.service.IoHandlerAdapter;
+import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
@@ -34,20 +30,23 @@ public class MinaChatServerV2 implements IChatServer {
     private int port;
 
     @Autowired
+    private INetMessageDispatch<IoSession, ExchangeMessage> messageDispatch;
+
+    /*@Autowired
     private LoginHandlerV2 loginHandler;
 
     @Autowired
     private ChatHandlerV2 chatHandler;
 
     @Autowired
-    private LogoutHandlerV2 logoutHandler;
+    private LogoutHandlerV2 logoutHandler;*/
 
 
     @Override
     public void startServer() {
         try {
             IoAcceptor acceptor = new NioSocketAcceptor();
-
+            acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, Constants.IDLE_TIME);   //读写 通道均在10 秒内无任何操作就进入空闲
             // 指定protobuf的编码器和解码器
             acceptor.getFilterChain().addLast("codec",
                     new ProtocolCodecFilter(new OpenIMProtobufEncoderV2(), new OpenIMProtobufDecoderV2()));
@@ -84,10 +83,22 @@ public class MinaChatServerV2 implements IChatServer {
         public void messageReceived(IoSession session, Object message)
                 throws Exception {
             ExchangeMessage exchangeMessage = (ExchangeMessage)message;
-            processMessage(session, exchangeMessage);
+            messageDispatch.dispatch(session, exchangeMessage);
+            //processMessage(session, exchangeMessage);
         }
 
-        private void processMessage(IoSession iosession, ExchangeMessage exchangeMessage){
+        @Override
+        public void sessionClosed(IoSession session) throws Exception {
+            LOG.error("sessionClosed");
+        }
+
+        @Override
+        public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
+            LOG.error("sessionIdle");
+        }
+
+
+        /*private void processMessage(IoSession iosession, ExchangeMessage exchangeMessage){
             int type = exchangeMessage.getType();
             if(type == MessageType.LOGIN){
                 ProtobufConnectMessage.ConnectMessage connectMessage = exchangeMessage.getMessageLite();
@@ -104,6 +115,6 @@ public class MinaChatServerV2 implements IChatServer {
             }else{
                 LOG.error("无法处理的消息类型" + exchangeMessage.toString());
             }
-        }
+        }*/
     }
 }

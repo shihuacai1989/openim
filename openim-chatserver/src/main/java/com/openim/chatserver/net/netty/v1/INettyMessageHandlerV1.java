@@ -7,6 +7,7 @@ import io.netty.channel.Channel;
 /**
  * Created by shihuacai on 2015/7/22.
  */
+@Deprecated
 public interface INettyMessageHandlerV1 extends IMessageHandler<Channel, ProtobufDeviceMsg.DeviceMsg> {
     void handle(Channel channel, ProtobufDeviceMsg.DeviceMsg message);
 }

@@ -1,8 +1,9 @@
 package com.openim.chatserver.net.netty.v2;
 
 import com.google.protobuf.MessageLite;
+import com.openim.chatserver.net.Constants;
 import com.openim.chatserver.net.IChatServer;
-import com.openim.chatserver.net.netty.INettyMessageDispatch;
+import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
@@ -32,7 +33,7 @@ public class NettyChatServerV2 implements IChatServer {
     private int port;
 
     @Autowired
-    private INettyMessageDispatch messageDispatch;
+    private INetMessageDispatch<ChannelHandlerContext, ExchangeMessage> messageDispatch;
 
     @Override
     public void startServer() {
@@ -77,7 +78,7 @@ public class NettyChatServerV2 implements IChatServer {
         protected void initChannel(SocketChannel ch) throws Exception {
             ChannelPipeline pipeline = ch.pipeline();
             //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
-            pipeline.addLast("ping", new IdleStateHandler(1200, 0, 0, TimeUnit.SECONDS));
+            pipeline.addLast("ping", new IdleStateHandler(Constants.IDLE_TIME, 0, 0, TimeUnit.SECONDS));
 
             pipeline.addLast("encoder", new OpenIMProtobufEncoderV2());
             pipeline.addLast("decoder", new OpenIMProtobufDecoderV2());

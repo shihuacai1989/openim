@@ -6,8 +6,8 @@ import com.openim.common.mq.rabbitmq.listener.RabbitMQMessageListener;
 import com.openim.common.mq.rabbitmq.sender.RabbitMQMessageSender;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.amqp.support.converter.SerializerMessageConverter;
@@ -41,24 +41,24 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    TopicExchange exchange() {
-        return new TopicExchange(MQConstants.openimExchange);
+    DirectExchange exchange() {
+        return new DirectExchange(MQConstants.openimExchange);
     }
 
     @Bean
-    Binding bindingChatQueue(TopicExchange exchange) {
+    Binding bindingChatQueue(DirectExchange exchange) {
         Queue queue = chatQueue();
         return BindingBuilder.bind(queue).to(exchange).with(MQConstants.chatRouteKey);
     }
 
     @Bean
-    Binding bindingLogoutQueue(TopicExchange exchange) {
+    Binding bindingLogoutQueue(DirectExchange exchange) {
         Queue queue = logoutQueue();
         return BindingBuilder.bind(queue).to(exchange).with(MQConstants.logoutRouteKey);
     }
 
     @Bean
-    Binding bindingLoginQueue(TopicExchange exchange) {
+    Binding bindingLoginQueue(DirectExchange exchange) {
         Queue queue = loginQueue();
         return BindingBuilder.bind(queue).to(exchange).with(MQConstants.loginRouteKey);
     }

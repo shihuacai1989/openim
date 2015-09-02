@@ -1,13 +1,13 @@
 package com.openim.chatserver.net.netty.v2;
 
 import com.google.common.collect.Maps;
+import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.chatserver.net.bean.NettySession;
 import com.openim.chatserver.net.bean.Session;
 import com.openim.chatserver.net.handler.v2.ChatHandlerV2;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
 import com.openim.chatserver.net.handler.v2.LoginHandlerV2;
 import com.openim.chatserver.net.handler.v2.LogoutHandlerV2;
-import com.openim.chatserver.net.netty.INettyMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
@@ -25,7 +25,7 @@ import java.util.Map;
  * Created by shihc on 2015/8/31.
  */
 
-public class NettyMessageDispatchV2 implements INettyMessageDispatch, InitializingBean {
+public class NettyMessageDispatchV2 implements INetMessageDispatch<ChannelHandlerContext, ExchangeMessage>, InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(NettyMessageDispatchV2.class);
     /*private static LoginHandler loginHandler = new LoginHandler();
@@ -63,12 +63,16 @@ public class NettyMessageDispatchV2 implements INettyMessageDispatch, Initializi
             LOG.error("无法处理的消息类型" + exchangeMessage.toString());
             return;
         }
-        IMessageHandlerV2 messageHandler = handlerMap.get(type);
-        if(messageHandler != null){
-            messageHandler.handle(session, exchangeMessage);
-        }else{
-            LOG.error("未找到的消息处理器: " + exchangeMessage);
+        //终端连接成功后，还未登陆，变断开了
+        if(session != null){
+            IMessageHandlerV2 messageHandler = handlerMap.get(type);
+            if(messageHandler != null){
+                messageHandler.handle(session, exchangeMessage);
+            }else{
+                LOG.error("未找到的消息处理器: " + exchangeMessage);
+            }
         }
+
     }
 
     @Override

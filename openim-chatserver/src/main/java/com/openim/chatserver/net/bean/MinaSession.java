@@ -5,24 +5,13 @@ import org.apache.mina.core.session.IoSession;
 /**
  * Created by shihc on 2015/9/1.
  */
-public class MinaSession implements Session {
-    private String loginId;
+public class MinaSession extends Session {
 
     private IoSession ioSession;
 
     public MinaSession(String loginId, IoSession ioSession) {
-        this.loginId = loginId;
+        super(loginId);
         this.ioSession = ioSession;
-    }
-
-    @Override
-    public String getLoginId() {
-        return loginId;
-    }
-
-    @Override
-    public void setAttr(String key, String value) {
-
     }
 
     @Override

@@ -54,7 +54,9 @@ public class ChatClient {
                 if(line != null && line.trim().length() > 0){
                     line = line.trim();
                     if(line.equals("quit")){
+                        channel.close();
                         System.exit(0);
+                        return;
                     }
 
                     if(currentOps == CurrentOps.login){
@@ -89,7 +91,6 @@ public class ChatClient {
         } finally {
             group.shutdownGracefully();
         }
-
     }
 
     enum CurrentOps{
