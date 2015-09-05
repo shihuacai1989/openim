@@ -6,7 +6,7 @@ import com.openim.chatserver.net.IChatServer;
 import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
 import com.openim.common.im.codec.netty.OpenIMProtobufDecoderV2;
 import com.openim.common.im.codec.netty.OpenIMProtobufEncoderV2;
 import io.netty.bootstrap.ServerBootstrap;
@@ -180,7 +180,7 @@ public class NettyChatServerV2 implements IChatServer {
             ExchangeMessage exchangeMessage = new ExchangeMessage();
             exchangeMessage.setType(MessageType.LOGOUT);
 
-            MessageLite messageLite = ProtobufDisconnectMessage.DisconnectMessage.newBuilder().build();
+            MessageLite messageLite = ProtobufLogoutMessage.LogoutMessage.newBuilder().build();
             exchangeMessage.setMessageLite(messageLite);
 
             messageDispatch.dispatch(ctx, exchangeMessage);

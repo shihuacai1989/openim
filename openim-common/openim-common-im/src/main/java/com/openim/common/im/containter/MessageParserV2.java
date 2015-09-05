@@ -21,8 +21,8 @@ public class MessageParserV2 {
 
     static {
         MessageLite chatMessage = ProtobufChatMessage.ChatMessage.getDefaultInstance();
-        MessageLite connectMessage = ProtobufConnectMessage.ConnectMessage.getDefaultInstance();
-        MessageLite disconnectMessage = ProtobufDisconnectMessage.DisconnectMessage.getDefaultInstance();
+        MessageLite connectMessage = ProtobufLoginMessage.LoginMessage.getDefaultInstance();
+        MessageLite disconnectMessage = ProtobufLogoutMessage.LogoutMessage.getDefaultInstance();
         MessageLite heartBeatMessage = ProtobufHeartBeatMessage.HeartBeatMessage.getDefaultInstance();
         MessageLite receiveMessage = ProtobufReceiveMessage.ReceiveMessage.getDefaultInstance();
         messageTypeMap.put(MessageType.CHAT, chatMessage);
@@ -53,9 +53,9 @@ public class MessageParserV2 {
             if(type == MessageType.CHAT){
                 return ProtobufChatMessage.ChatMessage.parseFrom(bytes);
             }else if(type == MessageType.LOGOUT){
-                return ProtobufDisconnectMessage.DisconnectMessage.parseFrom(bytes);
+                return ProtobufLogoutMessage.LogoutMessage.parseFrom(bytes);
             }else if(type == MessageType.LOGIN){
-                return ProtobufConnectMessage.ConnectMessage.parseFrom(bytes);
+                return ProtobufLoginMessage.LoginMessage.parseFrom(bytes);
             }else if(type == MessageType.HEART_BEAT){
                 return ProtobufHeartBeatMessage.HeartBeatMessage.parseFrom(bytes);
             }else if(type == MessageType.LEAVE){

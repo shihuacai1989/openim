@@ -4,20 +4,20 @@ import com.google.common.collect.Maps;
 import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.chatserver.net.bean.NettySession;
 import com.openim.chatserver.net.bean.Session;
-import com.openim.chatserver.net.handler.v2.ChatHandlerV2;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
-import com.openim.chatserver.net.handler.v2.LoginHandlerV2;
-import com.openim.chatserver.net.handler.v2.LogoutHandlerV2;
+import com.openim.common.im.annotation.HandleGroupConstants;
+import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLoginMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ import java.util.Map;
  * Created by shihc on 2015/8/31.
  */
 
-public class NettyMessageDispatchV2 implements INetMessageDispatch<ChannelHandlerContext, ExchangeMessage>, InitializingBean {
+public class NettyMessageDispatchV2 extends INetMessageDispatch<ChannelHandlerContext, ExchangeMessage> implements InitializingBean, ApplicationListener<ContextRefreshedEvent> {
 
     private static final Logger LOG = LoggerFactory.getLogger(NettyMessageDispatchV2.class);
     /*private static LoginHandler loginHandler = new LoginHandler();
@@ -34,14 +34,14 @@ public class NettyMessageDispatchV2 implements INetMessageDispatch<ChannelHandle
 
     public static final AttributeKey<Session> sessionKey = AttributeKey.valueOf("session");
 
-    @Autowired
+    /*@Autowired
     private LoginHandlerV2 loginHandlerV2;
 
     @Autowired
     private LogoutHandlerV2 logoutHandlerV2;
 
     @Autowired
-    private ChatHandlerV2 chatHandlerV2;
+    private ChatHandlerV2 chatHandlerV2;*/
 
     private static final Map<Integer, IMessageHandlerV2> handlerMap = Maps.newHashMap();
 
@@ -50,7 +50,7 @@ public class NettyMessageDispatchV2 implements INetMessageDispatch<ChannelHandle
         int type = exchangeMessage.getType();
         Session session = null;
         if(type == MessageType.LOGIN){
-            ProtobufConnectMessage.ConnectMessage connectMessage = exchangeMessage.getMessageLite();
+            ProtobufLoginMessage.LoginMessage connectMessage = exchangeMessage.getMessageLite();
             String loginId = connectMessage.getLoginId();
             session = new NettySession(loginId, ctx.channel());
             Attribute<Session> attr = ctx.channel().attr(sessionKey);
@@ -77,8 +77,14 @@ public class NettyMessageDispatchV2 implements INetMessageDispatch<ChannelHandle
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        handlerMap.put(MessageType.LOGIN, loginHandlerV2);
+        HandleGroupUtil.add(applicationContext, HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
+        /*handlerMap.put(MessageType.LOGIN, loginHandlerV2);
         handlerMap.put(MessageType.LOGOUT, logoutHandlerV2);
-        handlerMap.put(MessageType.CHAT, chatHandlerV2);
+        handlerMap.put(MessageType.CHAT, chatHandlerV2);*/
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        //HandleGroupUtil.add(event.getApplicationContext(), HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
     }
 }

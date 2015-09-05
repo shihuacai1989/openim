@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by shihuacai on 2015/7/21.
  * 系统启动监听器
  */
-public class ApplicationContextAware implements ApplicationListener<ContextRefreshedEvent> {
+public class ApplicationContextInitialized implements ApplicationListener<ContextRefreshedEvent> {
     private static ApplicationContext applicationContext;
 
     public static Object getBean(String name) {

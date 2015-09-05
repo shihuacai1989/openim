@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
  * Created by shihuacai on 2015/7/29.
  */
 @Deprecated
-public class JDKChatServerMessageDispatch implements IMessageQueueDispatch {
+public class JDKChatServerMessageDispatch extends IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDKChatServerMessageDispatch.class);
 

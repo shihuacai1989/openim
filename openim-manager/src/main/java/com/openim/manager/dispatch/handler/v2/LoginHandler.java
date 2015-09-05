@@ -1,8 +1,10 @@
 package com.openim.manager.dispatch.handler.v2;
 
+import com.openim.common.im.annotation.HandleGroup;
+import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.bean.*;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
 import com.openim.common.im.bean.protbuf.ProtobufFriendOnLineMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLoginMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
@@ -22,9 +24,10 @@ import java.util.List;
  * Created by shihc on 2015/7/30.
  */
 @Component
-public class ConnectHandler implements IMessageHandler<ExchangeMessage> {
+@HandleGroup(name = HandleGroupConstants.MANAGER_MQ_HANDLER_V2, type = MessageType.LOGIN)
+public class LoginHandler implements IMessageHandler<ExchangeMessage> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ConnectHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LoginHandler.class);
 
     //private static final IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 
@@ -40,7 +43,7 @@ public class ConnectHandler implements IMessageHandler<ExchangeMessage> {
     @Override
     public void handle(ExchangeMessage exchangeMessage) {
         try {
-            ProtobufConnectMessage.ConnectMessage connectMessage = exchangeMessage.getMessageLite();
+            ProtobufLoginMessage.LoginMessage connectMessage = exchangeMessage.getMessageLite();
             String loginId = connectMessage.getLoginId();
             String serverQueue = connectMessage.getServerQueue();
             if (!StringUtils.isEmpty(loginId) && !StringUtils.isEmpty(serverQueue)) {

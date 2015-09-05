@@ -2,9 +2,11 @@ package com.openim.chatserver.net.handler.v2;
 
 import com.openim.chatserver.SessionManager;
 import com.openim.chatserver.net.bean.Session;
+import com.openim.common.im.annotation.HandleGroup;
+import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
@@ -18,6 +20,7 @@ import org.springframework.util.StringUtils;
  * Created by shihuacai on 2015/7/22.
  */
 @Component
+@HandleGroup(name = HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, type = MessageType.LOGOUT)
 public class LogoutHandlerV2 implements IMessageHandlerV2 {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandlerV2.class);
@@ -28,7 +31,7 @@ public class LogoutHandlerV2 implements IMessageHandlerV2 {
     private IMessageSender messageSender;
 
     /*public LogoutHandlerV2() {
-        messageSender = ApplicationContextAware.getBean(IMessageSender.class);
+        messageSender = ApplicationContextInitialized.getBean(IMessageSender.class);
     }*/
 
     @Override
@@ -39,7 +42,7 @@ public class LogoutHandlerV2 implements IMessageHandlerV2 {
                 SessionManager.remove(loginId);
 
                 if(!StringUtils.isEmpty(loginId)){
-                    ProtobufDisconnectMessage.DisconnectMessage disconnectMessage = exchangeMessage.getMessageLite();
+                    ProtobufLogoutMessage.LogoutMessage disconnectMessage = exchangeMessage.getMessageLite();
                     disconnectMessage = disconnectMessage.toBuilder().setLoginId(loginId).build();
                     exchangeMessage.setMessageLite(disconnectMessage);
 

@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
  * Created by shihuacai on 2015/7/29.
  */
 @Deprecated
-public class JDKMessageDispatch implements IMessageQueueDispatch {
+public class JDKMessageDispatch extends IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDKMessageDispatch.class);
     private static final Charset charset = Charset.forName("UTF-8");

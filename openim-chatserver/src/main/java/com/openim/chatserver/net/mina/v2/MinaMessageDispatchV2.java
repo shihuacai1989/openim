@@ -8,9 +8,11 @@ import com.openim.chatserver.net.handler.v2.ChatHandlerV2;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
 import com.openim.chatserver.net.handler.v2.LoginHandlerV2;
 import com.openim.chatserver.net.handler.v2.LogoutHandlerV2;
+import com.openim.common.im.annotation.HandleGroupConstants;
+import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLoginMessage;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,18 +24,18 @@ import java.util.Map;
 /**
  * Created by shihc on 2015/9/1.
  */
-public class MinaMessageDispatchV2 implements INetMessageDispatch<IoSession, ExchangeMessage>, InitializingBean {
+public class MinaMessageDispatchV2 extends INetMessageDispatch<IoSession, ExchangeMessage> implements InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(MinaMessageDispatchV2.class);
 
-    @Autowired
+    /*@Autowired
     private LoginHandlerV2 loginHandlerV2;
 
     @Autowired
     private LogoutHandlerV2 logoutHandlerV2;
 
     @Autowired
-    private ChatHandlerV2 chatHandlerV2;
+    private ChatHandlerV2 chatHandlerV2;*/
 
     private static final Map<Integer, IMessageHandlerV2> handlerMap = Maps.newHashMap();
 
@@ -42,17 +44,14 @@ public class MinaMessageDispatchV2 implements INetMessageDispatch<IoSession, Exc
         int type = exchangeMessage.getType();
         Session session = null;
         if(type == MessageType.LOGIN){
-            ProtobufConnectMessage.ConnectMessage connectMessage = exchangeMessage.getMessageLite();
+            ProtobufLoginMessage.LoginMessage connectMessage = exchangeMessage.getMessageLite();
             String loginId = connectMessage.getLoginId();
             session = new MinaSession(loginId, ioSession);
             ioSession.setAttribute("session", session);
-            loginHandlerV2.handle(session, exchangeMessage);
         }else if(type == MessageType.CHAT){
             session =  (Session)ioSession.getAttribute("session");
-            chatHandlerV2.handle(session, exchangeMessage);
         }else if(type == MessageType.LOGOUT){
             session =  (Session)ioSession.getAttribute("session");
-            logoutHandlerV2.handle(session, exchangeMessage);
         }else{
             LOG.error("无法处理的消息类型" + exchangeMessage.toString());
         }
@@ -73,8 +72,10 @@ public class MinaMessageDispatchV2 implements INetMessageDispatch<IoSession, Exc
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        handlerMap.put(MessageType.LOGIN, loginHandlerV2);
+        HandleGroupUtil.add(applicationContext, HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
+
+        /*handlerMap.put(MessageType.LOGIN, loginHandlerV2);
         handlerMap.put(MessageType.LOGOUT, logoutHandlerV2);
-        handlerMap.put(MessageType.CHAT, chatHandlerV2);
+        handlerMap.put(MessageType.CHAT, chatHandlerV2);*/
     }
 }

@@ -1,32 +1,38 @@
 package com.openim.manager.dispatch;
 
+import com.openim.common.im.annotation.HandleGroupConstants;
+import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
-import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.util.CharsetUtil;
-import com.openim.manager.dispatch.handler.v2.ChatHandler;
-import com.openim.manager.dispatch.handler.v2.ConnectHandler;
-import com.openim.manager.dispatch.handler.v2.DisconnectHandler;
+import com.openim.manager.dispatch.handler.v2.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.InitializingBean;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class MessageDispatchV2 implements IMessageQueueDispatch {
+public class MessageDispatchV2 extends IMessageQueueDispatch implements InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(MessageDispatchV2.class);
+
+
+    private static Map<Integer, IMessageHandler> msgHandler = new HashMap<Integer, IMessageHandler>();
+
     //private static final Charset charset = Charset.forName("UTF-8");
     //private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 
-    @Autowired
+    /*@Autowired
     private ConnectHandler loginHandler;
     @Autowired
     private DisconnectHandler logoutHandler;
     @Autowired
-    private ChatHandler sendHandler;
+    private ChatHandler sendHandler;*/
 
     @Override
     public void dispatchMessage(String exchange, String routeKey, byte[] c) {
@@ -34,12 +40,9 @@ public class MessageDispatchV2 implements IMessageQueueDispatch {
             ExchangeMessage exchangeMessage = MQBsonCodecUtilV2.decode(c);
             if(exchangeMessage != null){
                 int type = exchangeMessage.getType();
-                if (type == MessageType.CHAT) {
-                    sendHandler.handle(exchangeMessage);
-                } else if (type == MessageType.LOGIN) {
-                    loginHandler.handle(exchangeMessage);
-                } else if (type == MessageType.LOGOUT) {
-                    logoutHandler.handle(exchangeMessage);
+                IMessageHandler messageHandler = msgHandler.get(type);
+                if(messageHandler != null) {
+                    messageHandler.handle(exchangeMessage);
                 } else {
                     LOG.error("无法处理收到的消息：{}", new String(c, CharsetUtil.utf8));
                 }
@@ -47,5 +50,10 @@ public class MessageDispatchV2 implements IMessageQueueDispatch {
         } catch (Exception e) {
             LOG.error(e.toString());
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        HandleGroupUtil.add(applicationContext, HandleGroupConstants.MANAGER_MQ_HANDLER_V2, msgHandler);
     }
 }

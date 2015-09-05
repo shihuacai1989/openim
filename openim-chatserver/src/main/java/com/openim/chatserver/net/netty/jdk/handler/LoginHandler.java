@@ -2,7 +2,7 @@ package com.openim.chatserver.net.netty.jdk.handler;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.chatserver.configuration.BeanConfiguration;
-import com.openim.chatserver.listener.ApplicationContextAware;
+import com.openim.chatserver.listener.ApplicationContextInitialized;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.mq.IMessageSender;
@@ -22,7 +22,7 @@ public class LoginHandler implements IMessageHandler {
     private IMessageSender messageSender;
 
     public LoginHandler() {
-        messageSender = ApplicationContextAware.getBean(IMessageSender.class);
+        messageSender = ApplicationContextInitialized.getBean(IMessageSender.class);
     }
 
     @Override

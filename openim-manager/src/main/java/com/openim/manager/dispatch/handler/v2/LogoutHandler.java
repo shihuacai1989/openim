@@ -1,8 +1,10 @@
 package com.openim.manager.dispatch.handler.v2;
 
+import com.openim.common.im.annotation.HandleGroup;
+import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.bean.*;
-import com.openim.common.im.bean.protbuf.ProtobufDisconnectMessage;
 import com.openim.common.im.bean.protbuf.ProtobufFriendOffLineMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;
@@ -22,9 +24,10 @@ import java.util.List;
  * Created by shihc on 2015/7/30.
  */
 @Component
-public class DisconnectHandler implements IMessageHandler<ExchangeMessage> {
+@HandleGroup(name = HandleGroupConstants.MANAGER_MQ_HANDLER_V2, type = MessageType.LOGOUT)
+public class LogoutHandler implements IMessageHandler<ExchangeMessage> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DisconnectHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LogoutHandler.class);
 
     @Autowired
     private ILoginCache loginCache;
@@ -38,7 +41,7 @@ public class DisconnectHandler implements IMessageHandler<ExchangeMessage> {
     @Override
     public void handle(ExchangeMessage exchangeMessage) {
         try {
-            ProtobufDisconnectMessage.DisconnectMessage disconnectMessage = exchangeMessage.getMessageLite();
+            ProtobufLogoutMessage.LogoutMessage disconnectMessage = exchangeMessage.getMessageLite();
             String loginId = disconnectMessage.getLoginId();
             if (!StringUtils.isEmpty(loginId)) {
                 User user = loginCache.get(loginId);

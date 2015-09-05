@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * Created by shihuacai on 2015/7/29.
  */
 @Deprecated
-public class ChatServerMessageDispatchV1 implements IMessageQueueDispatch {
+public class ChatServerMessageDispatchV1 extends IMessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV1.class);
 

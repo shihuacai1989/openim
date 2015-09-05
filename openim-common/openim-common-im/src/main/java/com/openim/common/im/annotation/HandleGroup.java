@@ -1,4 +1,4 @@
-package com.openim.chatserver.dispatch;
+package com.openim.common.im.annotation;
 
 /**
  * Created by shihc on 2015/9/2.
@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleGroup {
-    public String value();
-    public int type();
+    String name();
+    int type();
 }
