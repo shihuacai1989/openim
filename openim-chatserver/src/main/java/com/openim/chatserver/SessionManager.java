@@ -22,6 +22,10 @@ public class SessionManager {
 
     public static void remove(String loginId) {
         if (!StringUtils.isEmpty(loginId)) {
+            Session session = channelMap.get(loginId);
+            if(session != null){
+                session.close();
+            }
             channelMap.remove(loginId);
         }
 

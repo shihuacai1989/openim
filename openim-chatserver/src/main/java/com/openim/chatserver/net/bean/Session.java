@@ -18,4 +18,6 @@ public abstract class Session {
     }
 
     public abstract void write(Object message);
+
+    public abstract void close();
 }

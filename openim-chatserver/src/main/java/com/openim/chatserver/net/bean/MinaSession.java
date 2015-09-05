@@ -18,4 +18,9 @@ public class MinaSession extends Session {
     public void write(Object message) {
         ioSession.write(message);
     }
+
+    @Override
+    public void close() {
+        ioSession.close(true);
+    }
 }

@@ -1,7 +1,6 @@
 package com.openim.chatserver.net.netty.v2;
 
 import com.google.protobuf.MessageLite;
-import com.openim.chatserver.net.Constants;
 import com.openim.chatserver.net.IChatServer;
 import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
@@ -78,7 +77,7 @@ public class NettyChatServerV2 implements IChatServer {
         protected void initChannel(SocketChannel ch) throws Exception {
             ChannelPipeline pipeline = ch.pipeline();
             //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
-            pipeline.addLast("ping", new IdleStateHandler(Constants.IDLE_TIME, 0, 0, TimeUnit.SECONDS));
+            pipeline.addLast("ping", new IdleStateHandler(15, 0, 0, TimeUnit.SECONDS));
 
             pipeline.addLast("encoder", new OpenIMProtobufEncoderV2());
             pipeline.addLast("decoder", new OpenIMProtobufDecoderV2());
@@ -105,7 +104,10 @@ public class NettyChatServerV2 implements IChatServer {
 
         @Override
         public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {  // (3)
-            handleLogout(ctx);
+            //发生异常会引起该自动调用该方法
+            //手动调用close方法，也会引起该方法调用
+            //idle事件不会自动调用该方法
+            //handleLogout(ctx);
         }
 
 
@@ -146,11 +148,7 @@ public class NettyChatServerV2 implements IChatServer {
         @Override
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) { // (7)
             LOG.error(cause.toString());
-        /*Channel incoming = ctx.channel();
-        System.out.println("SimpleChatClient:"+incoming.remoteAddress()+"异常");
-        // 当出现异常就关闭连接
-        cause.printStackTrace();*/
-            ctx.close();
+            handleLogout(ctx);
         }
 
         @Override
@@ -168,7 +166,6 @@ public class NettyChatServerV2 implements IChatServer {
                 // 发送心跳
                 ctx.channel().write("ping");
             }*/
-                System.out.println("READER_IDLE");
                 //采用客户端向服务端发心跳的机制，服务端只需监听读心跳（即未读到客户端的心跳）
                 handleLogout(ctx);
             }

@@ -2,7 +2,7 @@ package com.openim.common.im.codec.netty;
 
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLoginMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class OpenIMProtobufCodecV2Test {
 
         ByteBuf byteBuf = Unpooled.buffer();
 
-        ProtobufConnectMessage.ConnectMessage connectMessage = ProtobufConnectMessage.ConnectMessage.newBuilder().setLoginId("测试").setPassword("测试").build();
+        ProtobufLoginMessage.LoginMessage connectMessage = ProtobufLoginMessage.LoginMessage.newBuilder().setLoginId("测试").setPassword("测试").build();
 
         ExchangeMessage message = new ExchangeMessage();
         message.setType(MessageType.CHAT);

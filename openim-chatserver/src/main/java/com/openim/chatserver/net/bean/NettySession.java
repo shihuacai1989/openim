@@ -18,4 +18,9 @@ public class NettySession extends Session {
     public void write(Object message) {
         channel.writeAndFlush(message);
     }
+
+    @Override
+    public void close() {
+        channel.close();
+    }
 }

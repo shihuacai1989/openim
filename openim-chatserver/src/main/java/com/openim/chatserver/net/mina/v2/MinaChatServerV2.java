@@ -1,9 +1,10 @@
 package com.openim.chatserver.net.mina.v2;
 
-import com.openim.chatserver.net.Constants;
 import com.openim.chatserver.net.IChatServer;
 import com.openim.chatserver.net.INetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
+import com.openim.common.im.bean.MessageType;
+import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
 import com.openim.common.im.codec.mina.OpenIMProtobufDecoderV2;
 import com.openim.common.im.codec.mina.OpenIMProtobufEncoderV2;
 import org.apache.mina.core.service.IoAcceptor;
@@ -46,7 +47,7 @@ public class MinaChatServerV2 implements IChatServer {
     public void startServer() {
         try {
             IoAcceptor acceptor = new NioSocketAcceptor();
-            acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, Constants.IDLE_TIME);   //读写 通道均在10 秒内无任何操作就进入空闲
+            acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 15);   //读写 通道均在10 秒内无任何操作就进入空闲
             // 指定protobuf的编码器和解码器
             acceptor.getFilterChain().addLast("codec",
                     new ProtocolCodecFilter(new OpenIMProtobufEncoderV2(), new OpenIMProtobufDecoderV2()));
@@ -73,10 +74,17 @@ public class MinaChatServerV2 implements IChatServer {
 
     public class TcpServerHandle extends IoHandlerAdapter {
 
+        /**
+         * 执行了该方法后，还会执行sessionClosed方法
+         * @param session
+         * @param cause
+         * @throws Exception
+         */
         @Override
         public void exceptionCaught(IoSession session, Throwable cause)
                 throws Exception {
-            cause.printStackTrace();
+            LOG.error(cause.toString());
+            closeSession(session);
         }
 
         @Override
@@ -89,15 +97,32 @@ public class MinaChatServerV2 implements IChatServer {
 
         @Override
         public void sessionClosed(IoSession session) throws Exception {
-            LOG.error("sessionClosed");
+            //其他地方调用session.close()方法，也会引起sessionClosed()方法的调用
+            //此处不再处理
         }
 
+        /**
+         * 执行了该方法后，不会执行sessionClosed方法
+         * @param session
+         * @param status
+         * @throws Exception
+         */
         @Override
         public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
-            LOG.error("sessionIdle");
+            //如果发生了idle，但是不做任何处理，则会反复调用
+            closeSession(session);
         }
 
+        private void closeSession(IoSession session){
+            int type = MessageType.LOGOUT;
+            ProtobufLogoutMessage.LogoutMessage logoutMessage = ProtobufLogoutMessage.LogoutMessage.newBuilder().build();
+            ExchangeMessage exchangeMessage = new ExchangeMessage();
+            exchangeMessage.setMessageLite(logoutMessage);
+            exchangeMessage.setType(type);
 
+            messageDispatch.dispatch(session, exchangeMessage);
+            LOG.error("sessionClosed");
+        }
         /*private void processMessage(IoSession iosession, ExchangeMessage exchangeMessage){
             int type = exchangeMessage.getType();
             if(type == MessageType.LOGIN){

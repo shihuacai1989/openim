@@ -3,8 +3,8 @@ package com.openim.chatserver.configuration;
 import com.openim.chatserver.dispatch.ChatServerMessageDispatchV2;
 import com.openim.chatserver.net.IChatServer;
 import com.openim.chatserver.net.INetMessageDispatch;
-import com.openim.chatserver.net.mina.v2.MinaChatServerV2;
-import com.openim.chatserver.net.mina.v2.MinaMessageDispatchV2;
+import com.openim.chatserver.net.netty.v2.NettyChatServerV2;
+import com.openim.chatserver.net.netty.v2.NettyMessageDispatchV2;
 import com.openim.common.mq.IMessageQueueDispatch;
 import com.openim.common.util.IPUtil;
 import org.springframework.amqp.core.Binding;
@@ -36,7 +36,7 @@ public class BeanConfiguration {
     }
 
     /*==========================================================*/
-    /*@Bean
+    @Bean
     INetMessageDispatch netMessageDispatch(){
         return new NettyMessageDispatchV2();
     }
@@ -44,9 +44,9 @@ public class BeanConfiguration {
     @Bean
     IChatServer chatServer(){
         return new NettyChatServerV2();
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     INetMessageDispatch netMessageDispatch(){
         return new MinaMessageDispatchV2();
     }
@@ -54,9 +54,10 @@ public class BeanConfiguration {
     @Bean
     IChatServer chatServer(){
         return new MinaChatServerV2();
-    }
-
+    }*/
     /*==========================================================*/
+
+
     @Bean
     Queue serverQueue() {
         String queueName = chatServerListenerQueue();

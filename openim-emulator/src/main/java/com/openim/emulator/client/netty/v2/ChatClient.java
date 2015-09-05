@@ -3,7 +3,7 @@ package com.openim.emulator.client.netty.v2;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufChatMessage;
-import com.openim.common.im.bean.protbuf.ProtobufConnectMessage;
+import com.openim.common.im.bean.protbuf.ProtobufLoginMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -63,7 +63,7 @@ public class ChatClient {
                         if(line.equals(user1) || line.equals(user2)){
                             currentUser = line;
                             String loginId = line;
-                            ProtobufConnectMessage.ConnectMessage connectMessage = ProtobufConnectMessage.ConnectMessage.newBuilder().setLoginId(loginId).build();
+                            ProtobufLoginMessage.LoginMessage connectMessage = ProtobufLoginMessage.LoginMessage.newBuilder().setLoginId(loginId).build();
                             ExchangeMessage exchangeMessage = new ExchangeMessage();
                             exchangeMessage.setType(MessageType.LOGIN);
                             exchangeMessage.setMessageLite(connectMessage);
