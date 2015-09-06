@@ -1,11 +1,11 @@
 package com.openim.chatserver.configuration;
 
-import com.openim.chatserver.dispatch.ChatServerMessageDispatchV2;
+import com.openim.chatserver.dispatch.ChatServerMessageQueueDispatchV2;
 import com.openim.chatserver.net.IChatServer;
-import com.openim.chatserver.net.INetMessageDispatch;
+import com.openim.chatserver.net.NetMessageDispatch;
 import com.openim.chatserver.net.netty.v2.NettyChatServerV2;
 import com.openim.chatserver.net.netty.v2.NettyMessageDispatchV2;
-import com.openim.common.mq.IMessageQueueDispatch;
+import com.openim.common.mq.MessageQueueDispatch;
 import com.openim.common.util.IPUtil;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -31,13 +31,13 @@ public class BeanConfiguration {
     private String port;
 
     @Bean
-    IMessageQueueDispatch messageDispatch() {
-        return new ChatServerMessageDispatchV2();
+    MessageQueueDispatch messageDispatch() {
+        return new ChatServerMessageQueueDispatchV2();
     }
 
     /*==========================================================*/
     @Bean
-    INetMessageDispatch netMessageDispatch(){
+    NetMessageDispatch netMessageDispatch(){
         return new NettyMessageDispatchV2();
     }
 

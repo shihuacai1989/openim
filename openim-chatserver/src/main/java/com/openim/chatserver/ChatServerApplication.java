@@ -1,6 +1,5 @@
 package com.openim.chatserver;
 
-import com.openim.chatserver.dispatch.ChatServerMessageDispatchV2;
 import com.openim.chatserver.listener.ApplicationContextInitialized;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

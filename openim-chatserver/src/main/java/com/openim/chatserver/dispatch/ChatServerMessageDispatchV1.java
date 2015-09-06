@@ -2,7 +2,7 @@ package com.openim.chatserver.dispatch;
 
 import com.openim.chatserver.ChannelUtil;
 import com.openim.common.im.bean.ProtobufDeviceMsg;
-import com.openim.common.mq.IMessageQueueDispatch;
+import com.openim.common.mq.MessageQueueDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * Created by shihuacai on 2015/7/29.
  */
 @Deprecated
-public class ChatServerMessageDispatchV1 extends IMessageQueueDispatch {
+public class ChatServerMessageDispatchV1 extends MessageQueueDispatch {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV1.class);
 

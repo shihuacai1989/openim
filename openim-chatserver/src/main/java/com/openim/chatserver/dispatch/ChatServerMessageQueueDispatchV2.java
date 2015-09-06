@@ -1,19 +1,16 @@
 package com.openim.chatserver.dispatch;
 
 import com.openim.chatserver.dispatch.handle.v2.IMessageHandler;
-import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
-import com.openim.common.mq.IMessageQueueDispatch;
+import com.openim.common.mq.MessageQueueDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +18,9 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class ChatServerMessageDispatchV2 extends IMessageQueueDispatch implements InitializingBean, ApplicationListener<ContextRefreshedEvent> {
+public class ChatServerMessageQueueDispatchV2 extends MessageQueueDispatch implements InitializingBean, ApplicationListener<ContextRefreshedEvent> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageDispatchV2.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageQueueDispatchV2.class);
 
     //private IMQCodec<ExchangeMessage> mqCodec = new MQBsonCodecUtilV2();
 

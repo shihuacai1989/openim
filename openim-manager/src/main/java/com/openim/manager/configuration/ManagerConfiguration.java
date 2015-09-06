@@ -1,10 +1,10 @@
 package com.openim.manager.configuration;
 
-import com.openim.common.mq.IMessageQueueDispatch;
+import com.openim.common.mq.MessageQueueDispatch;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.manager.cache.login.ILoginCache;
 import com.openim.manager.cache.login.LoginMemoryCache;
-import com.openim.manager.dispatch.MessageDispatchV2;
+import com.openim.manager.dispatch.ManagerMessageQueueDispatchV2;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -23,8 +23,8 @@ public class ManagerConfiguration {
     }
 
     @Bean
-    IMessageQueueDispatch messageDispatch() {
-        return new MessageDispatchV2();
+    MessageQueueDispatch messageDispatch() {
+        return new ManagerMessageQueueDispatchV2();
     }
 
     @Bean

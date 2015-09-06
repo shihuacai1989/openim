@@ -4,7 +4,7 @@ import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
-import com.openim.common.mq.IMessageQueueDispatch;
+import com.openim.common.mq.MessageQueueDispatch;
 import com.openim.common.util.CharsetUtil;
 import com.openim.manager.dispatch.handler.v2.IMessageHandler;
 import org.slf4j.Logger;
@@ -17,9 +17,9 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class MessageDispatchV2 extends IMessageQueueDispatch implements InitializingBean {
+public class ManagerMessageQueueDispatchV2 extends MessageQueueDispatch implements InitializingBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MessageDispatchV2.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ManagerMessageQueueDispatchV2.class);
 
 
     private static Map<Integer, IMessageHandler> msgHandler = new HashMap<Integer, IMessageHandler>();

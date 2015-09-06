@@ -1,7 +1,7 @@
 package com.openim.chatserver.net.mina.v2;
 
 import com.openim.chatserver.net.IChatServer;
-import com.openim.chatserver.net.INetMessageDispatch;
+import com.openim.chatserver.net.NetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
@@ -31,7 +31,7 @@ public class MinaChatServerV2 implements IChatServer {
     private int port;
 
     @Autowired
-    private INetMessageDispatch<IoSession, ExchangeMessage> messageDispatch;
+    private NetMessageDispatch<IoSession, ExchangeMessage> messageDispatch;
 
     /*@Autowired
     private LoginHandlerV2 loginHandler;

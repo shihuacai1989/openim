@@ -1,7 +1,7 @@
 package com.openim.chatserver.net.netty.v2;
 
 import com.google.common.collect.Maps;
-import com.openim.chatserver.net.INetMessageDispatch;
+import com.openim.chatserver.net.NetMessageDispatch;
 import com.openim.chatserver.net.bean.NettySession;
 import com.openim.chatserver.net.bean.Session;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
@@ -16,8 +16,6 @@ import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 
 import java.util.Map;
 
@@ -25,7 +23,7 @@ import java.util.Map;
  * Created by shihc on 2015/8/31.
  */
 
-public class NettyMessageDispatchV2 extends INetMessageDispatch<ChannelHandlerContext, ExchangeMessage> implements InitializingBean, ApplicationListener<ContextRefreshedEvent> {
+public class NettyMessageDispatchV2 extends NetMessageDispatch<ChannelHandlerContext, ExchangeMessage> implements InitializingBean{
 
     private static final Logger LOG = LoggerFactory.getLogger(NettyMessageDispatchV2.class);
     /*private static LoginHandler loginHandler = new LoginHandler();
@@ -81,10 +79,5 @@ public class NettyMessageDispatchV2 extends INetMessageDispatch<ChannelHandlerCo
         /*handlerMap.put(MessageType.LOGIN, loginHandlerV2);
         handlerMap.put(MessageType.LOGOUT, logoutHandlerV2);
         handlerMap.put(MessageType.CHAT, chatHandlerV2);*/
-    }
-
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        //HandleGroupUtil.add(event.getApplicationContext(), HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
     }
 }

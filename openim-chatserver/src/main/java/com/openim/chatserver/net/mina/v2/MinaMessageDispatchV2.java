@@ -1,13 +1,10 @@
 package com.openim.chatserver.net.mina.v2;
 
 import com.google.common.collect.Maps;
-import com.openim.chatserver.net.INetMessageDispatch;
+import com.openim.chatserver.net.NetMessageDispatch;
 import com.openim.chatserver.net.bean.MinaSession;
 import com.openim.chatserver.net.bean.Session;
-import com.openim.chatserver.net.handler.v2.ChatHandlerV2;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
-import com.openim.chatserver.net.handler.v2.LoginHandlerV2;
-import com.openim.chatserver.net.handler.v2.LogoutHandlerV2;
 import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
@@ -17,14 +14,13 @@ import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
 /**
  * Created by shihc on 2015/9/1.
  */
-public class MinaMessageDispatchV2 extends INetMessageDispatch<IoSession, ExchangeMessage> implements InitializingBean {
+public class MinaMessageDispatchV2 extends NetMessageDispatch<IoSession, ExchangeMessage> implements InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(MinaMessageDispatchV2.class);
 

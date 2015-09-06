@@ -2,7 +2,7 @@ package com.openim.chatserver.net.netty.v2;
 
 import com.google.protobuf.MessageLite;
 import com.openim.chatserver.net.IChatServer;
-import com.openim.chatserver.net.INetMessageDispatch;
+import com.openim.chatserver.net.NetMessageDispatch;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
@@ -32,7 +32,7 @@ public class NettyChatServerV2 implements IChatServer {
     private int port;
 
     @Autowired
-    private INetMessageDispatch<ChannelHandlerContext, ExchangeMessage> messageDispatch;
+    private NetMessageDispatch<ChannelHandlerContext, ExchangeMessage> messageDispatch;
 
     @Override
     public void startServer() {
