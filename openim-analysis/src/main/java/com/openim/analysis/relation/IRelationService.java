@@ -1,6 +1,7 @@
 package com.openim.analysis.relation;
 
-import java.util.List;
+import com.openim.common.im.bean.CommonResult;
+import com.openim.common.im.bean.ListResult;
 
 /**
  * Created by shihc on 2015/9/6.
@@ -10,5 +11,45 @@ public interface IRelationService {
      * 获取二度人脉
      * @param loginId
      */
-    List<String> getSecondNetwork(String loginId);
+    ListResult<String> getSecondNetwork(String loginId);
+
+    /**
+     * 获取三度人脉（只包含三度人脉，不包括一、二度人脉）
+     * @return
+     */
+    ListResult<String> getThirdNetwork(String loginId);
+
+    /**
+     * 获取第N度人脉
+     * @param loginId
+     * @param n
+     * @return
+     */
+    ListResult<String> getNNetwork(String loginId, int n);
+
+    /**
+     * 获取指定纬度范围内的人脉
+     * @param loginId
+     * @param startN
+     * @param endN
+     * @return
+     */
+    ListResult<String> getNNetwork(String loginId, int startN, int endN);
+
+    /**
+     * 添加用户
+     * @param loginId
+     * @return
+     */
+    CommonResult<Boolean> addUser(String loginId);
+
+    /**
+     * 为用户增加双向关系
+     * @param loginId1
+     * @param loginId2
+     * @return
+     */
+    CommonResult<Boolean> addRelation(String loginId1, String loginId2);
+
+    CommonResult<Boolean> deleteRelation(String loginId1, String loginId2);
 }

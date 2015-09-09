@@ -44,4 +44,9 @@ public class ListResult<T> {
     public void setData(List<T> data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "code: " + code + ", data: " + data + ", error:" + error;
+    }
 }

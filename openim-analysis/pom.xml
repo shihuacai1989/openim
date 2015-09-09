@@ -22,6 +22,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-common-im</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!--<dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
