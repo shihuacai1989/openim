@@ -44,6 +44,13 @@ public interface IRelationService {
     CommonResult<Boolean> addUser(String loginId);
 
     /**
+     * 删除节点，neo4j限制：必须也要删除其对应的关系
+     * @param loginId
+     * @return
+     */
+    CommonResult<Boolean> deleteUser(String loginId);
+
+    /**
      * 为用户增加双向关系
      * @param loginId1
      * @param loginId2

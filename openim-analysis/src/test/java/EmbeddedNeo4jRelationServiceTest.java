@@ -26,6 +26,17 @@ public class EmbeddedNeo4jRelationServiceTest {
     }
 
     @Test
+    public void deleteUser(){
+        relationService.addUser("xx");
+        relationService.deleteUser("xx");
+
+        relationService.addUser("yy");
+        relationService.addUser("zz");
+        relationService.addRelation("yy", "zz");
+        relationService.deleteUser("yy");
+    }
+
+    @Test
     public void createRelationShip(){
         relationService.addRelation("user1", "user2");
     }

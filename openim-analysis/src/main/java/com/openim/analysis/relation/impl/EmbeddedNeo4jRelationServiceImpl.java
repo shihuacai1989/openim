@@ -145,6 +145,28 @@ public class EmbeddedNeo4jRelationServiceImpl implements IRelationService, Initi
     }
 
     @Override
+    public CommonResult<Boolean> deleteUser(String loginId) {
+
+        int code = ResultCode.success;
+        String error = null;
+        try {
+            ExecutionEngine engine = new ExecutionEngine(graphDB, StringLogger.logger(new File(logPath)));
+            //如果节点无关系，则节点不会被删除
+            //如果节点存在关系，则需要连同关系一起删除
+            String format = "MATCH (n {%s:'%s'})-[r1]-() DELETE n,r1";
+            String cypher = String.format(format, LOGIN_ID_FIELD, loginId);
+            ExecutionResult result = engine.execute( cypher );
+            System.out.println(result.dumpToString());
+        }catch (Exception e){
+            code = ResultCode.error;
+            error = e.toString();
+            LOG.error(error);
+        }
+
+        return new CommonResult<Boolean>(code, null, error);
+    }
+
+    @Override
     public CommonResult<Boolean> addRelation(String loginId1, String loginId2) {
         int code = ResultCode.success;
         String error = null;
@@ -192,7 +214,9 @@ public class EmbeddedNeo4jRelationServiceImpl implements IRelationService, Initi
             //删除两条关系
             String rel1Name  = loginId1 + "-" + loginId2;
             String rel2Name  = loginId2 + "-" + loginId1;
-            String cypher = "MATCH (n)-[r]-() where r." + LOGIN_ID_FIELD + "='" + rel1Name + "' or r." + LOGIN_ID_FIELD + "='"+ rel2Name + "' DELETE r";
+            String format = "MATCH (n)-[r]-() where r.%s='%s' or r.%s='%s' DELETE r";
+            String cypher = String.format(format, LOGIN_ID_FIELD, rel1Name, LOGIN_ID_FIELD, rel2Name);
+            //String cypher = "MATCH (n)-[r]-() where r." + LOGIN_ID_FIELD + "='" + rel1Name + "' or r." + LOGIN_ID_FIELD + "='"+ rel2Name + "' DELETE r";
             ExecutionResult result = engine.execute( cypher );
             System.out.println(result.dumpToString());
         }catch (Exception e){
