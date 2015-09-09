@@ -1,6 +1,6 @@
-package com.openim.analysis.relation.impl;
+package com.openim.analysis.service.impl;
 
-import com.openim.analysis.relation.IRelationService;
+import com.openim.analysis.service.IRelationService;
 import com.openim.common.im.bean.CommonResult;
 import com.openim.common.im.bean.ListResult;
 import com.openim.common.im.bean.ResultCode;

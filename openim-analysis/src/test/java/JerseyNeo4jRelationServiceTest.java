@@ -1,5 +1,5 @@
 import com.openim.analysis.AnalysisApplication;
-import com.openim.analysis.relation.IRelationService;
+import com.openim.analysis.service.IRelationService;
 import com.openim.common.im.bean.ListResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;

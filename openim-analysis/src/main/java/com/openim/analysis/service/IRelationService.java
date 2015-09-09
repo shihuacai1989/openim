@@ -1,4 +1,4 @@
-package com.openim.analysis.relation;
+package com.openim.analysis.service;
 
 import com.openim.common.im.bean.CommonResult;
 import com.openim.common.im.bean.ListResult;

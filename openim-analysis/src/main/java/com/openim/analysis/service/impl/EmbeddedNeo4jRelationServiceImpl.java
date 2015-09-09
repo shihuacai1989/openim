@@ -1,6 +1,6 @@
-package com.openim.analysis.relation.impl;
+package com.openim.analysis.service.impl;
 
-import com.openim.analysis.relation.IRelationService;
+import com.openim.analysis.service.IRelationService;
 import com.openim.common.im.bean.CommonResult;
 import com.openim.common.im.bean.ListResult;
 import com.openim.common.im.bean.ResultCode;
@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.LinkedList;

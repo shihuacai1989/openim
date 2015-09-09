@@ -1,7 +1,7 @@
 package com.openim.analysis.configuration;
 
-import com.openim.analysis.relation.IRelationService;
-import com.openim.analysis.relation.impl.JerseyNeo4jRelationServiceImpl;
+import com.openim.analysis.service.IRelationService;
+import com.openim.analysis.service.impl.JerseyNeo4jRelationServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
