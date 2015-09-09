@@ -7,6 +7,9 @@ import com.openim.common.im.bean.ListResult;
  * Created by shihc on 2015/9/6.
  */
 public interface IRelationService {
+
+    static final String LOGIN_ID_FIELD = "loginId";
+
     /**
      * 获取二度人脉
      * @param loginId
@@ -58,5 +61,11 @@ public interface IRelationService {
      */
     CommonResult<Boolean> addRelation(String loginId1, String loginId2);
 
+    /**
+     * 删除用户之间的关系
+     * @param loginId1
+     * @param loginId2
+     * @return
+     */
     CommonResult<Boolean> deleteRelation(String loginId1, String loginId2);
 }

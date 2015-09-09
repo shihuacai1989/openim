@@ -27,13 +27,9 @@ import java.util.List;
 /**
  * Created by shihc on 2015/9/6.
  */
-@Service
 public class EmbeddedNeo4jRelationServiceImpl implements IRelationService, InitializingBean, DisposableBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(EmbeddedNeo4jRelationServiceImpl.class);
-
-    protected static final String LOGIN_ID_FIELD = "loginId";
-
 
     @Value("${neo4j.db.path}")
     private String dbPath;
@@ -146,13 +142,12 @@ public class EmbeddedNeo4jRelationServiceImpl implements IRelationService, Initi
 
     @Override
     public CommonResult<Boolean> deleteUser(String loginId) {
-
         int code = ResultCode.success;
         String error = null;
         try {
             ExecutionEngine engine = new ExecutionEngine(graphDB, StringLogger.logger(new File(logPath)));
-            //如果节点无关系，则节点不会被删除
-            //如果节点存在关系，则需要连同关系一起删除
+            //如果节点无关系，则节点不会被删除，也不抛出异常
+            //如果节点存在关系，则需要连同关系一起删除，否则抛出异常
             String format = "MATCH (n {%s:'%s'})-[r1]-() DELETE n,r1";
             String cypher = String.format(format, LOGIN_ID_FIELD, loginId);
             ExecutionResult result = engine.execute( cypher );
