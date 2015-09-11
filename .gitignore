@@ -1,4 +1,6 @@
 *.iml
 **/target/**
+**/ldap/**
+LDAPTest.java
 .idea
 target

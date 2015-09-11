@@ -9,8 +9,6 @@ import com.openim.common.mq.MessageQueueDispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +16,7 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/7/29.
  */
-public class ChatServerMessageQueueDispatchV2 extends MessageQueueDispatch implements InitializingBean, ApplicationListener<ContextRefreshedEvent> {
+public class ChatServerMessageQueueDispatchV2 extends MessageQueueDispatch implements InitializingBean{
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatServerMessageQueueDispatchV2.class);
 
@@ -58,13 +56,13 @@ public class ChatServerMessageQueueDispatchV2 extends MessageQueueDispatch imple
     }
 
     /**/
-    @Override
+    /*@Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         // 执行了两次，其不为同一个对象，why??
         // 如果监听ContextStartedEvent，则不执行该方法
         // event.getApplicationContext().getParent()  springboot中执行，永远为null，tomcat中则有一次不为null
         //if(event.getApplicationContext().getParent() != null){
-        /*if (!CollectionUtils.isEmpty(msgHandler)){
+        *//*if (!CollectionUtils.isEmpty(msgHandler)){
             ApplicationContext context = event.getApplicationContext();
             Map<String, Object> map = context.getBeansWithAnnotation(HandleGroup.class);
             if(!CollectionUtils.isEmpty(map)){
@@ -78,12 +76,12 @@ public class ChatServerMessageQueueDispatchV2 extends MessageQueueDispatch imple
                     }
                 }
             }
-        }*/
+        }*//*
 
         //HandleGroupUtil.add(event.getApplicationContext(), HandleGroupConstants.CHAT_SERVER_MQ_HANDLER, msgHandler);
 
         //}
-    }
+    }*/
 
     @Override
     public void afterPropertiesSet() throws Exception {
