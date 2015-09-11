@@ -24,6 +24,8 @@
         <protobuf.version>2.4.1</protobuf.version>
         <netty.version>4.0.29.Final</netty.version>
         <mina.version>2.0.9</mina.version>
+        <grizzly.version>2.3.22</grizzly.version>
+        <xSocket.version>2.8.15</xSocket.version>
         <openim.version>0.1</openim.version>
         <spring.boot.version>1.2.5.RELEASE</spring.boot.version>
         <spring.version>4.1.7.RELEASE</spring.version>
@@ -61,6 +63,23 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.1.45</version>
             </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish.grizzly</groupId>
+                <artifactId>grizzly-framework</artifactId>
+                <version>${grizzly.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.xsocket</groupId>
+                <artifactId>xSocket</artifactId>
+                <version>${xSocket.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.mina</groupId>
                 <artifactId>mina-core</artifactId>

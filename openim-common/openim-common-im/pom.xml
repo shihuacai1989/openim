@@ -25,9 +25,17 @@
         </dependency>
 
         <dependency>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-framework</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.xsocket</groupId>
+            <artifactId>xSocket</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
         </dependency>
 
         <dependency>
@@ -50,7 +58,6 @@
                 </exclusion>
             </exclusions>-->
         </dependency>
-
 
 
         <dependency>
