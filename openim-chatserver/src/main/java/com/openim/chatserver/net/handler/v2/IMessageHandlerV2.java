@@ -1,6 +1,6 @@
 package com.openim.chatserver.net.handler.v2;
 
-import com.openim.chatserver.net.bean.Session;
+import com.openim.chatserver.bean.Session;
 import com.openim.common.im.bean.ExchangeMessage;
 
 /**

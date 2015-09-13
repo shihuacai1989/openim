@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * Created by shihc on 2015/7/30.
  */
 @Component
-@HandleGroup(name = HandleGroup.MANAGER_MQ_HANDLER_V2, type = MessageType.CHAT)
+@HandleGroup(name = HandleGroup.MANAGER_MQ_HANDLER, type = MessageType.CHAT)
 public class ChatHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);

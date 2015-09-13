@@ -23,7 +23,7 @@ import java.util.List;
  * Created by shihc on 2015/7/30.
  */
 @Component
-@HandleGroup(name = HandleGroup.MANAGER_MQ_HANDLER_V2, type = MessageType.LOGOUT)
+@HandleGroup(name = HandleGroup.MANAGER_MQ_HANDLER, type = MessageType.LOGOUT)
 public class LogoutHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandler.class);

@@ -53,6 +53,6 @@ public class ManagerMessageQueueDispatchV2 extends MessageQueueDispatch implemen
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        registerHandler(HandleGroup.MANAGER_MQ_HANDLER_V2, msgHandler);
+        registerHandler(HandleGroup.MANAGER_MQ_HANDLER, msgHandler);
     }
 }

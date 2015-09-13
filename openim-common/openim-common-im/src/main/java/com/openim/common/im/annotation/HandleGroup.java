@@ -13,11 +13,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleGroup {
 
-    public static final String CHAT_SERVER_MQ_HANDLER = "chatServerMQHandler";
+    String CHAT_SERVER_MQ_HANDLER = "chatServerMQHandler";
 
-    public static final String CHAT_SERVER_NiO_HANDLER_V2 = "chatServerNioHandlerV2";
+    String CHAT_SERVER_NiO_HANDLER = "chatServerNioHandlerV2";
 
-    public static final String MANAGER_MQ_HANDLER_V2 = "managerMQHandlerV2";
+    String MANAGER_MQ_HANDLER = "managerMQHandlerV2";
 
     String name();
     int type();

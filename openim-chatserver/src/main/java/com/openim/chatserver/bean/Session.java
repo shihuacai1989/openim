@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.bean;
+package com.openim.chatserver.bean;
 
 /**
  * Created by shihc on 2015/9/1.

@@ -1,7 +1,7 @@
 package com.openim.chatserver;
 
 import com.google.common.collect.Maps;
-import com.openim.chatserver.net.bean.Session;
+import com.openim.chatserver.bean.Session;
 import io.netty.util.AttributeKey;
 import org.springframework.util.StringUtils;
 

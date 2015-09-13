@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.bean;
+package com.openim.chatserver.bean;
 
 import io.netty.channel.Channel;
 

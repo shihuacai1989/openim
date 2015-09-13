@@ -1,4 +1,4 @@
-package com.openim.chatserver.net.bean;
+package com.openim.chatserver.bean;
 
 import org.apache.mina.core.session.IoSession;
 

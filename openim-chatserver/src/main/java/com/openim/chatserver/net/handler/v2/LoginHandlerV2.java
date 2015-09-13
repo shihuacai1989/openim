@@ -2,7 +2,7 @@ package com.openim.chatserver.net.handler.v2;
 
 import com.openim.chatserver.SessionManager;
 import com.openim.chatserver.configuration.BeanConfiguration;
-import com.openim.chatserver.net.bean.Session;
+import com.openim.chatserver.bean.Session;
 import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * Created by shihc on 2015/9/1.
  */
 @Component
-@HandleGroup(name = HandleGroup.CHAT_SERVER_NiO_HANDLER_V2, type = MessageType.LOGIN)
+@HandleGroup(name = HandleGroup.CHAT_SERVER_NiO_HANDLER, type = MessageType.LOGIN)
 public class LoginHandlerV2 implements IMessageHandlerV2 {
     private static final Logger LOG = LoggerFactory.getLogger(LoginHandlerV2.class);
 

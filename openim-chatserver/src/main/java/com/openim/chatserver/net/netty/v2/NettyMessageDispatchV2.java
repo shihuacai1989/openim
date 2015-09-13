@@ -2,8 +2,8 @@ package com.openim.chatserver.net.netty.v2;
 
 import com.google.common.collect.Maps;
 import com.openim.chatserver.net.NetMessageDispatch;
-import com.openim.chatserver.net.bean.NettySession;
-import com.openim.chatserver.net.bean.Session;
+import com.openim.chatserver.bean.NettySession;
+import com.openim.chatserver.bean.Session;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
 import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.bean.ExchangeMessage;
@@ -74,7 +74,7 @@ public class NettyMessageDispatchV2 extends NetMessageDispatch<ChannelHandlerCon
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        registerHandler(HandleGroup.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
+        registerHandler(HandleGroup.CHAT_SERVER_NiO_HANDLER, handlerMap);
         /*handlerMap.put(MessageType.LOGIN, loginHandlerV2);
         handlerMap.put(MessageType.LOGOUT, logoutHandlerV2);
         handlerMap.put(MessageType.CHAT, chatHandlerV2);*/
