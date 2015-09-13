@@ -1,7 +1,6 @@
 package com.openim.manager.dispatch;
 
 import com.openim.common.im.annotation.HandleGroupConstants;
-import com.openim.common.im.annotation.HandleGroupUtil;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.MessageQueueDispatch;
@@ -54,6 +53,6 @@ public class ManagerMessageQueueDispatchV2 extends MessageQueueDispatch implemen
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        HandleGroupUtil.add(applicationContext, HandleGroupConstants.MANAGER_MQ_HANDLER_V2, msgHandler);
+        registerHandler(HandleGroupConstants.MANAGER_MQ_HANDLER_V2, msgHandler);
     }
 }
