@@ -1,7 +1,6 @@
 package com.openim.manager.dispatch.handler.v2;
 
 import com.openim.common.im.annotation.HandleGroup;
-import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.LoginStatus;
 import com.openim.common.im.bean.MessageType;
@@ -21,7 +20,7 @@ import org.springframework.util.StringUtils;
  * Created by shihc on 2015/7/30.
  */
 @Component
-@HandleGroup(name = HandleGroupConstants.MANAGER_MQ_HANDLER_V2, type = MessageType.CHAT)
+@HandleGroup(name = HandleGroup.MANAGER_MQ_HANDLER_V2, type = MessageType.CHAT)
 public class ChatHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatHandler.class);

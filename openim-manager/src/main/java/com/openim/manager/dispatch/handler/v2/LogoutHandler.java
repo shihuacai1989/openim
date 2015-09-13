@@ -1,7 +1,6 @@
 package com.openim.manager.dispatch.handler.v2;
 
 import com.openim.common.im.annotation.HandleGroup;
-import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.bean.*;
 import com.openim.common.im.bean.protbuf.ProtobufFriendOffLineMessage;
 import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
@@ -24,7 +23,7 @@ import java.util.List;
  * Created by shihc on 2015/7/30.
  */
 @Component
-@HandleGroup(name = HandleGroupConstants.MANAGER_MQ_HANDLER_V2, type = MessageType.LOGOUT)
+@HandleGroup(name = HandleGroup.MANAGER_MQ_HANDLER_V2, type = MessageType.LOGOUT)
 public class LogoutHandler implements IMessageHandler<ExchangeMessage> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandler.class);

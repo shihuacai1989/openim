@@ -5,8 +5,7 @@ import com.openim.chatserver.net.NetMessageDispatch;
 import com.openim.chatserver.net.bean.MinaSession;
 import com.openim.chatserver.net.bean.Session;
 import com.openim.chatserver.net.handler.v2.IMessageHandlerV2;
-import com.openim.common.im.annotation.HandleGroupConstants;
-import com.openim.common.im.annotation.HandleGroupUtil;
+import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufLoginMessage;
@@ -68,7 +67,7 @@ public class MinaMessageDispatchV2 extends NetMessageDispatch<IoSession, Exchang
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        HandleGroupUtil.add(applicationContext, HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
+        registerHandler(HandleGroup.CHAT_SERVER_NiO_HANDLER_V2, handlerMap);
 
         /*handlerMap.put(MessageType.LOGIN, loginHandlerV2);
         handlerMap.put(MessageType.LOGOUT, logoutHandlerV2);

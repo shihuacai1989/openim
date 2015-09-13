@@ -3,7 +3,6 @@ package com.openim.chatserver.net.handler.v2;
 import com.openim.chatserver.SessionManager;
 import com.openim.chatserver.net.bean.Session;
 import com.openim.common.im.annotation.HandleGroup;
-import com.openim.common.im.annotation.HandleGroupConstants;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
 import com.openim.common.im.bean.protbuf.ProtobufLogoutMessage;
@@ -20,7 +19,7 @@ import org.springframework.util.StringUtils;
  * Created by shihuacai on 2015/7/22.
  */
 @Component
-@HandleGroup(name = HandleGroupConstants.CHAT_SERVER_NiO_HANDLER_V2, type = MessageType.LOGOUT)
+@HandleGroup(name = HandleGroup.CHAT_SERVER_NiO_HANDLER_V2, type = MessageType.LOGOUT)
 public class LogoutHandlerV2 implements IMessageHandlerV2 {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogoutHandlerV2.class);

@@ -20,11 +20,11 @@ import java.net.URI;
 
 /**
  * Created by shihc on 2015/9/9.<br/>
- * 关闭neo4j服务的权限认证方法：NEO4J_HOME/conf/neo4j-server.properties
  */
-public class JerseyNeo4jRelationServiceImpl implements IRelationService, InitializingBean {
+@Deprecated
+public class RestNeo4jRelationServiceImpl implements IRelationService, InitializingBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JerseyNeo4jRelationServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RestNeo4jRelationServiceImpl.class);
 
     @Value("${neo4j.server.path}")
     private String serverPath;

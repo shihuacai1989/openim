@@ -1,8 +1,7 @@
 package com.openim.chatserver.dispatch;
 
 import com.openim.chatserver.dispatch.handle.v2.IMessageHandler;
-import com.openim.common.im.annotation.HandleGroupConstants;
-import com.openim.common.im.annotation.HandleGroupUtil;
+import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.codec.mq.MQBsonCodecUtilV2;
 import com.openim.common.mq.MessageQueueDispatch;
@@ -85,7 +84,8 @@ public class ChatServerMessageQueueDispatchV2 extends MessageQueueDispatch imple
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        HandleGroupUtil.add(applicationContext, HandleGroupConstants.CHAT_SERVER_MQ_HANDLER, msgHandler);
+
+        registerHandler(HandleGroup.CHAT_SERVER_MQ_HANDLER, msgHandler);
 
         /*addHandler(chatHandler);
         addHandler(friendOnLineHandler);

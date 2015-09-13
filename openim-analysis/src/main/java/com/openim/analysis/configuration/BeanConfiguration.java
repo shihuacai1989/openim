@@ -1,7 +1,7 @@
 package com.openim.analysis.configuration;
 
 import com.openim.analysis.service.IRelationService;
-import com.openim.analysis.service.impl.JerseyNeo4jRelationServiceImpl;
+import com.openim.analysis.service.impl.RestNeo4jRelationServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +12,6 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
     @Bean
     IRelationService relationService(){
-        return new JerseyNeo4jRelationServiceImpl();
+        return new RestNeo4jRelationServiceImpl();
     }
 }
