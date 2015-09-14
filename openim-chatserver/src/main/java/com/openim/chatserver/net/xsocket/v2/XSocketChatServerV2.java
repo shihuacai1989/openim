@@ -16,6 +16,7 @@ import java.util.Map;
 /**
  * Created by shihuacai on 2015/9/13.
  */
+@Deprecated
 public class XSocketChatServerV2 implements IChatServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(XSocketChatServerV2.class);
@@ -91,6 +92,8 @@ public class XSocketChatServerV2 implements IChatServer {
         public boolean onData(INonBlockingConnection nbc) throws IOException,
                 BufferUnderflowException, ClosedChannelException,
                 MaxReadSizeExceededException {
+
+            //nbc.read
             String data=nbc.readStringByDelimiter("|");
             nbc.write("--|server:receive data from client sucessful| -----");
             nbc.flush();
