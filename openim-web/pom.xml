@@ -21,7 +21,11 @@
     <artifactId>openim-web</artifactId>
     <packaging>jar</packaging>
 
-    <description>仅用于实验，无任何实际功能</description>
+    <description>
+        仅用于实验，无任何实际功能
+        org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration
+        http://docs.spring.io/spring-session/docs/current/reference/html5/guides/boot.html
+    </description>
 
 
     <build>

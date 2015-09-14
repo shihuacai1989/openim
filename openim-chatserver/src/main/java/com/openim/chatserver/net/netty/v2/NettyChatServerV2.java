@@ -39,6 +39,16 @@ public class NettyChatServerV2 implements IChatServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
+            //http://my.oschina.net/cloudcoder/blog/363749
+            /*final SslContext sslCtx;
+
+            SelfSignedCertificate ssc = new SelfSignedCertificate();
+            SslContextBuilder.forServer()
+            sslCtx = SslContext.newServerContext(ssc.certificate(), ssc.privateKey());*/
+
+
+
+
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
@@ -53,7 +63,11 @@ public class NettyChatServerV2 implements IChatServer {
 
         } catch (InterruptedException e) {
             LOG.error(e.toString());
-        } finally {
+        } /*catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (SSLException e) {
+            e.printStackTrace();
+        }*/ finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
