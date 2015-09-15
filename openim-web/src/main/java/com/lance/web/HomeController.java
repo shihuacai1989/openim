@@ -13,7 +13,7 @@ public class HomeController {
 	 */
 	@RequestMapping("holder")
 	public String holder(){
-		return "user/customer/img-hoder.jsp";
+		return "user/customer/img-hoder";
 	}
 	
 	/**
@@ -22,11 +22,11 @@ public class HomeController {
 	 */
 	@RequestMapping("tmpl")
 	public String tmpl(){
-		return "user/customer/template.jsp";
+		return "user/customer/template";
 	}
 	
 	@RequestMapping("adduser")
 	public String addUser(){
-		return "user/customer/user-add.jsp";
+		return "user/customer/user-add";
 	}
 }

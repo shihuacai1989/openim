@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/customer/login.css">
 <body>
 	<div class="container">
-		<form class="form-signin" action="login" method="post">
+		<form class="form-signin" action="validate" method="post">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<div class="error-code">${err_code}</div>
 			<input type="text" class="form-control" placeholder="Email address" required autofocus name="email" value="${user.email}"> 

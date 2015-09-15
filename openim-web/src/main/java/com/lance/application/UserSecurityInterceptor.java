@@ -19,7 +19,7 @@ public class UserSecurityInterceptor implements HandlerInterceptor {
 		 //验证用户是否登陆
         Object obj = request.getSession().getAttribute("cur_user");
         if (obj == null || !(obj instanceof UserEntity)) {
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/");
             return false;
         }
         

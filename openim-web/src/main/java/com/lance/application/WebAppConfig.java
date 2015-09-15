@@ -1,6 +1,5 @@
 package com.lance.application;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -18,9 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EntityScan("com.lance.entity")
 @EnableJpaRepositories("com.lance.repository")
 public class WebAppConfig extends WebMvcConfigurerAdapter{
-	@Autowired
-	private Crawler crawler;
-		
+
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(WebAppConfig.class);
 	}
@@ -43,6 +40,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
      */
     @Scheduled(cron="0 0 22 * * ?")
     public void reportCurrentTime() {
-    	crawler.getBlogList(1);
+
     }
 }

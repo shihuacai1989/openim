@@ -2,24 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!--<parent>
+    <parent>
         <artifactId>openim</artifactId>
         <groupId>com.openim</groupId>
         <version>0.1</version>
-    </parent>-->
-    <parent>
+    </parent>
+    <!--<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.1.0.RC1</version>
-    </parent>
+        <version>1.2.5.RELEASE</version>
+    </parent>-->
 
     <modelVersion>4.0.0</modelVersion>
 
-
-
     <groupId>com.openim</groupId>
     <artifactId>openim-web</artifactId>
-    <packaging>jar</packaging>
+    <!--jsp页面需要此配置，打包成war包，或者指定插件maven-war-plugin-->
+    <!--<packaging>war</packaging>-->
 
     <description>
         仅用于实验，无任何实际功能
@@ -33,20 +32,59 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.2.0.RELEASE</version>
+                <version>1.2.5.RELEASE</version>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <!--采用servlet3 无需web.xml-->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!--<webXml>webapp/WEB-INF/web.xml</webXml>-->
+                </configuration>
+            </plugin>
+            <!--将所有的jar包合并成一个jar包，手动指定入口main方法 -->
+            <!--<plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    &lt;!&ndash;<archiveBaseDirectory&ndash;&gt;
+                    <archive>
+                        <manifest>
+                            <mainClass>com.lance.application.WebAppConfig</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-all</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>-->
 
         </plugins>
     </build>
-    <properties>
-        <jetty.version>8.1.15.v20140411</jetty.version>
-        <jetty-jsp.version>2.2.0.v201112011158</jetty-jsp.version>
-    </properties>
     <dependencies>
+        <!--不添加以下两个jar包，则会出现包404的错误（页面找不到）-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+            <version>8.0.23</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-redis</artifactId>
@@ -72,6 +110,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
         </dependency>
 
         <dependency>
@@ -79,13 +118,8 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.2.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
-        <!-- JSOUP -->
+        <!-- 抓取，解析html -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
@@ -100,7 +134,7 @@
         </dependency>
     </dependencies>
 
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -128,9 +162,9 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-    </repositories>
+    </repositories>-->
 
-    <pluginRepositories>
+    <!--<pluginRepositories>
         <pluginRepository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -155,5 +189,5 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories>-->
 </project>

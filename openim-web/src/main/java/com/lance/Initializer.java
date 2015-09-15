@@ -19,8 +19,7 @@ import org.springframework.session.web.context.AbstractHttpSessionApplicationIni
 
 // tag::class[]
 
-public class Initializer
-		extends AbstractHttpSessionApplicationInitializer { // <1>
+public class Initializer extends AbstractHttpSessionApplicationInitializer { // <1>
 
 	public Initializer() {
 		super(RedisSessionConfig.class); // <2>

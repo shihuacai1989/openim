@@ -34,9 +34,9 @@ public class IndexController {
 	 * 2014-6-8下午6:49:40
 	 * @return
 	 */
-	@RequestMapping(value={"login","/"},method=RequestMethod.GET)
+	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String login(){
-		return "login.jsp";
+		return "login";
 	}
 	
 	/**
@@ -47,7 +47,7 @@ public class IndexController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value="login",method=RequestMethod.POST)
+	@RequestMapping(value="validate",method=RequestMethod.POST)
 	public String login(UserEntity user, RedirectAttributes redirect){
 		try {
 			user = loginService.login(user);
@@ -55,7 +55,7 @@ public class IndexController {
 			logger.debug(e.getMessage());
 			redirect.addFlashAttribute("err_code", e.getMessage());
 			redirect.addFlashAttribute("user", user);
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		
 		CurrentUserUtils.getInstance().serUser(user);
@@ -70,6 +70,6 @@ public class IndexController {
 	 */
 	@RequestMapping("user/home")
 	public String home(){
-		return "user/home.jsp";
+		return "user/home";
 	}
 }
