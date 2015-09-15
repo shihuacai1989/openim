@@ -15,15 +15,8 @@
  */
 package com.lance;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 // tag::class[]
-@WebServlet("/session")
+/*@WebServlet("/session")
 public class SessionServlet extends HttpServlet {
 
 	@Override
@@ -35,5 +28,5 @@ public class SessionServlet extends HttpServlet {
 	}
 
 	private static final long serialVersionUID = 2878267318695777395L;
-}
+}*/
 // tag::end[]

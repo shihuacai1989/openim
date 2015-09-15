@@ -15,14 +15,12 @@
  */
 package com.lance;
 
-import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
-
 // tag::class[]
 
-public class Initializer extends AbstractHttpSessionApplicationInitializer { // <1>
+/*public class Initializer extends AbstractHttpSessionApplicationInitializer { // <1>
 
 	public Initializer() {
 		super(RedisSessionConfig.class); // <2>
 	}
-}
+}*/
 // end::class[]
