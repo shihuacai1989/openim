@@ -27,13 +27,16 @@ public class ChatClient {
     private String currentUser = null;
     private String targetUser = null;
 
+    public static final String SERVER_HOST = "localhost";
+    public static final int SERVER_PORT = 9000;
+
     public ChatClient(String host, int port) {
         this.host = host;
         this.port = port;
     }
 
     public static void main(String[] args) throws Exception {
-        new ChatClient("localhost", 9000).run();
+        new ChatClient(SERVER_HOST, SERVER_PORT).run();
     }
 
     public void run() throws Exception {

@@ -7,6 +7,7 @@ import com.openim.chatserver.net.netty.v2.NettyChatServerV2;
 import com.openim.chatserver.net.netty.v2.NettyMessageDispatchV2;
 import com.openim.common.mq.MessageQueueDispatch;
 import com.openim.common.util.IPUtil;
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -63,6 +64,11 @@ public class BeanConfiguration {
         String queueName = chatServerListenerQueue();
         //String queueName = String.format(queue, IPUtil.getLocalIP(), port);
         return new Queue(queueName, true);
+    }
+
+    @Bean
+    javax.jms.Queue chatQueue() {
+        return new ActiveMQQueue(chatServerListenerQueue());
     }
 
     /**

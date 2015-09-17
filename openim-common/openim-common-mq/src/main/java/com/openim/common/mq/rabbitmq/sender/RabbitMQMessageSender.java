@@ -14,6 +14,7 @@ public class RabbitMQMessageSender implements IMessageSender {
 
     @Override
     public void sendMessage(String exchange, String routeKey, Object message) {
+
         rabbitTemplate.convertAndSend(exchange, routeKey, message);
     }
 }
