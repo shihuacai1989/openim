@@ -14,15 +14,7 @@ import javax.jms.Queue;
  * Created by shihc on 2015/9/17.
  */
 @Configuration
-public class ActiveMQConfiguration {
-
-    public static final String HELLO_QUEUE = "hello.queue";
-
-
-    @Bean
-    public Queue helloJMSQueue() {
-        return new ActiveMQQueue(HELLO_QUEUE);
-    }
+public class BaseActiveMQConfiguration {
 
     @Bean
     Queue chatQueue() {

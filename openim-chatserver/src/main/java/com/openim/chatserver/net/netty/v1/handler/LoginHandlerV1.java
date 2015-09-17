@@ -1,7 +1,7 @@
 package com.openim.chatserver.net.netty.v1.handler;
 
 import com.openim.chatserver.ChannelUtil;
-import com.openim.chatserver.configuration.BeanConfiguration;
+import com.openim.chatserver.configuration.BaseConfiguration;
 import com.openim.chatserver.listener.ApplicationContextInitialized;
 import com.openim.chatserver.net.netty.v1.INettyMessageHandlerV1;
 import com.openim.common.im.bean.MessageType;
@@ -36,7 +36,7 @@ public class LoginHandlerV1 implements INettyMessageHandlerV1 {
 
                 ChannelUtil.add(loginId, channel);
 
-                ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setServerQueue(BeanConfiguration.chatQueueName);
+                ProtobufDeviceMsg.DeviceMsg.Builder builder = ProtobufDeviceMsg.DeviceMsg.newBuilder(deviceMsg).setServerQueue(BaseConfiguration.chatQueueName);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, builder.build().toByteArray());
             }
         }

@@ -1,7 +1,7 @@
 package com.openim.chatserver.net.netty.jdk.handler;
 
 import com.openim.chatserver.ChannelUtil;
-import com.openim.chatserver.configuration.BeanConfiguration;
+import com.openim.chatserver.configuration.BaseConfiguration;
 import com.openim.chatserver.listener.ApplicationContextInitialized;
 import com.openim.common.im.bean.DeviceMsg;
 import com.openim.common.im.bean.MessageType;
@@ -35,7 +35,7 @@ public class LoginHandler implements IMessageHandler {
                 //后期完成登录验证
 
                 ChannelUtil.add(loginId, channel);
-                jsonObject.setServerQueue(BeanConfiguration.chatQueueName);
+                jsonObject.setServerQueue(BaseConfiguration.chatQueueName);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, jsonObject);
 
             } else {

@@ -12,31 +12,32 @@ public class ActiveMQTestMain {
     public static void main(String[] args) throws Exception {
         thread(new HelloWorldProducer(), false);
         thread(new HelloWorldProducer(), false);
-        thread(new HelloWorldConsumer(), false);
+        //thread(new HelloWorldConsumer(), false);
         Thread.sleep(1000);
-        thread(new HelloWorldConsumer(), false);
+        //thread(new HelloWorldConsumer(), false);
         thread(new HelloWorldProducer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
-        Thread.sleep(1000);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
+        //thread(new HelloWorldConsumer(), false);
         thread(new HelloWorldProducer(), false);
         Thread.sleep(1000);
+        //thread(new HelloWorldConsumer(), false);
+        thread(new HelloWorldProducer(), false);
+        //thread(new HelloWorldConsumer(), false);
+        ////thread(new HelloWorldConsumer(), false);
+        thread(new HelloWorldProducer(), false);
+        thread(new HelloWorldProducer(), false);
+        Thread.sleep(1000);
+        thread(new HelloWorldProducer(), false);
+        //thread(new HelloWorldConsumer(), false);
+        //thread(new HelloWorldConsumer(), false);
+        thread(new HelloWorldProducer(), false);
+        //thread(new HelloWorldConsumer(), false);
+        thread(new HelloWorldProducer(), false);
+        //thread(new HelloWorldConsumer(), false);
+        thread(new HelloWorldProducer(), false);
+        //thread(new HelloWorldConsumer(), false);
+        //thread(new HelloWorldConsumer(), false);
         thread(new HelloWorldProducer(), false);
         thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldConsumer(), false);
-        thread(new HelloWorldProducer(), false);
     }
 
     public static void thread(Runnable runnable, boolean daemon) {
@@ -49,8 +50,9 @@ public class ActiveMQTestMain {
         public void run() {
             try {
                 // Create a ConnectionFactory
-                ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://localhost");
-
+                ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+                connectionFactory.setUserName("admin");
+                connectionFactory.setPassword("secret");
                 // Create a Connection
                 Connection connection = connectionFactory.createConnection();
                 connection.start();
@@ -59,7 +61,7 @@ public class ActiveMQTestMain {
                 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
                 // Create the destination (Topic or Queue)
-                Destination destination = session.createQueue("TEST.FOO");
+                Destination destination = session.createQueue("tt.oo");
 
                 // Create a MessageProducer from the Session to the Topic or Queue
                 MessageProducer producer = session.createProducer(destination);
@@ -100,25 +102,28 @@ public class ActiveMQTestMain {
                 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
                 // Create the destination (Topic or Queue)
-                Destination destination = session.createQueue("TEST.FOO");
+                Destination destination = session.createTopic("tt.*");
 
                 // Create a MessageConsumer from the Session to the Topic or Queue
                 MessageConsumer consumer = session.createConsumer(destination);
 
-                // Wait for a message
-                Message message = consumer.receive(1000);
+                while (true){
+                    // Wait for a message
+                    Message message = consumer.receive(1000);
 
-                if (message instanceof TextMessage) {
-                    TextMessage textMessage = (TextMessage) message;
-                    String text = textMessage.getText();
-                    System.out.println("Received: " + text);
-                } else {
-                    System.out.println("Received: " + message);
+                    if (message instanceof TextMessage) {
+                        TextMessage textMessage = (TextMessage) message;
+                        String text = textMessage.getText();
+                        System.out.println("Received: " + text);
+                    } else {
+                        System.out.println("Received: " + message);
+                    }
                 }
 
-                consumer.close();
+
+                /*consumer.close();
                 session.close();
-                connection.close();
+                connection.close();*/
             } catch (Exception e) {
                 System.out.println("Caught: " + e);
                 e.printStackTrace();

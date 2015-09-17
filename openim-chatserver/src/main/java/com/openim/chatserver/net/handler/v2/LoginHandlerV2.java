@@ -1,8 +1,8 @@
 package com.openim.chatserver.net.handler.v2;
 
 import com.openim.chatserver.SessionManager;
-import com.openim.chatserver.configuration.BeanConfiguration;
 import com.openim.chatserver.bean.Session;
+import com.openim.chatserver.configuration.BaseConfiguration;
 import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
@@ -35,7 +35,7 @@ public class LoginHandlerV2 implements IMessageHandlerV2 {
                 String pwd = connectMessage.getPassword();
                 String loginId = connectMessage.getLoginId();
                 SessionManager.add(loginId, session);
-                connectMessage = connectMessage.toBuilder().setServerQueue(BeanConfiguration.chatQueueName).build();
+                connectMessage = connectMessage.toBuilder().setServerQueue(BaseConfiguration.chatQueueName).build();
                 exchangeMessage.setMessageLite(connectMessage);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, MQBsonCodecUtilV2.encode(exchangeMessage));
             }catch (Exception e){

@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Bean;
  * Created by shihuacai on 2015/7/28.
  */
 //@Configuration
-public class RabbitMQConfiguration {
+public class BaseRabbitMQConfiguration {
 
     /**
      * 自动在rabbitmq server中创建队列

@@ -13,6 +13,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -22,7 +23,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.net.ssl.SSLServerSocketFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -100,7 +100,7 @@ public class NettyChatServerV2 implements IChatServer {
 
             ChannelPipeline pipeline = ch.pipeline();
             //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
-            pipeline.addLast("ping", new IdleStateHandler(15, 0, 0, TimeUnit.SECONDS));
+            pipeline.addLast("ping", new IdleStateHandler(120, 0, 0, TimeUnit.SECONDS));
 
             pipeline.addLast("ssl", sslCtx.newHandler(ch.alloc()));
 
