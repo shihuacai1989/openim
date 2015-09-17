@@ -10,4 +10,5 @@ public class NioMessageSender implements IMessageSender {
     @Override
     public void sendMessage(String exchange, String routeKey, Object message) {
     }
+
 }
