@@ -5,12 +5,14 @@ import com.google.protobuf.MessageLite;
 import com.openim.common.im.bean.ExchangeMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufOutputStream;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
  * Created by shihuacai on 2015/8/20.
  */
+//@ChannelHandler.Sharable
 public class OpenIMProtobufEncoderV2 extends MessageToByteEncoder<ExchangeMessage> {
 
     @Override

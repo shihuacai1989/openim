@@ -13,6 +13,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.SelfSignedCertificate;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.slf4j.Logger;
@@ -20,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.net.ssl.SSLServerSocketFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -45,9 +48,6 @@ public class NettyChatServerV2 implements IChatServer {
             SelfSignedCertificate ssc = new SelfSignedCertificate();
             SslContextBuilder.forServer()
             sslCtx = SslContext.newServerContext(ssc.certificate(), ssc.privateKey());*/
-
-
-
 
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
@@ -86,6 +86,9 @@ public class NettyChatServerV2 implements IChatServer {
     }
 
     private class ChatServerInitializerV2 extends ChannelInitializer<SocketChannel> {
+        //OpenIMProtobufEncoderV2 encoder = new OpenIMProtobufEncoderV2();
+        //OpenIMProtobufDecoderV2 decoder = new OpenIMProtobufDecoderV2();
+        //ChatServerHandlerV2 handler = new ChatServerHandlerV2();
 
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
@@ -100,6 +103,7 @@ public class NettyChatServerV2 implements IChatServer {
         }
     }
 
+    //@ChannelHandler.Sharable
     private class ChatServerHandlerV2 extends SimpleChannelInboundHandler<ExchangeMessage> {
         private final Logger LOG = LoggerFactory.getLogger(ChatServerHandlerV2.class);
 

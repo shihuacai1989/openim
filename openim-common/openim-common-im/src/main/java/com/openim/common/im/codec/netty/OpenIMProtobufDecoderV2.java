@@ -5,6 +5,7 @@ import com.google.protobuf.MessageLite;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.containter.MessageParserV2;
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.CorruptedFrameException;
@@ -15,7 +16,9 @@ import java.util.List;
 
 /**
  * Created by shihuacai on 2015/8/20.
+ * 因为每一个ByteToMessageDecoder都有针对某个socket的累积对象，故是一个不可以共享的对象类型
  */
+//@ChannelHandler.Sharable
 public class OpenIMProtobufDecoderV2 extends ByteToMessageDecoder {
 
     private static final Logger LOG = LoggerFactory.getLogger(OpenIMProtobufDecoderV2.class);
