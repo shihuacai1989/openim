@@ -1,11 +1,11 @@
 package com.openim.manager.configuration;
 
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 
 /**
@@ -24,10 +24,10 @@ public class ActiveMQConfiguration {
      * @return
      */
     @Bean
-    DefaultMessageListenerContainer activeMQListenerContainer(SingleConnectionFactory connectionFactory, javax.jms.MessageListener messageListener) {
+    DefaultMessageListenerContainer activeMQListenerContainer(PooledConnectionFactory connectionFactory, javax.jms.MessageListener messageListener) {
         DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        //ActiveMQQueue queue = new ActiveMQQueue(MQConstants.MANAGER_CONSUMER_TOPIC);
+        //container.setSessionAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
         container.setDestination(managerConsumerQueue);
         container.setMessageListener(messageListener);
         return container;

@@ -20,7 +20,6 @@
     </modules>
 
     <properties>
-
         <mongo.java.version>2.13.0</mongo.java.version>
         <protobuf.version>2.4.1</protobuf.version>
         <netty.version>4.0.29.Final</netty.version>
@@ -49,10 +48,6 @@
     </dependencies>
 
     <dependencyManagement>
-
-
-
-
         <dependencies>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -86,9 +81,19 @@
                 <version>${activemq.version}</version>
             </dependency>-->
 
-            <dependency>
+            <!--<dependency>
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-all</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>-->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-core</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-pool</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
 

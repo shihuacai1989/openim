@@ -1,4 +1,4 @@
-package com.openim.common.mq.activemq;
+package com.openim.common.mq.activemq.sender;
 
 import com.openim.common.mq.IMessageSender;
 import com.openim.common.mq.constants.MQConstants;

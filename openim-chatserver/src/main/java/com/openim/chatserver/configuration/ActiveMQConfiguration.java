@@ -1,6 +1,7 @@
 package com.openim.chatserver.configuration;
 
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ public class ActiveMQConfiguration extends BaseConfiguration {
      * @return
      */
     @Bean
-    DefaultMessageListenerContainer activeMQListenerContainer(javax.jms.ConnectionFactory connectionFactory, javax.jms.MessageListener messageListener) {
+    DefaultMessageListenerContainer activeMQListenerContainer(PooledConnectionFactory connectionFactory, javax.jms.MessageListener messageListener) {
         DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         container.setDestination(chatServerConsumerQueue);

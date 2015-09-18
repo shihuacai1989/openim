@@ -1,4 +1,4 @@
-package com.openim.common.mq.activemq;
+package com.openim.common.mq.activemq.listener;
 
 import com.openim.common.mq.MessageQueueDispatch;
 import org.slf4j.Logger;
@@ -13,6 +13,7 @@ import javax.jms.MessageListener;
  * Created by shihuacai on 2015/7/28.
  */
 public class ActiveMQMessageListener implements MessageListener {
+
     private static final Logger LOG = LoggerFactory.getLogger(ActiveMQMessageListener.class);
 
     @Autowired
@@ -28,7 +29,7 @@ public class ActiveMQMessageListener implements MessageListener {
 
                 messageDispatch.dispatchMessage(null, null, bytes);
             } else {
-                System.out.println("Received: " + message);
+                LOG.error("activemq消息格式错误，发送时，必须为byte[]类型");
             }
         }catch (Exception e){
             LOG.error(e.toString());

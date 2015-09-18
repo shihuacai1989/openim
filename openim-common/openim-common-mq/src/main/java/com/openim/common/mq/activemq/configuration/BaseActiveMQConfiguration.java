@@ -1,15 +1,15 @@
 package com.openim.common.mq.activemq.configuration;
 
 import com.openim.common.mq.IMessageSender;
-import com.openim.common.mq.activemq.ActiveMQMessageListener;
-import com.openim.common.mq.activemq.ActiveMQMessageSender;
+import com.openim.common.mq.activemq.listener.ActiveMQMessageListener;
+import com.openim.common.mq.activemq.sender.ActiveMQMessageSender;
 import com.openim.common.mq.constants.MQConstants;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 
 /**
@@ -47,12 +47,14 @@ public class BaseActiveMQConfiguration {
         return new ActiveMQMessageListener();
     }
 
-    @Bean
+    /*@Bean
     ActiveMQConnectionFactory activeMQConnectionFactory(){
+
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(brokerUrl);
         connectionFactory.setUserName(userName);
         connectionFactory.setPassword(password);
+
         return connectionFactory;
     }
 
@@ -65,9 +67,35 @@ public class BaseActiveMQConfiguration {
         connectionFactory.setTargetConnectionFactory(activeMQConnectionFactory);
         return connectionFactory;
     }
+
     @Bean
     JmsTemplate jmsTemplate(SingleConnectionFactory connectionFactory){
         JmsTemplate jmsTemplate = new JmsTemplate();;
+        jmsTemplate.setConnectionFactory(connectionFactory);
+        return jmsTemplate;
+    }*/
+
+    //=====================
+    // 上面的配置中JmsTemplate每次发送数据时，都要创建连接、关闭，效率太
+    // 调整为以下配置，或者采用org.springframework.jms.connection.CachingConnectionFactory
+    //=====================
+
+    @Bean
+    PooledConnectionFactory pooledConnectionFactory(){
+
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+        connectionFactory.setBrokerURL(brokerUrl);
+        connectionFactory.setUserName(userName);
+        connectionFactory.setPassword(password);
+
+        PooledConnectionFactory pooledConnectionFactory = new PooledConnectionFactory();
+        pooledConnectionFactory.setConnectionFactory(connectionFactory);
+        return pooledConnectionFactory;
+    }
+
+    @Bean
+    JmsTemplate jmsTemplate(PooledConnectionFactory connectionFactory){
+        JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(connectionFactory);
         return jmsTemplate;
     }
