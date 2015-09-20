@@ -17,6 +17,8 @@
         <module>openim-fileserver</module>
         <module>openim-analysis</module>
         <module>openim-web</module>
+        <module>untitled</module>
+        <module>openim-jmx</module>
     </modules>
 
     <properties>
