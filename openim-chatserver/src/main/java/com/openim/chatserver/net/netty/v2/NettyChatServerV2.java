@@ -34,6 +34,9 @@ public class NettyChatServerV2 implements IChatServer {
     @Value("${chat.port}")
     private int port;
 
+    @Value("${ssl}")
+    private boolean ssl;
+
     @Autowired
     private NetMessageDispatch<ChannelHandlerContext, ExchangeMessage> messageDispatch;
 
@@ -93,16 +96,16 @@ public class NettyChatServerV2 implements IChatServer {
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
 
-            SelfSignedCertificate ssc = new SelfSignedCertificate();
-            SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
-
-
-
             ChannelPipeline pipeline = ch.pipeline();
+
             //配置服务端监听读超时，即无法收到客户端发的心跳信息的最长时间间隔：2分钟
             pipeline.addLast("ping", new IdleStateHandler(120, 0, 0, TimeUnit.SECONDS));
 
-            pipeline.addLast("ssl", sslCtx.newHandler(ch.alloc()));
+            if(ssl){
+                SelfSignedCertificate ssc = new SelfSignedCertificate();
+                SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
+                pipeline.addLast("ssl", sslCtx.newHandler(ch.alloc()));
+            }
 
             pipeline.addLast("encoder", new OpenIMProtobufEncoderV2());
             pipeline.addLast("decoder", new OpenIMProtobufDecoderV2());

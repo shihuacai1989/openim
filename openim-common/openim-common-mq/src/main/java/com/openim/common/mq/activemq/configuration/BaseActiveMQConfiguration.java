@@ -9,13 +9,12 @@ import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
 
 /**
  * Created by shihc on 2015/9/17.
  */
-@Configuration
+
 public class BaseActiveMQConfiguration {
 
     @Value("${activemq.broker-url}")

@@ -10,6 +10,7 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
 /**
  * Created by shihuacai on 2015/7/29.
  */
+//@Configuration
 public class ActiveMQConfiguration extends BaseConfiguration {
 
     /*@Bean

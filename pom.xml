@@ -17,8 +17,6 @@
         <module>openim-fileserver</module>
         <module>openim-analysis</module>
         <module>openim-web</module>
-        <module>untitled</module>
-        <module>openim-jmx</module>
     </modules>
 
     <properties>
@@ -111,11 +109,20 @@
                 <version>${xSocket.version}</version>
             </dependency>
 
-            <dependency>
+            <!--mina采用osgi的方式，
+                貌似如果在此处配置了版本等信息
+                需要在其他地方仍然写入版本-->
+            <!--<dependency>
                 <groupId>org.apache.mina</groupId>
                 <artifactId>mina-core</artifactId>
                 <version>${mina.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.mina</groupId>
+                <artifactId>mina-integration-jmx</artifactId>
+                <type>bundle</type>
+                <version>${mina.version}</version>
+            </dependency>-->
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongo-java-driver</artifactId>
@@ -224,6 +231,28 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <version>2.5.4</version>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -246,6 +275,11 @@
                     </configuration>
                 </plugin>
 
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>

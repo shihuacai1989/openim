@@ -17,6 +17,7 @@
         <module>openim-common-mq</module>
         <module>openim-common-zk</module>
         <module>openim-common-im</module>
+        <module>openim-common-jmx</module>
     </modules>
 
 

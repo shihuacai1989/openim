@@ -8,10 +8,12 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by shihuacai on 2015/7/29.
  */
+@Configuration
 public class RabbitMQConfiguration extends BaseConfiguration {
 
     @Bean

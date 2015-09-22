@@ -41,12 +41,52 @@
         <dependency>
             <groupId>org.apache.mina</groupId>
             <artifactId>mina-core</artifactId>
+            <!--<type>bundle</type>-->
+            <!--也会被打包 servlet-provided test-->
+            <scope>compile</scope>
+            <!--添加了type属性后需要添加version属性-->
+            <version>${mina.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.mina</groupId>
+            <artifactId>mina-integration-jmx</artifactId>
+            <!--<type>bundle</type>-->
+            <version>${mina.version}</version>
+            <!--<scope>compile</scope>-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.mina</groupId>
+                    <artifactId>mina-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.mina</groupId>
+                    <artifactId>mina-integration-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.mina</groupId>
+                    <artifactId>mina-integration-ognl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-integration-beans</artifactId>
+            <!--<type>bundle</type>-->
+            <version>${mina.version}</version>
+            <!--<scope>compile</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-integration-ognl</artifactId>
+            <!--<type>bundle</type>-->
+            <version>${mina.version}</version>
+            <!--<scope>compile</scope>-->
+        </dependency>
+        <!--<dependency>
+            <groupId>org.apache.mina</groupId>
             <artifactId>mina-integration-spring</artifactId>
             <version>1.1.7</version>
-            <!--<exclusions>
+            &lt;!&ndash;<exclusions>
 
                 <exclusion>
                     <groupId>org.apache.mina</groupId>
@@ -56,8 +96,8 @@
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-beans</artifactId>
                 </exclusion>
-            </exclusions>-->
-        </dependency>
+            </exclusions>&ndash;&gt;
+        </dependency>-->
 
 
         <dependency>
@@ -98,6 +138,8 @@
     <build>
 
         <plugins>
+
+
             <plugin>
                 <!--https://github.com/igor-petruk/protobuf-maven-plugin.git-->
                 <groupId>com.github.igor-petruk.protobuf</groupId>

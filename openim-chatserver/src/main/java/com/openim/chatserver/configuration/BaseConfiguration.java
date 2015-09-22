@@ -1,10 +1,6 @@
 package com.openim.chatserver.configuration;
 
 import com.openim.chatserver.dispatch.ChatServerMessageQueueDispatchV2;
-import com.openim.chatserver.net.IChatServer;
-import com.openim.chatserver.net.NetMessageDispatch;
-import com.openim.chatserver.net.netty.v2.NettyChatServerV2;
-import com.openim.chatserver.net.netty.v2.NettyMessageDispatchV2;
 import com.openim.common.mq.MessageQueueDispatch;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.common.util.IPUtil;
@@ -26,31 +22,6 @@ public class BaseConfiguration implements InitializingBean {
     MessageQueueDispatch messageDispatch() {
         return new ChatServerMessageQueueDispatchV2();
     }
-
-    /*==========================================================*/
-    //netty实现
-    @Bean
-    NetMessageDispatch netMessageDispatch(){
-        return new NettyMessageDispatchV2();
-    }
-
-    @Bean
-    IChatServer chatServer(){
-        return new NettyChatServerV2();
-    }
-
-    //mina实现
-    /*@Bean
-    INetMessageDispatch netMessageDispatch(){
-        return new MinaMessageDispatchV2();
-    }
-
-    @Bean
-    IChatServer chatServer(){
-        return new MinaChatServerV2();
-    }*/
-    /*==========================================================*/
-
 
     protected String chatServerListenerQueue() {
         chatQueueName = MQConstants.chatServerQueueTemplate.replace("{server}", IPUtil.getLocalIP()).replace("{port}", port);
