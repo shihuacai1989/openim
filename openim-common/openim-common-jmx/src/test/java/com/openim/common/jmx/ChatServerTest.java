@@ -30,6 +30,13 @@ public class ChatServerTest {
         //将MBean注册到MBeanServer中
         mbs.registerMBean(controller, new ObjectName("MyappMBean:name=controller"));
 
+        while (true){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         /*//创建适配器，用于能够通过浏览器访问MBean
         HtmlAdaptorServer adapter = new HtmlAdaptorServer();
         adapter.setPort(9797);

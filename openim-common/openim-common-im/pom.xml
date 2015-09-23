@@ -109,6 +109,7 @@
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
             <version>1.7.7</version>
+            <scope>test</scope>
         </dependency>
 
         <!--
@@ -119,6 +120,7 @@
             <groupId>com.esotericsoftware.kryo</groupId>
             <artifactId>kryo</artifactId>
             <version>2.16</version>
+            <scope>test</scope>
             <!--<version>3.0.2</version>-->
         </dependency>
 
@@ -127,12 +129,14 @@
             <groupId>org.msgpack</groupId>
             <artifactId>msgpack</artifactId>
             <version>0.6.7</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
             <version>0.9.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -161,8 +165,8 @@
                 <artifactId>avro-maven-plugin</artifactId>
                 <version>1.7.7</version>
                 <configuration>
-                    <sourceDirectory>src/main/exchange/avro</sourceDirectory>
-                    <outputDirectory>src/main/java</outputDirectory>
+                    <sourceDirectory>src/test/exchange/avro</sourceDirectory>
+                    <outputDirectory>src/test/java</outputDirectory>
                 </configuration>
                 <!--以下官网的配置需要通过mvn generate-sources生成源码，直接在intellij中运行，configuration中配置无效-->
                 <!--<executions>
@@ -189,9 +193,9 @@
                 <version>0.1.13-SNAPSHOT</version>
                 <configuration>
                     <!--会自动删除原目录下的文件，如何屏蔽？？-->
-                    <outputDirectory>src/main/java</outputDirectory>
+                    <outputDirectory>src/test/java</outputDirectory>
                     <thriftExecutable>thrift/thrift-0.9.2.exe</thriftExecutable>
-                    <thriftSourceRoot>src/main/exchange/thrift</thriftSourceRoot>
+                    <thriftSourceRoot>src/test/exchange/thrift</thriftSourceRoot>
                     <cleanOutputDirectory>false</cleanOutputDirectory>
                 </configuration>
             </plugin>

@@ -51,7 +51,7 @@ public class MinaChatServerV2 implements IChatServer {
     public void startServer() {
         try {
             if (ssl) {
-                throw new NotSupportedException("暂未实现mina框架的ssl通信");
+                throw new NotSupportedException("暂未实现mina框架的ssl通信，如何与netty兼容");
             }
             IoAcceptor acceptor = new NioSocketAcceptor();
             acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 15);   //读写 通道均在10 秒内无任何操作就进入空闲
