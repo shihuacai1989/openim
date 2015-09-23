@@ -11,6 +11,7 @@ import java.util.Map;
  * Created by shihuacai on 2015/7/21.
  * 系统启动监听器
  */
+@Deprecated
 public class ApplicationContextInitialized implements ApplicationListener<ContextRefreshedEvent> {
     private static ApplicationContext applicationContext;
 

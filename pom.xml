@@ -5,9 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.openim</groupId>
-    <artifactId>openim</artifactId>
+    <artifactId>openim-parent</artifactId>
     <packaging>pom</packaging>
     <version>0.1</version>
+    <inceptionYear>2011</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
     <modules>
         <module>openim-esb</module>
         <module>openim-chatserver</module>
