@@ -14,7 +14,6 @@ import org.springframework.jms.core.JmsTemplate;
 /**
  * Created by shihc on 2015/9/17.
  */
-
 public class BaseActiveMQConfiguration {
 
     @Value("${activemq.broker-url}")

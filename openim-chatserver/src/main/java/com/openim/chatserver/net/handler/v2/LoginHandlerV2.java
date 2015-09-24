@@ -2,7 +2,6 @@ package com.openim.chatserver.net.handler.v2;
 
 import com.openim.chatserver.SessionManager;
 import com.openim.chatserver.bean.Session;
-import com.openim.chatserver.configuration.BaseConfiguration;
 import com.openim.common.im.annotation.HandleGroup;
 import com.openim.common.im.bean.ExchangeMessage;
 import com.openim.common.im.bean.MessageType;
@@ -13,6 +12,7 @@ import com.openim.common.mq.constants.MQConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,6 +26,11 @@ public class LoginHandlerV2 implements IMessageHandlerV2 {
     @Autowired
     private IMessageSender messageSender;
 
+    @Autowired
+    @Qualifier("chatServerListenerQueue")
+    String chatServerListenerQueue;
+
+
     @Override
     public void handle(Session session, ExchangeMessage exchangeMessage) {
         if (exchangeMessage.getType() == MessageType.LOGIN) {
@@ -35,7 +40,7 @@ public class LoginHandlerV2 implements IMessageHandlerV2 {
                 String pwd = connectMessage.getPassword();
                 String loginId = connectMessage.getLoginId();
                 SessionManager.add(loginId, session);
-                connectMessage = connectMessage.toBuilder().setServerQueue(BaseConfiguration.chatQueueName).build();
+                connectMessage = connectMessage.toBuilder().setServerQueue(chatServerListenerQueue).build();
                 exchangeMessage.setMessageLite(connectMessage);
                 messageSender.sendMessage(MQConstants.openimExchange, MQConstants.loginRouteKey, MQBsonCodecUtilV2.encode(exchangeMessage));
             }catch (Exception e){

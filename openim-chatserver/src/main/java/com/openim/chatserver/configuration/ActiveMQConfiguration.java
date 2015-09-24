@@ -1,5 +1,6 @@
 package com.openim.chatserver.configuration;
 
+import com.openim.common.mq.activemq.configuration.BaseActiveMQConfiguration;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
  * Created by shihuacai on 2015/7/29.
  */
 //@Configuration
-public class ActiveMQConfiguration extends BaseConfiguration {
+public class ActiveMQConfiguration extends BaseActiveMQConfiguration /*extends BaseConfiguration*/ {
 
     /*@Bean
     ActiveMQQueue chatQueue() {
