@@ -4,7 +4,11 @@ package com.openim.common.mq.constants;
  * Created by shihuacai on 2015/7/28.
  * 由于rabbitmq与activemq的API接口差异，注意队列的命名规范
  */
-public class MQConstants {
+public final class MQConstants {
+
+    private MQConstants(){
+
+    }
 
     public static final String chatServerQueueTemplate = "chatSever-{server}:{port}";
 

@@ -28,6 +28,7 @@
         <module>openim-analysis</module>
         <module>openim-web</module>
         <module>openim-docker</module>
+        <module>openim-dubbo</module>
     </modules>
 
     <properties>
@@ -253,6 +254,22 @@
             <dependency>
                 <groupId>com.openim</groupId>
                 <artifactId>openim-common-mq</artifactId>
+                <version>${openim.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.openim</groupId>
+                <artifactId>openim-dubbo-common</artifactId>
+                <version>${openim.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.openim</groupId>
+                <artifactId>openim-dubbo-consumer</artifactId>
+                <version>${openim.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.openim</groupId>
+                <artifactId>openim-dubbo-provider</artifactId>
                 <version>${openim.version}</version>
             </dependency>
         </dependencies>
