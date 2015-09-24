@@ -20,6 +20,7 @@ import java.util.List;
 @ComponentScan("com.openim")
 @ImportResource({"classpath:dubbo.xml"})
 public class DubboConsumerApplication  implements CommandLineRunner {
+
     @Autowired
     ApplicationContext context;
 

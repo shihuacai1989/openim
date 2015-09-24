@@ -12,6 +12,7 @@ import com.openim.common.zk.bean.NodeField;
 import com.openim.esb.service.IChatServerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -34,6 +35,9 @@ public class ZKChatServerServiceImpl implements IChatServerService {
     @Value("${zkServers}")
     private String zkServers;
 
+    @Autowired
+    OpenIMZKClient imZKClient;
+
     private ReadWriteLock lock = new ReentrantReadWriteLock();
     private Lock writeLock = lock.writeLock();
     private Lock readLock = lock.readLock();
@@ -45,7 +49,6 @@ public class ZKChatServerServiceImpl implements IChatServerService {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        OpenIMZKClient imZKClient = new OpenIMZKClient(zkServers);
         imZKClient.connectZKServer(new INodeChangedListener() {
             @Override
             public void onChanged(List<Node> data, boolean success) {

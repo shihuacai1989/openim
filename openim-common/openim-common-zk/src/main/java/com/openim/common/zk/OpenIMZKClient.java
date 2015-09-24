@@ -2,6 +2,7 @@ package com.openim.common.zk;
 
 import com.openim.common.util.CharsetUtil;
 import com.openim.common.zk.client.CuratorZKClient;
+import com.openim.common.zk.client.GenericZKClient;
 import com.openim.common.zk.client.IZKClient;
 import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang.StringUtils;
@@ -25,13 +26,20 @@ public class OpenIMZKClient {
     private IZKClient zkClient;
     //private ChatServerNodeChangedListener chatServerNodeChangedListener;
 
-    public OpenIMZKClient(String zkServers) {
+    public OpenIMZKClient(String zkServers, ClientType clientType) {
         if (StringUtils.isBlank(zkServers)) {
             throw new NullArgumentException("zkServers不可为空");
         }
         this.zkServers = zkServers;
         //zkClient = new GenericZKClient();
-        zkClient = new CuratorZKClient();
+        if(clientType == ClientType.curator){
+            zkClient = new CuratorZKClient();
+        }else if(clientType == ClientType.generic){
+            zkClient = new GenericZKClient();
+        }else{
+            throw new IllegalArgumentException("zookeeper客户端类型错误：" + clientType.name());
+        }
+
     }
 
     public void connectZKServer() {
@@ -50,4 +58,8 @@ public class OpenIMZKClient {
         zkClient.addEphemeralSequentialNode(chatServerNodePath, data);
     }
 
+    public enum ClientType{
+        generic,
+        curator
+    }
 }
