@@ -21,6 +21,7 @@
     <!--<packaging>war</packaging>-->
 
     <description>
+        http://spring.io/guides/gs/spring-boot-docker/#initial
         仅用于实验，无任何实际功能
         http://blog.csdn.net/yxsimple/article/details/46771123
         org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration

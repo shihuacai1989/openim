@@ -62,7 +62,7 @@ public class MinaChatServerV2 implements IChatServer {
             acceptor.setHandler(new TcpServerHandle());
             acceptor.bind(new InetSocketAddress(port));
 
-            JmxService.registerBean(acceptor);
+            /*JmxService.registerBean(acceptor);*/
             /*IoServiceMBean acceptorMBean = new IoServiceMBean(acceptor);
             MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
             // create a JMX ObjectName.  This has to be in a specific format.

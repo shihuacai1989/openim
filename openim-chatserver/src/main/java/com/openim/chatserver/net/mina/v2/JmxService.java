@@ -9,6 +9,7 @@ import java.lang.management.ManagementFactory;
 /**
  * Created by shihuacai on 2015/9/22.
  */
+@Deprecated
 public class JmxService {
     private static MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
 

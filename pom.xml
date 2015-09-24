@@ -17,6 +17,7 @@
         <module>openim-fileserver</module>
         <module>openim-analysis</module>
         <module>openim-web</module>
+        <module>openim-docker</module>
     </modules>
 
     <properties>
@@ -27,8 +28,8 @@
         <grizzly.version>2.3.22</grizzly.version>
         <xSocket.version>2.8.15</xSocket.version>
         <openim.version>0.1</openim.version>
-        <spring.boot.version>1.2.5.RELEASE</spring.boot.version>
-        <spring.version>4.1.7.RELEASE</spring.version>
+        <spring.boot.version>1.2.4.RELEASE</spring.boot.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
         <activemq.version>5.7.0</activemq.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -57,7 +58,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.10</version>
+                <version>4.12</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -156,8 +157,13 @@
             <dependency>
                 <groupId>org.springframework.integration</groupId>
                 <artifactId>spring-integration-jms</artifactId>
-                <version>4.1.5.RELEASE</version>
+                <version>${spring.version}</version>
             </dependency>
+            <!--<dependency>
+                <groupId>org.springframework.integration</groupId>
+                <artifactId>spring-integration-jmx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -166,6 +172,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
                 <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
@@ -200,6 +207,12 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
+                <scope>test</scope>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -207,6 +220,11 @@
                 <artifactId>spring-jms</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!--<dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jmx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>-->
             <dependency>
                 <groupId>com.openim</groupId>
                 <artifactId>openim-common-im</artifactId>
@@ -240,7 +258,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -251,6 +273,7 @@
                 <extensions>true</extensions>
                 <version>2.5.4</version>
             </plugin>
+
         </plugins>
 
         <pluginManagement>

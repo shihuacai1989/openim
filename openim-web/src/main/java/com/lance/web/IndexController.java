@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -38,13 +39,17 @@ public class IndexController {
 	public String login(){
 		return "login";
 	}
-	
+
+	@RequestMapping(value="/data",method=RequestMethod.GET)
+	@ResponseBody
+	public String data(){
+		return "测试数据";
+	}
+
 	/**
 	 * 登录成功后跳转页面
 	 * @author lance
 	 * 2014-6-8下午6:50:47
-	 * @param name
-	 * @param password
 	 * @return
 	 */
 	@RequestMapping(value="validate",method=RequestMethod.POST)

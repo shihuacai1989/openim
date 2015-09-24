@@ -12,5 +12,6 @@
     <artifactId>openim-common-jmx</artifactId>
     <version>0.1</version>
 
+    <description>废弃，不再开发</description>
 
 </project>
