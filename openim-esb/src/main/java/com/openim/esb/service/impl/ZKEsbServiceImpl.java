@@ -9,7 +9,7 @@ import com.openim.common.zk.INodeChangedListener;
 import com.openim.common.zk.OpenIMZKClient;
 import com.openim.common.zk.bean.Node;
 import com.openim.common.zk.bean.NodeField;
-import com.openim.esb.service.IChatServerService;
+import com.openim.esb.service.IEsbService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * Created by shihc on 2015/8/4.
  */
 @Service
-public class ZKChatServerServiceImpl implements IChatServerService {
+public class ZKEsbServiceImpl implements IEsbService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ZKChatServerServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ZKEsbServiceImpl.class);
 
     @Value("${zkServers}")
     private String zkServers;

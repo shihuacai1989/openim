@@ -4,6 +4,8 @@ import com.openim.chatserver.dispatch.ChatServerMessageQueueDispatchV2;
 import com.openim.common.mq.MessageQueueDispatch;
 import com.openim.common.mq.constants.MQConstants;
 import com.openim.common.util.IPUtil;
+import com.openim.common.zk.OpenIMZKClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +15,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class CommonConfiguration /*implements InitializingBean*/ {
+
+    @Value("${zkServers}")
+    private String zkServers;
 
     @Deprecated
     public static String chatQueueName;
@@ -30,6 +35,13 @@ public class CommonConfiguration /*implements InitializingBean*/ {
         chatQueueName = MQConstants.chatServerQueueTemplate.replace("{server}", IPUtil.getLocalIP()).replace("{port}", port);
         return chatQueueName;
     }
+
+    @Autowired
+    OpenIMZKClient openIMZKClient(){
+        OpenIMZKClient client = new OpenIMZKClient(zkServers, OpenIMZKClient.ClientType.curator);
+        return client;
+    }
+
 
 
     /*@Override

@@ -1,7 +1,7 @@
 package com.openim.esb.controller;
 
 import com.openim.common.im.bean.CommonResult;
-import com.openim.esb.service.IChatServerService;
+import com.openim.esb.service.IEsbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ServerController {
 
     @Autowired
-    private IChatServerService chatServerService;
+    private IEsbService chatServerService;
 
     /**
      * 随机获取局域网的ip地址

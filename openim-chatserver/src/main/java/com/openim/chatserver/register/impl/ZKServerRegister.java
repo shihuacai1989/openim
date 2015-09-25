@@ -6,6 +6,7 @@ import com.openim.common.util.CharsetUtil;
 import com.openim.common.util.IPUtil;
 import com.openim.common.zk.OpenIMZKClient;
 import com.openim.common.zk.bean.NodeField;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,10 @@ public class ZKServerRegister implements IServerRegister {
     @Value("${chat.port}")
     private String chatPort;
 
+
+    @Autowired
+    OpenIMZKClient openIMZKClient;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         //如果zk未启动，则连接出错，阻塞在此处，影响系统其他组件的初始化工作，故新开一个线程注册服务;
@@ -38,7 +43,6 @@ public class ZKServerRegister implements IServerRegister {
 
     @Override
     public void register() {
-        OpenIMZKClient openIMZKClient = new OpenIMZKClient(zkServers);
         openIMZKClient.connectZKServer();
         openIMZKClient.addRootNode();
 
