@@ -29,6 +29,7 @@
         <module>openim-web</module>
         <module>openim-docker</module>
         <module>openim-dubbo</module>
+        <module>openim-spi</module>
     </modules>
 
     <properties>
