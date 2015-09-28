@@ -43,5 +43,6 @@ public class DubboConsumerApplication  implements CommandLineRunner {
                 System.out.println(list.get(i));
             }
         }
+
     }
 }

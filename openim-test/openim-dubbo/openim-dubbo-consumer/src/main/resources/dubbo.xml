@@ -17,5 +17,10 @@
     <dubbo:reference id="demoService"
                      interface="com.openim.dubbo.common.service.IDemoService" />
 
+    <!-- Memcache -->
+    <!--<dubbo:reference id="cache" interface="java.util.Map" url="memcached://localhost:11211" />-->
+
+    <!-- Redis -->
+    <dubbo:reference id="store" interface="java.util.Map" url="redis://127.0.0.1:6379" />
 </beans>
 

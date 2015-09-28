@@ -12,5 +12,20 @@
     <groupId>com.openim</groupId>
     <artifactId>openim-dubbo-common</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-dubbo-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+        </dependency>
 
+    </dependencies>
 </project>
