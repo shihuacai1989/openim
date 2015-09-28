@@ -18,13 +18,9 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.openim</groupId>
-            <artifactId>openim-dubbo-common</artifactId>
-        </dependency>
-        <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>2.7.3</version>
+            <version>2.2.1</version>
         </dependency>
 
     </dependencies>

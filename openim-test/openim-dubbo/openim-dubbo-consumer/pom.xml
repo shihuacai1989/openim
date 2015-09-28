@@ -12,4 +12,11 @@
     <groupId>com.openim</groupId>
     <artifactId>openim-dubbo-consumer</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.openim</groupId>
+            <artifactId>openim-dubbo-common</artifactId>
+        </dependency>
+
+    </dependencies>
 </project>
