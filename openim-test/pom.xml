@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>openim-parent</artifactId>
+        <groupId>com.openim</groupId>
+        <version>0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.openim</groupId>
+    <artifactId>openim-test</artifactId>
+    <description>实验性功能开发</description>
+    <packaging>pom</packaging>
+    <modules>
+        <module>openim-analysis</module>
+        <module>openim-docker</module>
+        <module>openim-dubbo</module>
+        <module>openim-spring-schema</module>
+        <module>openim-spi</module>
+    </modules>
+
+</project>

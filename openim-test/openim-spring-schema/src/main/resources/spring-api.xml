@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:route="http://www.openim.com/schema/api/route"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.openim.com/schema/api/route
+                           http://www.openim.com/schema/api/route.xsd">
+
+    <bean id="defaultBeforeHandler" class="com.openim.spring.handler.impl.DefaultBeforeHandler"/>
+    <bean id="defaultAfterHandler" class="com.openim.spring.handler.impl.DefaultAfterHandler"/>
+    <bean id="defaultExecuteHandler" class="com.openim.spring.handler.impl.DefaultExecuteHandler"/>
+    <route:urls id="urlHandlerMap">
+        <route:url pattern="user/api/list/*" beforeHandlers="defaultBeforeHandler" afterHandlers="defaultAfterHandler"/>
+        <route:url pattern="puffin/api/name/get/*"/>
+        <route:url pattern="test/api/all/*" executeHandler="defaultExecuteHandler"/>
+    </route:urls>
+</beans>

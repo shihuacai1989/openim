@@ -25,11 +25,8 @@
         <module>openim-common</module>
         <module>openim-emulator</module>
         <module>openim-fileserver</module>
-        <module>openim-analysis</module>
         <module>openim-web</module>
-        <module>openim-docker</module>
-        <module>openim-dubbo</module>
-        <module>openim-spi</module>
+        <module>openim-test</module>
     </modules>
 
     <properties>

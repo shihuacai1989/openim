@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns="http://www.openim.com/schema/api/route"
+        targetNamespace="http://www.openim.com/schema/api/route"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.springframework.org/schema/beans" />
+    <xs:element name="urls">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="beans:identifiedType">
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="url">
+                            <xs:complexType>
+                                <xs:attributeGroup ref="url.group" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:attributeGroup name="url.group">
+        <xs:attribute name="pattern" type="xs:string" use="required"/>
+        <xs:attribute name="beforeHandlers" type="xs:string" use="optional"/>
+        <xs:attribute name="afterHandlers" type="xs:string" use="optional"/>
+        <xs:attribute name="executeHandler" type="xs:string" use="optional"/>
+    </xs:attributeGroup>
+</xs:schema>
+
+
+<!--
+<xsd:schema xmlns="http://www.openim.com/schema/api/route"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            xmlns:tool="http://www.springframework.org/schema/tool"
+            targetNamespace="http://www.openim.com/schema/api/route">
+
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+    <xsd:import namespace="http://www.springframework.org/schema/tool"/>
+
+
+    <xsd:element name="urls">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="url">
+                            <xsd:complexType>
+                                <xsd:attributeGroup ref="url.group"/>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:choice>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:attributeGroup name="url.group">
+        <xsd:attribute name="pattern" type="xsd:string" use="required"/>
+        <xsd:attribute name="beforeHandlers" type="xsd:string" use="optional"/>
+        <xsd:attribute name="afterHandlers" type="xsd:string" use="optional"/>
+        <xsd:attribute name="executeHandler" type="xsd:string" use="optional"/>
+    </xsd:attributeGroup>
+</xsd:schema>-->
