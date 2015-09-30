@@ -9,6 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <description>
+        http://aliapp.blog.51cto.com/8192229/1325655/
+        http://www.th7.cn/Program/java/201408/266822.shtml
+        http://www.bubuko.com/infodetail-484695.html
+    </description>
     <groupId>com.openim</groupId>
     <artifactId>openim-dubbo</artifactId>
     <packaging>pom</packaging>

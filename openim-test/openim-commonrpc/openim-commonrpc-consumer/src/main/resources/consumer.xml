@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:commonrpc="http://www.commonrpc.com/commonrpc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.commonrpc.com/commonrpc
+        http://www.commonrpc.com/commonrpc/commonrpc.xsd">
+
+    <!--redis 注册中心地址 跟服务端一直 -->
+    <commonrpc:application id="clientDemo" flag="2" timeout="5000" address="127.0.0.1:6379"/>
+
+    <commonrpc:reference id="demoServiceClient"  interfacename="test.cross.plateform.rocketrpc.demo.service.IDemoService"  procotolType="1" codecType="4" timeout="500" group="demo"/>
+
+</beans>
+

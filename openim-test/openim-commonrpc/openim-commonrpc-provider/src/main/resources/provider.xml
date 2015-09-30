@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:commonrpc="http://www.commonrpc.com/commonrpc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.commonrpc.com/commonrpc
+        http://www.commonrpc.com/commonrpc/commonrpc.xsd">
+
+
+    <commonrpc:application id="serverDemo" address="127.0.0.1:6379" flag="1" timeout="5000"/>
+
+    <commonrpc:registry id="rpcRegistry"  port="10009" threadCount="5" timeout="500" procotolType="1" codecType="4"
+                        group="demo"/>
+
+    <commonrpc:service id="IDemoService" interfacename="test.cross.plateform.rocketrpc.demo.service.IDemoService"
+                       ref="demoService"/>
+
+    <bean id="demoService" class="com.openim.commonrpc.provider.DemoServiceImpl"/>
+    <!--<bean id="demoRpcFilter" class="test.cross.plateform.rocketrpc.demo.service.impl.DemoRpcFilter"></bean>-->
+
+
+    <!--filterRef 可以不配置  -->
+    <!--group  根据项目环境不同或者项目不同，名字不一样，不能相同，否则后台系统报错  -->
+    <!--codecType  对应值请查找 CommonRpcCodecs类  -->
+
+</beans>
