@@ -25,7 +25,6 @@
         <module>openim-common</module>
         <module>openim-emulator</module>
         <module>openim-fileserver</module>
-        <module>openim-web</module>
         <module>openim-test</module>
     </modules>
 
@@ -40,6 +39,7 @@
         <spring.boot.version>1.2.4.RELEASE</spring.boot.version>
         <spring.version>4.1.6.RELEASE</spring.version>
         <activemq.version>5.7.0</activemq.version>
+        <slf4j-api.version>1.7.12</slf4j-api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -269,6 +269,11 @@
                 <groupId>com.openim</groupId>
                 <artifactId>openim-dubbo-provider</artifactId>
                 <version>${openim.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
