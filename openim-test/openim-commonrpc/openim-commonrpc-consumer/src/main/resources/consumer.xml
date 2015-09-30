@@ -7,10 +7,10 @@
         http://www.commonrpc.com/commonrpc
         http://www.commonrpc.com/commonrpc/commonrpc.xsd">
 
-    <!--redis 注册中心地址 跟服务端一直 -->
-    <commonrpc:application id="clientDemo" flag="2" timeout="5000" address="127.0.0.1:6379"/>
+    <commonrpc:application id="clientDemo" flag="2" timeout="5000" address="127.0.0.1:2181"/>
 
-    <commonrpc:reference id="demoServiceClient"  interfacename="test.cross.plateform.rocketrpc.demo.service.IDemoService"  procotolType="1" codecType="4" timeout="500" group="demo"/>
+    <!--group 可以同时支持多组，以符合,隔开  -->
+    <commonrpc:reference id="demoServiceClient"  interfacename="com.openim.commonrpc.common.IDemoService"  procotolType="1" codecType="4" timeout="500" group="demo"/>
 
 </beans>
 

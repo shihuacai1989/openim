@@ -29,6 +29,8 @@ public class CommonRpcConsumerApplication  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //立即执行，有可能还未获取到服务信息
+        Thread.sleep(10000);
         IDemoService demoService = (IDemoService) context.getBean("demoServiceClient"); //
         long time1 = System.currentTimeMillis();
         for (int i = 0; i < 1; i++) {

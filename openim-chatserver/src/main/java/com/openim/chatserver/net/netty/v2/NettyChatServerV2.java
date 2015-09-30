@@ -62,8 +62,7 @@ public class NettyChatServerV2 implements IChatServer {
             ChannelFuture f = bootstrap.bind(port).sync();
             // 监听服务器关闭监听
             //程序阻塞在此处，ApplicationListener不再调用
-            f.channel().closeFuture().sync();
-
+            //f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             LOG.error(e.toString());
         } /*catch (CertificateException e) {
@@ -78,13 +77,13 @@ public class NettyChatServerV2 implements IChatServer {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 startServer();
             }
-        }).start();
-
+        }).start();*/
+        startServer();
         LOG.info("推送服务启动完毕");
     }
 
