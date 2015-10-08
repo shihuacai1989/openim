@@ -13,6 +13,7 @@ import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.transport.TIOStreamTransport;
 import org.junit.Test;
 import org.msgpack.MessagePack;
+import org.objenesis.strategy.StdInstantiatorStrategy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -78,7 +79,27 @@ public class SerializeTest {
 
     @Test
     public void kyroTest(){
-        Kryo kryo = new Kryo();
+        try {
+            DeviceMsg deviceMsg = new DeviceMsg();
+            deviceMsg.setType(type);
+            deviceMsg.setMsg(msg);
+
+            Kryo kryo = new Kryo();
+            kryo.setReferences(false);
+            kryo.setRegistrationRequired(false);
+            kryo.setInstantiatorStrategy(new StdInstantiatorStrategy());
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            Output output = new Output(bos);
+            output.setOutputStream(new FileOutputStream("file.bin"));
+            kryo.writeClassAndObject(output, deviceMsg);
+            output.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        /*Kryo kryo = new Kryo();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         Output output = new Output(bos);
         DeviceMsg deviceMsg = new DeviceMsg();
@@ -90,7 +111,7 @@ public class SerializeTest {
         byte[] bytes = bos.toByteArray();
         //String str = new String(bos.toByteArray());
         //输出21
-        System.out.println("kyro序列化后大小: " + bytes.length);
+        System.out.println("kyro序列化后大小: " + bytes.length);*/
 
         /*Input input = new Input(new ByteArrayInputStream(bytes));
         DeviceMsg someObject = kryo.readObject(input, DeviceMsg.class);
