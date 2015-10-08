@@ -21,6 +21,7 @@
         <module>openim-spi</module>
         <module>openim-web</module>
         <module>openim-commonrpc</module>
+        <module>openim-zbus</module>
     </modules>
 
 </project>

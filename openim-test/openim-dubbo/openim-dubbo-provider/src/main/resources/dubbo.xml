@@ -22,6 +22,8 @@
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />
+    <!--<dubbo:protocol name="rest" server="tomcat"/>-->
+    <!--<dubbo:protocol name="rest" server="sunhttp"/>-->
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.openim.dubbo.common.service.IDemoService" ref="demoService" />
