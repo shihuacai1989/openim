@@ -19,6 +19,7 @@
         <module>openim-dubbo</module>
         <module>openim-spring-schema</module>
         <module>openim-spi</module>
+        <module>openim-web</module>
         <module>openim-commonrpc</module>
     </modules>
 
