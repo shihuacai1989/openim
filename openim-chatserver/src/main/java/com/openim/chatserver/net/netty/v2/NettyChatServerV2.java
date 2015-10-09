@@ -31,6 +31,10 @@ import java.util.concurrent.TimeUnit;
 public class NettyChatServerV2 implements IChatServer {
     private static final Logger LOG = LoggerFactory.getLogger(NettyChatServerV2.class);
 
+    EventLoopGroup bossGroup = new NioEventLoopGroup();
+    EventLoopGroup workerGroup = new NioEventLoopGroup();
+
+
     @Value("${chat.port}")
     private int port;
 
@@ -42,8 +46,7 @@ public class NettyChatServerV2 implements IChatServer {
 
     @Override
     public void startServer() {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+
         try {
             //http://my.oschina.net/cloudcoder/blog/363749
             /*final SslContext sslCtx;
@@ -69,10 +72,16 @@ public class NettyChatServerV2 implements IChatServer {
             e.printStackTrace();
         } catch (SSLException e) {
             e.printStackTrace();
-        }*/ finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
-        }
+        }*/ //finally {
+            /*bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();*/
+        //}
+    }
+
+    @Override
+    public void stopServer() {
+        bossGroup.shutdownGracefully();
+        workerGroup.shutdownGracefully();
     }
 
     @Override

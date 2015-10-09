@@ -78,6 +78,11 @@ public class MinaChatServerV2 implements IChatServer {
     }
 
     @Override
+    public void stopServer() {
+
+    }
+
+    @Override
     public void afterPropertiesSet() throws Exception {
         /*new Thread(new Runnable() {
             @Override

@@ -57,6 +57,11 @@ public class XSocketChatServerV2 implements IChatServer {
     }
 
     @Override
+    public void stopServer() {
+
+    }
+
+    @Override
     public void afterPropertiesSet() throws Exception {
         startServer();
     }

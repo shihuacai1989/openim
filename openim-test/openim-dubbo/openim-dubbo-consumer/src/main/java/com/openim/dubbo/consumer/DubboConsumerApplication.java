@@ -18,7 +18,7 @@ import java.util.List;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.openim")
-@ImportResource({"classpath:dubbo.xml"})
+@ImportResource({"classpath:consumer.xml"})
 public class DubboConsumerApplication  implements CommandLineRunner {
 
     @Autowired
