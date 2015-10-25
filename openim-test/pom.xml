@@ -22,6 +22,7 @@
         <module>openim-web</module>
         <module>openim-commonrpc</module>
         <module>openim-zbus</module>
+        <module>openim-ice</module>
     </modules>
 
 </project>
