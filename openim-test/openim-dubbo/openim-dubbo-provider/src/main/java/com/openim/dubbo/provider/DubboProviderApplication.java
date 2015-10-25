@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.openim")
-@ImportResource({"classpath:dubbo.xml"})
+@ImportResource({"classpath:provider.xml"})
 public class DubboProviderApplication {
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(DubboProviderApplication.class);

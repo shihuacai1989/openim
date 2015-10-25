@@ -7,4 +7,6 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public interface IChatServer extends InitializingBean{
     void startServer();
+
+    void stopServer();
 }
