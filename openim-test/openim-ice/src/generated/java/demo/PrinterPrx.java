@@ -38,24 +38,24 @@ public interface PrinterPrx extends Ice.ObjectPrx
 
     public Ice.AsyncResult begin_printString(String s, java.util.Map<String, String> __ctx, Callback_Printer_printString __cb);
 
-    public Ice.AsyncResult begin_printString(String s,
-                                             IceInternal.Functional_VoidCallback __responseCb,
+    public Ice.AsyncResult begin_printString(String s, 
+                                             IceInternal.Functional_VoidCallback __responseCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_printString(String s,
-                                             IceInternal.Functional_VoidCallback __responseCb,
-                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+    public Ice.AsyncResult begin_printString(String s, 
+                                             IceInternal.Functional_VoidCallback __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb);
 
-    public Ice.AsyncResult begin_printString(String s,
-                                             java.util.Map<String, String> __ctx,
-                                             IceInternal.Functional_VoidCallback __responseCb,
+    public Ice.AsyncResult begin_printString(String s, 
+                                             java.util.Map<String, String> __ctx, 
+                                             IceInternal.Functional_VoidCallback __responseCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_printString(String s,
-                                             java.util.Map<String, String> __ctx,
-                                             IceInternal.Functional_VoidCallback __responseCb,
-                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+    public Ice.AsyncResult begin_printString(String s, 
+                                             java.util.Map<String, String> __ctx, 
+                                             IceInternal.Functional_VoidCallback __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb);
 
     public void end_printString(Ice.AsyncResult __result);
