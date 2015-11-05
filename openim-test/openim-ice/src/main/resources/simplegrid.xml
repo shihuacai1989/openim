@@ -1,0 +1,59 @@
+<!--
+ **********************************************************************
+
+ Copyright (c) 2003-2015 ZeroC, Inc. All rights reserved.
+
+ **********************************************************************
+-->
+
+<icegrid>
+
+  <application name="Simple">
+
+    <server-template id="SimpleServer">
+      <parameter name="index"/>
+      <icebox id="SimpleServer-${index}" exe="java" activation="on-demand">
+        <option>-jar</option>
+        <option>E:\Workspace\openim\openim-test\openim-ice\target\openim-ice-0.1-jar-with-dependencies.jar</option>
+        <service name="OnlineBook" entry="com.hp.tel.service.impl.OnlineBookI2">
+          <adapter name="OnlineBookAdapter" id="OnlineBookAdapter${index}" replica-group="ReplicatedHelloAdapter"/>
+
+        </service>
+        <service name="SMSService" entry="com.hp.tel.service.impl.SMSServiceI2">
+          <adapter name="SMSServiceAdapter" id="SMSServiceAdapter${index}" replica-group="ReplicatedSMSAdapter"/>
+
+        </service>
+        <!--<property name="Identity" value="hello"/>-->
+
+        <properties>
+          <!--<property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+          <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+          <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+          <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>-->
+
+          <property name="OnlineBook.Endpoints" value="tcp -p 10001 -h localhost"/>
+          <property name="SMSService.Endpoints" value="tcp -p 10002 -h localhost"/>
+
+          OnlineBook.AdapterId=OnlineBookAdapter
+          SMSService.AdapterId=SMSServiceAdapter
+        </properties>
+
+      </icebox>
+    </server-template>
+
+    <replica-group id="ReplicatedHelloAdapter">
+      <load-balancing type="round-robin" n-replicas="0"/>
+      <object identity="OnlineBook" type="::book::OnlineBook"/>
+    </replica-group>
+    <replica-group id="ReplicatedSMSAdapter">
+      <load-balancing type="round-robin" n-replicas="0"/>
+      <object identity="SMSService" type="::message::SMSService"/>
+    </replica-group>
+    <node name="node1">
+      <server-instance template="SimpleServer" index="1"/>
+      <server-instance template="SimpleServer" index="2"/>
+      <server-instance template="SimpleServer" index="3"/>
+    </node>
+  </application>
+
+</icegrid>

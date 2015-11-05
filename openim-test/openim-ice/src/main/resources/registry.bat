@@ -1,0 +1,1 @@
+icegridregistry --Ice.Config=registry.cfg

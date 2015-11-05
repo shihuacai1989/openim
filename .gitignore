@@ -5,3 +5,4 @@ LDAPTest.java
 .idea
 target
 activemq-data/**
+**/registry/**
