@@ -23,6 +23,10 @@
         <module>openim-commonrpc</module>
         <module>openim-zbus</module>
         <module>openim-ice</module>
+        <module>openim-auth2.0</module>
+        <module>openim-jersey</module>
+        <module>openim-jfinal</module>
+        <module>openim-javassist</module>
     </modules>
 
 </project>
